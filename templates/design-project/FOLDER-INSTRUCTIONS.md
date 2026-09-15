@@ -22,6 +22,7 @@ The meeting notes template (`meeting-notes-template.md`) routes its output by se
 | 📦 Deliverables Tracker | `deliverables.md` | What was handed over, to whom, still current or stale |
 | 📅 Changelog | `changelog.md` | Audit trail of every change to the files above |
 | 🔁 Pattern Candidate | `working-notes.md` (Still Exploratory), pending `#promote` | A decision that looks reusable across projects, not yet graduated to `pattern-library.md` |
+| ✅ Action Items | `meeting-notes.md` (same entry, not a separate tracker) | Per-meeting commitments with owner and deadline — meeting-scoped, like Stakeholder Register |
 Note: `👥 Stakeholder Register` (the template section) still routes to `meeting-notes.md` per meeting, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `meeting-notes-template.md`.
 
 Two template sections deliberately have no destination:

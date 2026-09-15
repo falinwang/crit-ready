@@ -59,7 +59,7 @@ If none of these apply, mark as `Attendee (role: TBC)` and add `⚠️ Attributi
 - 只被提及、確認未出席 -> 標注「(未出席)」
 
 若同一人以不同稱呼出現（全名 vs 暱稱、姓 vs 名），合併成一筆，不要當兩個人。
--> 路由至 📝 Meeting Notes header。
+-> 路由至 🗒️ Meeting Notes header。
 
 Notice patterns in how stakeholders interacted that may inform future syncs — 特別留意：
 - 有已知反對意見/立場的人缺席，會議卻做出跟他相關的決定
@@ -109,11 +109,12 @@ Optional section. Notice patterns in how stakeholders interacted that may inform
 - 問題：
 - Urgency: HIGH (擋住當前交付) / MEDIUM (影響下一階段) / LOW (長期需釐清)
 - 卡住什麼：若不解決，哪項工作無法推進
--> 路由至 📝 Working Notes | Open Questions。
+-> 路由至 ❓ Open Questions。
 
 ### ✅ Action Items
 每條格式 (list，不用表格)：
 - [ ] [行動內容] | 負責人：姓名 (role) | 期限：日期 或 TBD
+-> 路由至 🗒️ Meeting Notes（同一則會議紀錄內，不獨立成檔）。
 
 ### 🗂️ Hub Routing
 根據這場會議，以下哪些區塊需要更新：
