@@ -32,26 +32,8 @@ Four template sections deliberately have no destination — do not stop and ask 
 
 The first two carry their own `-> 不進 Hub` disclaimer in the template; the last two are process scaffolding and carry no arrow at all. Every *other* section must resolve to a row in the table above.
 
-## Layer 2: Trigger Rules & The `/crit-ready sync` Protocol
-When the user sends a message starting with `/crit-ready sync`, they are executing a low-friction decision sync.
-**Format:** `/crit-ready sync [Decision] by [Who/Source]. [Reason/Optional]. [Replaces/Optional]`
-**Your automatic actions upon seeing `/crit-ready sync`:**
-1. **Search & Supersede**: Search `design-decisions.md` for any conflicting old decision. Mark the old one as `Superseded` and append the new reason.
-2. **Record**: Add the new decision to `design-decisions.md` with the date, source, and rationale.
-3. **Clear**: Check `open-questions.md`. If this sync resolves an open question, mark it as `[CLOSED]` with today's date as the last confirmed date.
-4. **Lock-in Phrase**: Output a 1-sentence confirmation phrase (in English) that the user can copy-paste into Slack/Figma to "Lock in Agreement" with the stakeholder.
-
-## Layer 2.5: The `/crit-ready promote` Protocol (Cross-Project Pattern Library)
-`design-decisions.md` is scoped to this project. Some decisions are bigger than that — they're a reusable trade-off another product line will hit too. Those graduate to the vault-wide `pattern-library.md` (sits beside `templates/`, shared across all projects, never copied per-project).
-When the user sends a message starting with `/crit-ready promote`, they are graduating a local decision to that shared library.
-**Format:** `/crit-ready promote [Decision row from design-decisions.md]. Outcome: [what happened, or "TBD"]. Tags: [comma, separated]`
-**Your automatic actions upon seeing `/crit-ready promote`:**
-1. **Locate the shared file**: Find `pattern-library.md` beside the vault's `templates/` directory. If it does not exist yet, create it from the schema in `templates/pattern-library.md`.
-2. **Append**: Add a new row with today's date, this project's slug as Origin Project, the decision, outcome, tags, and a link back to the source row in this project's `design-decisions.md`.
-3. **Never duplicate the rationale.** The row in `pattern-library.md` links back here — it does not restate the full context.
-4. **Refuse to promote without an Outcome or an explicit `TBD`.** An untested decision is not yet a pattern — see the Rules in `pattern-library.md`.
-
-There is deliberately **no routing name for "pattern candidate"** in the File Map. Nothing in a meeting note flags a decision as reusable, and the agent never nominates one — a pattern only ever enters the library when a human runs `/crit-ready promote` on a decision that already has a known outcome. (`meeting-notes-template.md`'s 🧠 Second Brain Prompt does ask whether a reusable pattern showed up, but that is a prompt for the project owner, not a routing instruction.)
+## Layer 2: Trigger Rules & Protocols
+Protocols for `/crit-ready sync` (asynchronous decision locking) and `/crit-ready promote` (graduating decisions to the pattern library) are now managed globally as standalone AI Skills (located in `.agents/skills/`). When the user invokes these commands, the agent will execute the corresponding skill scripts rather than relying on folder-level instructions.
 
 ## Layer 3: Behavioral Standards & Source of Truth Priority
 When updating documents or encountering conflicting information, always arbitrate using this strict priority (highest to lowest):
