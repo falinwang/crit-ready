@@ -37,8 +37,8 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 專案結構設計遵循「記錄、連結、鎖定」原則，將資訊正確歸屬：
 
 *   **`design-decisions.md`**: 決策軌跡中心，每項決策必附 Rationale (為什麼這樣做) 與來源出處。
-*   **`pattern-library.md`**: 跨專案共用的設計模式庫。利用 `#promote` 將驗證過的好決策升級為團隊資產。
-*   **`meetings/`**: 專屬會議紀錄資料夾，透過 `/magic-minutes` 自動結構化，杜絕黑盒子 AI 摘要。
+*   **`pattern-library.md`**: 跨專案共用的設計模式庫。利用 `/crit-ready promote` 將驗證過的好決策升級為團隊資產。
+*   **`meetings/`**: 專屬會議紀錄資料夾，透過 `/crit-ready minutes` 自動結構化，杜絕黑盒子 AI 摘要。
 
 ---
 

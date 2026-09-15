@@ -91,7 +91,7 @@
 - 對照 `FOLDER-INSTRUCTIONS.md` Layer 4 的成功指標，逐項填「達成 / 未達成 / 還無法判斷」
 - 從 `changelog.md` 重建這個專案實際走過的時間線
 - 從 `deliverables.md` 確認最終交付了什麼版本
-- 標出哪些決策事後看是對的、哪些該 `#promote` 到 `pattern-library.md`（見 `FOLDER-INSTRUCTIONS.md` Layer 2.5）
+- 標出哪些決策事後看是對的、哪些該 `/crit-ready promote` 到 `pattern-library.md`（見 `FOLDER-INSTRUCTIONS.md` Layer 2.5）
 
 **依據：** 呼應書中 Bank Account of Trust 的概念（Ch10）——retro 是把這次專案的信任餘額（做對的事）跟虧損（做錯的事）都記下來，供下一個專案借鏡。
 

@@ -1,6 +1,6 @@
 # Pattern Library
 
-This file is **vault-wide, not per-project**. It lives once, beside `templates/`, and is never copied into a new project folder by `/init`. Every `design-project` instance reads from and writes to this single copy.
+This file is **vault-wide, not per-project**. It lives once, beside `templates/`, and is never copied into a new project folder by `/crit-ready init`. Every `design-project` instance reads from and writes to this single copy.
 
 It exists to answer the question a project-scoped `design-decisions.md` cannot: *"have we made a call like this before, and what happened?"*
 
@@ -21,10 +21,10 @@ Not every decision graduates here — most stay local to their project. A row be
 
 ## How rows get here
 
-Only via the `#promote` command, run from inside a project's `FOLDER-INSTRUCTIONS.md` context — see Layer 2 there. The agent never promotes automatically; a human decides a decision is reusable, the same way a human decides a decision is confirmed via `#sync`.
+Only via the `/crit-ready promote` command, run from inside a project's `FOLDER-INSTRUCTIONS.md` context — see Layer 2 there. The agent never promotes automatically; a human decides a decision is reusable, the same way a human decides a decision is confirmed via `/crit-ready sync`.
 
 ## How this gets read
 
-`/init` on a new project searches this file for tags that overlap with the new project's domain (inferred from its name and the Kickoff answers) and surfaces any matches to the user *before* the Kickoff questions are asked, framed as "here's a precedent from a past project — does it apply here, or is this different?" See `.agents/skills/init-project/SKILL.md`.
+`/crit-ready init` on a new project searches this file for tags that overlap with the new project's domain (inferred from its name and the Kickoff answers) and surfaces any matches to the user *before* the Kickoff questions are asked, framed as "here's a precedent from a past project — does it apply here, or is this different?" See `.agents/skills/init-project/SKILL.md`.
 
 Existing projects can also search this file directly any time a decision feels like it might have a precedent — that lookup does not require a special command, just ask the agent to check.
