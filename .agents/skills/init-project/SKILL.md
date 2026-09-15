@@ -15,7 +15,7 @@ When the user asks to initialize a project (e.g., typing `/init <project-name>`)
 
 4. **Create the Folder**: If it doesn't already exist, create a new project directory named `<project-name>/`. If you're unsure where new project folders should live in this workspace, ask the user once — don't guess at a folder-naming convention.
 
-5. **Copy Template**: Copy all files from `templates/design-project/` into the new `<project-name>/` folder. Do NOT copy `templates/pattern-library.md` — it is vault-wide, shared across all projects, and stays where it is.
+5. **Copy Template**: Copy all files from `templates/design-project/` into the new `<project-name>/` folder, including the `meetings/` subfolder (it should arrive with just `_meeting-template.md` in it — an actual project has no meetings yet). Do NOT copy `templates/pattern-library.md` — it is vault-wide, shared across all projects, and stays where it is.
 
 6. **Create NEXT.md**: Create a `NEXT.md` file in the folder with the standard AI task frontmatter (if applicable to the user's vault rules), setting the AI task state to `inbox`.
 
