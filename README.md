@@ -51,11 +51,23 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 
 ## 📂 核心知識架構 (Log → Link → Lock)
 
-專案結構設計遵循「記錄、連結、鎖定」原則，將資訊正確歸屬：
+整個專案的結構設計遵循了知識沉澱的三階段原則：「記錄、連結、鎖定」。確保每一個設計決策都有跡可循，不再淪為無頭公案：
 
-*   **`design-decisions.md`**: 決策軌跡中心，每項決策必附 Rationale (為什麼這樣做) 與來源出處。
-*   **`pattern-library.md`**: 跨專案共用的設計模式庫。利用 `/crit-ready promote` 將驗證過的好決策升級為團隊資產。
-*   **`meetings/`**: 專屬會議紀錄資料夾，透過 `/crit-ready minutes` 自動結構化，杜絕黑盒子 AI 摘要。
+### 1. 📝 Log (廣泛記錄)
+**目標**：捕捉所有非正式的脈絡、會議討論與原始靈感，不漏掉任何細節。
+*   **`meetings/`**: 專屬會議紀錄資料夾，透過 `/crit-ready minutes` 將混亂的逐字稿自動結構化，杜絕黑盒子的 AI 摘要。
+*   **`working-notes.md`**: 你的日常塗鴉牆，用來存放還沒成型的草稿與探索性想法 (Still Exploratory)。
+
+### 2. 🔗 Link (建立連結)
+**目標**：將發散的紀錄收斂成具體的決策，並強制關聯背後的 Rationale (為什麼這樣做)。
+*   **`design-decisions.md`**: 決策軌跡中心，每項決策都必須標明出處與原因，解決「我們當初為什麼這樣做？」的無限迴圈。
+*   **`open-questions.md`**: 追蹤卡住進度的問題，並明確指派給特定的負責人。
+*   **`/crit-ready sync`**: 將 Slack 或 Figma 上的對話，一鍵轉化為決策並連結回對應的檔案。
+
+### 3. 🔒 Lock (鎖定與升級)
+**目標**：確保決策被團隊認知，並在驗證成功後升級為團隊的防禦資產。
+*   **`deliverables.md`**: 標示交付物的狀態 (Draft, Handed off, Stale)，避免工程師拿到過期的版本。
+*   **`pattern-library.md`**: 跨專案共用的設計模式庫。當專案結束後，利用 `/crit-ready promote` 將實戰驗證過的好決策「鎖定」並升級為全團隊的資產。
 
 ---
 
