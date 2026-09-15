@@ -41,6 +41,12 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 - 將包含結果 (Outcome) 的成功/失敗決策，提煉至全域的 `pattern-library.md`。
 - 未來團隊成員開新專案時，AI 將會自動引用這個 Pattern 避免重複踩坑。
 
+### 5. `/crit-ready prep [會議名稱/主題]` (Pre-Meeting Prep)
+開會前，根據 Tom Greever《Articulating Design Decisions》哲學自動準備會前文件：
+- **會前脈絡萃取**：自動從 `design-decisions.md` 等檔案抓取「上次我們同意了什麼」與「商業目標」。
+- **防禦性準備**：依據會議類型 (如 Design Review, Executive Review) 提示你準備替代方案 (Rule of Direct Comparison) 與預期會被問的問題 (IDEAL Framework)。
+- **自動產出草稿**：在 `meetings/` 下生成一份包含完整脈絡與策略的會前準備文件。
+
 ---
 
 ## 📂 核心知識架構 (Log → Link → Lock)
