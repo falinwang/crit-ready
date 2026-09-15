@@ -7,7 +7,7 @@ You do not invent rationale; you record it faithfully, resolve conflicts accordi
 
 ## File Map
 
-The Granola template routes its output by section name. This table is the only place those names resolve to files. If a section has no destination here, stop and ask — do not improvise a new file.
+The meeting notes template (`meeting-notes-template.md`) routes its output by section name, regardless of which tool produced the underlying transcript (Granola, Gemini notes, Otter, Fireflies, Zoom, manual recap). This table is the only place those names resolve to files. If a section has no destination here, stop and ask — do not improvise a new file.
 
 | Routing name | File | Holds |
 | :--- | :--- | :--- |
@@ -20,9 +20,9 @@ The Granola template routes its output by section name. This table is the only p
 | 📦 Deliverables Tracker | `deliverables.md` | What was handed over, to whom, still current or stale |
 | 📅 Changelog | `changelog.md` | Audit trail of every change to the files above |
 | 🔁 Pattern Candidate | `working-notes.md` (Still Exploratory), pending `#promote` | A decision that looks reusable across projects, not yet graduated to `pattern-library.md` |
-Note: `👥 Stakeholder Register` (the Granola section) still routes to `meeting-notes.md` per meeting, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `granola-custom-template.md`.
+Note: `👥 Stakeholder Register` (the template section) still routes to `meeting-notes.md` per meeting, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `meeting-notes-template.md`.
 
-Two Granola sections deliberately have no destination:
+Two template sections deliberately have no destination:
 - **💡 TL;DR** — a reading aid for the meeting note itself, not project knowledge.
 - **🧠 Second Brain Prompt** — belongs to the user's personal knowledge base, not this project. Surface it, never file it.
 

@@ -71,11 +71,11 @@ B2B 企業軟體的 UX 設計師。
 
 Agent 會自動比對舊決策、標記 `Superseded`、關閉相關的 Open Question，並產出一句可以直接貼進 Slack 的 lock-in 確認語句。
 
-### 2. 嚴格歸屬｜Granola Prompting
+### 2. 嚴格歸屬｜會議紀錄 Prompting
 
-AI 會議工具常憑空捏造發言人。這些錯誤一旦被寫進知識庫，會產生蝴蝶效應。
+AI 會議工具常憑空捏造發言人，不管是 Granola、Gemini 筆記、Otter 還是 Zoom 內建逐字稿都一樣。這些錯誤一旦被寫進知識庫，會產生蝴蝶效應。
 
-`granola-custom-template.md` 強制執行歸屬清理，把「確認的決策」和「隨口的提議」拆成兩個獨立區塊，並要求每條決策連回商業目標。最重要的是：**每一種輸出都路由到指定的本地檔案，不是一個黑盒子。**
+`meeting-notes-template.md` 不綁定特定工具——貼進任何逐字稿或手動打的會議紀錄都能跑，強制執行歸屬清理，把「確認的決策」和「隨口的提議」拆成兩個獨立區塊，並要求每條決策連回商業目標。最重要的是：**每一種輸出都路由到指定的本地檔案，不是一個黑盒子。**
 
 缺 rationale 的決策不會安靜地通過——它會被標記 🚩，自動降級成 Open Question。
 
@@ -116,7 +116,7 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 | 檔案 | 作用 |
 | :--- | :--- |
 | `FOLDER-INSTRUCTIONS.md` | 該專案的 Agent 大腦。身分、File Map、`#sync` 規則、來源優先序、Kickoff 必答題 |
-| `granola-custom-template.md` | 會議逐字稿的客製 prompt。歸屬清理 + 路由指令 |
+| `meeting-notes-template.md` | 會議逐字稿的客製 prompt，不綁定特定會議工具。歸屬清理 + 路由指令 |
 | `meeting-notes.md` | 每場會議一則，最新在上。第二順位真相來源 |
 | `design-decisions.md` | 決策軌跡。含 5 種 Status 與升級規則 |
 | `open-questions.md` | 待釐清問題，標 urgency 與「卡住什麼」 |
@@ -125,7 +125,7 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 | `project-brief.md` | 問題、範圍、限制、完成定義。含版本封存機制 |
 | `deliverables.md` | 交付了什麼、給了誰、是否已過時 |
 | `changelog.md` | 所有異動的稽核軌跡 |
-| `stakeholder-mapping.md` | 這個專案的姓名 → team/function 對照表。Granola template 從這裡查角色，不再把名單寫死在 prompt 裡 |
+| `stakeholder-mapping.md` | 這個專案的姓名 → team/function 對照表。會議紀錄 template 從這裡查角色，不再把名單寫死在 prompt 裡 |
 
 ### `templates/`（vault 層級，不進單一專案）
 
@@ -157,7 +157,7 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 
 **痛點 5（你不在場的會議）只解了一半。**
 
-Granola template 會標記「有已知反對意見的人缺席」，但那處理的是**別人**缺席。如果缺席的是你自己，這份 prompt 根本不會被執行——你沒參加，就沒有逐字稿可以餵進去。
+會議紀錄 template 會標記「有已知反對意見的人缺席」，但那處理的是**別人**缺席。如果缺席的是你自己，這份 prompt 根本不會被執行——不管逐字稿是哪個工具產出的（派 Bot 入會的 Fireflies、側錄音訊的 Krisp、抓字幕的 Tactiq），你沒參加，就沒有逐字稿可以餵進去。
 
 反向流程（拿著你的 Open Questions 回去查別人的會議紀錄）目前不在這包模板裡。
 

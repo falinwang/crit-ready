@@ -1,6 +1,6 @@
 # Feedback Tracker
 
-Every piece of stakeholder feedback, typed. Routed here from the `💬 Feedback Log` section of the Granola template.
+Every piece of stakeholder feedback, typed. Routed here from the `💬 Feedback Log` section of the meeting notes template.
 
 | Date | From | Feedback | Type | Response | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |

@@ -1,4 +1,6 @@
-# Granola Custom Template: Design Feedback
+# Meeting Notes Template: Design Feedback
+
+Run this prompt over any meeting transcript, regardless of how it was captured — a bot-in-meeting tool (Fireflies, Otter, tl;dv), local/no-bot audio capture (Krisp, Tactiq, MacWhisper, Limitless), hardware side-recording (Plaud), or a manually typed-up recap. The instructions below don't depend on which tool produced the transcript, only on having one. Note: no-bot / local-capture tools tend to have weaker built-in speaker diarization than bot-based ones — expect more `⚠️ attribution unclear` flags from those, and lean harder on the Attribution Cleanup step below.
 
 ## Meeting Context
 
@@ -115,7 +117,7 @@ Optional section. Notice patterns in how stakeholders interacted that may inform
 若無，寫「(無)」。 -> 不進 project hub，提醒專案負責人決定是否進個人 knowledge base。
 
 ### 🧹 0.5 Attribution Cleanup (專案負責人會後 5 分鐘手動補)
-Granola 標記為 'Attendee (role: TBC)' 的發言，請對照記憶或會議參與者名單補上。建議用 Find & Replace 批次處理。
+本 template 標記為 'Attendee (role: TBC)' 的發言，請對照記憶或會議參與者名單補上。建議用 Find & Replace 批次處理。
 
 Attendees this meeting:
 - [ ] Name (function)
