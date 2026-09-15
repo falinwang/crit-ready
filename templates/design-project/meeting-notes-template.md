@@ -1,6 +1,8 @@
 # Meeting Notes Template: Design Feedback
 
-Run this prompt over any meeting transcript, regardless of how it was captured — a bot-in-meeting tool (Fireflies, Otter, tl;dv), local/no-bot audio capture (Krisp, Tactiq, MacWhisper, Limitless), hardware side-recording (Plaud), or a manually typed-up recap. The instructions below don't depend on which tool produced the transcript, only on having one. Note: no-bot / local-capture tools tend to have weaker built-in speaker diarization than bot-based ones — expect more `⚠️ attribution unclear` flags from those, and lean harder on the Attribution Cleanup step below.
+Run this prompt over any meeting transcript, regardless of how it was captured — a bot-in-meeting tool (Fireflies, Otter, tl;dv), local/no-bot audio capture (Krisp, Tactiq, MacWhisper, Limitless), hardware side-recording (Plaud), a native suite tool (Teams Copilot, Meet Gemini, Zoom AI Companion), or a manually typed-up recap. The instructions below don't depend on which tool produced the transcript, only on having one. Note: no-bot / local-capture tools tend to have weaker built-in speaker diarization than bot-based ones — expect more `⚠️ attribution unclear` flags from those, and lean harder on the Attribution Cleanup step below.
+
+**Enterprise note**: if this is a client, exec, or otherwise confidential meeting, confirm your org's approved tool before recording — don't reach for a personal/free-tier AI notetaker for it. Check that its contract has opt-out from AI model training and that it meets your org's compliance bar (SOC 2 / ISO 27001, SSO, data residency), not just that it produces good notes.
 
 ## Meeting Context
 
