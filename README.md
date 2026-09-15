@@ -57,7 +57,7 @@ B2B 企業軟體的 UX 設計師。
 
 ---
 
-## 五個機制
+## 四個機制
 
 ### 1. `#sync`｜低摩擦決策同步
 
@@ -103,10 +103,6 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 
 `/init` 建新專案時，Agent 會先掃這份庫,把跟新專案標籤重疊的先例攤出來給你確認,而不是等你自己想起來、或等你在 review 上被問到才臨時拼湊。
 
-### 5. 動態 PARA 適應
-
-路徑不寫死。Agent 在執行 `/init` 前會先掃描根目錄，自己找出代表 Projects 和 Templates 的資料夾（`10-projects`、`1-Project`、`Projects` 都可以）。這讓整套工作流可以帶去任何命名習慣的 vault。
-
 ---
 
 ## 內容物
@@ -135,13 +131,13 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 
 ### `.agents/skills/init-project/`
 
-`/init` 指令的腳本。自動偵測 PARA 架構、建立資料夾、複製模板、掃描 `pattern-library.md` 找相關先例，並強制反問你三個 Kickoff 問題。
+`/init` 指令的腳本。建立資料夾、複製模板、掃描 `pattern-library.md` 找相關先例，並強制反問你三個 Kickoff 問題。
 
 ---
 
 ## 如何使用
 
-1. 把 `templates/` 與 `.agents/` 的內容複製到你的 Obsidian 或 PARA vault 根目錄
+1. 把 `templates/` 與 `.agents/` 的內容複製到你的 Obsidian vault（或任何你存放專案筆記的根目錄）
 2. 啟動你的 Agent（Claude Code、Antigravity 等）
 3. 輸入：
 
