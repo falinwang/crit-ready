@@ -1,8 +1,10 @@
 # Design Decisions
 
-| Date | Decision | Rationale | Source / Owner | Status |
-| :--- | :--- | :--- | :--- | :--- |
-| YYYY-MM-DD | Example decision | Business or user context | Name (Meeting/Figma) | Active |
+| Date | Decision | Rationale | Source / Owner | Status | Tags |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| YYYY-MM-DD | Example decision | Business or user context | Name (Meeting/Figma) | Active | comma, separated |
+
+**Tags** describe the shape of the problem (e.g. `bulk-action-limits`, `empty-state-ownership`), not the specific fix. They're optional for most rows, but a decision worth flagging for `#promote` (see `FOLDER-INSTRUCTIONS.md` Layer 2.5) needs them to be findable later.
 
 ## Status Values
 
