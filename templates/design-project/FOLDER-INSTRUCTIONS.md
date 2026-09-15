@@ -21,7 +21,6 @@ The meeting notes template (`meeting-notes-template.md`) routes its output by se
 | 📝 Working Notes | `working-notes.md` | Informal log, known gaps, exploratory threads, trade-offs, design system gaps |
 | 📦 Deliverables Tracker | `deliverables.md` | What was handed over, to whom, still current or stale |
 | 📅 Changelog | `changelog.md` | Audit trail of every change to the files above |
-| 🔁 Pattern Candidate | `working-notes.md` (Still Exploratory), pending `#promote` | A decision that looks reusable across projects, not yet graduated to `pattern-library.md` |
 | ✅ Action Items | this meeting's file in `meetings/` (same entry, not a separate tracker) | Per-meeting commitments with owner and deadline — meeting-scoped, like Stakeholder Register |
 Note: `👥 Stakeholder Register` (the template section) still routes to this meeting's own file, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `meeting-notes-template.md`.
 
@@ -51,6 +50,8 @@ When the user sends a message starting with `#promote`, they are graduating a lo
 2. **Append**: Add a new row with today's date, this project's slug as Origin Project, the decision, outcome, tags, and a link back to the source row in this project's `design-decisions.md`.
 3. **Never duplicate the rationale.** The row in `pattern-library.md` links back here — it does not restate the full context.
 4. **Refuse to promote without an Outcome or an explicit `TBD`.** An untested decision is not yet a pattern — see the Rules in `pattern-library.md`.
+
+There is deliberately **no routing name for "pattern candidate"** in the File Map. Nothing in a meeting note flags a decision as reusable, and the agent never nominates one — a pattern only ever enters the library when a human runs `#promote` on a decision that already has a known outcome. (`meeting-notes-template.md`'s 🧠 Second Brain Prompt does ask whether a reusable pattern showed up, but that is a prompt for the project owner, not a routing instruction.)
 
 ## Layer 3: Behavioral Standards & Source of Truth Priority
 When updating documents or encountering conflicting information, always arbitrate using this strict priority (highest to lowest):
