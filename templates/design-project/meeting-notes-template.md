@@ -4,6 +4,8 @@ Run this prompt over any meeting transcript, regardless of how it was captured �
 
 **Enterprise note**: if this is a client, exec, or otherwise confidential meeting, confirm your org's approved tool before recording — don't reach for a personal/free-tier AI notetaker for it. Check that its contract has opt-out from AI model training and that it meets your org's compliance bar (SOC 2 / ISO 27001, SSO, data residency), not just that it produces good notes.
 
+**Where the output goes**: one file per meeting, under `meetings/YYYY-MM-DD-meeting-name.md` (copy `meetings/_meeting-template.md` to start it — see that file's header). Paste this template's output into that file's Meeting Notes section, route each section per the File Map, then add a row to `meeting-notes.md` pointing to it. Don't append to a shared, ever-growing notes file.
+
 ## Step 0: Which input do you have?
 
 This template runs differently depending on what you're feeding it. Pick a mode before running the Sections below.
@@ -15,7 +17,7 @@ Run the full pipeline below as-is. This is the default case everything else in t
 You're processing a second-hand source, not primary speech. Adjust:
 - **Do not reconstruct anything the source doesn't contain.** If the summary doesn't say who said what, don't guess from role plausibility the way Mode A's Speaker Attribution Hint does — write `Attendee (role: TBC)` and stop there. A second-hand summary has already dropped detail once; re-inventing it compounds the loss.
 - **Do not attempt Attribution Cleanup (0.5) beyond what the source already resolved.** The upstream tool or person already made that pass; a second guess without the transcript is fabrication, not correction.
-- **Tag the entry as second-hand.** Fill `**Source type:** Pre-digested notes` in `meeting-notes.md` (see its template). Per `FOLDER-INSTRUCTIONS.md` Layer 3, a pre-digested note carries less weight than a raw transcript when it conflicts with one — flag the conflict instead of silently trusting the newer or more detailed-looking source.
+- **Tag the entry as second-hand.** Fill `**Source type:** Pre-digested notes` in this meeting's file under `meetings/` (see `meetings/_meeting-template.md`). Per `FOLDER-INSTRUCTIONS.md` Layer 3, a pre-digested note carries less weight than a raw transcript when it conflicts with one — flag the conflict instead of silently trusting the newer or more detailed-looking source.
 - **Missing sections stay missing.** If the source has no Design Decisions section, write `(無 / None)` — don't infer decisions from what "must have" been discussed.
 - Everything else (routing, decision/feedback typing, rationale flagging) still applies — you're reorganizing a second-hand account into the File Map, not re-deriving it from scratch.
 
@@ -59,7 +61,7 @@ If none of these apply, mark as `Attendee (role: TBC)` and add `⚠️ Attributi
 - 只被提及、確認未出席 -> 標注「(未出席)」
 
 若同一人以不同稱呼出現（全名 vs 暱稱、姓 vs 名），合併成一筆，不要當兩個人。
--> 路由至 🗒️ Meeting Notes header。
+-> 路由至 🗒️ Meeting Notes（這場會議自己的檔案，在 `meetings/` 下）的表頭欄位。
 
 Notice patterns in how stakeholders interacted that may inform future syncs — 特別留意：
 - 有已知反對意見/立場的人缺席，會議卻做出跟他相關的決定
@@ -114,7 +116,7 @@ Optional section. Notice patterns in how stakeholders interacted that may inform
 ### ✅ Action Items
 每條格式 (list，不用表格)：
 - [ ] [行動內容] | 負責人：姓名 (role) | 期限：日期 或 TBD
--> 路由至 🗒️ Meeting Notes（同一則會議紀錄內，不獨立成檔）。
+-> 路由至 🗒️ Meeting Notes（這場會議自己的檔案，不獨立成檔）。
 
 ### 🗂️ Hub Routing
 根據這場會議，以下哪些區塊需要更新：

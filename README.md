@@ -75,7 +75,7 @@ Agent 會自動比對舊決策、標記 `Superseded`、關閉相關的 Open Ques
 
 AI 會議工具常憑空捏造發言人，不管是 Granola、Gemini 筆記、Otter 還是 Zoom 內建逐字稿都一樣。這些錯誤一旦被寫進知識庫，會產生蝴蝶效應。
 
-`meeting-notes-template.md` 不綁定特定工具——貼進任何逐字稿或手動打的會議紀錄都能跑，強制執行歸屬清理，把「確認的決策」和「隨口的提議」拆成兩個獨立區塊，並要求每條決策連回商業目標。最重要的是：**每一種輸出都路由到指定的本地檔案，不是一個黑盒子。**
+`meeting-notes-template.md` 不綁定特定工具——貼進任何逐字稿或手動打的會議紀錄都能跑，強制執行歸屬清理，把「確認的決策」和「隨口的提議」拆成兩個獨立區塊，並要求每條決策連回商業目標。最重要的是：**每一種輸出都路由到指定的本地檔案，不是一個黑盒子。**輸出本身落在 `meetings/` 底下這場會議自己的檔案，不是塞進一份越長越難搜的共用文件。
 
 缺 rationale 的決策不會安靜地通過——它會被標記 🚩，自動降級成 Open Question。
 
@@ -113,7 +113,8 @@ Ticket 是落後指標。它在 sprint 開始前就寫好了，而決策是在�
 | :--- | :--- |
 | `FOLDER-INSTRUCTIONS.md` | 該專案的 Agent 大腦。身分、File Map、`#sync` 規則、來源優先序、Kickoff 必答題 |
 | `meeting-notes-template.md` | 會議逐字稿的客製 prompt，不綁定特定會議工具。歸屬清理 + 路由指令 |
-| `meeting-notes.md` | 每場會議一則，最新在上。第二順位真相來源 |
+| `meetings/` | 每場會議一個檔案，`_meeting-template.md` 是起始模板。會前準備和會後紀錄都在同一份檔案裡，不累積成單一巨型文件 |
+| `meeting-notes.md` | 指向 `meetings/` 底下每份檔案的索引，一場會議一行。第二順位真相來源 |
 | `design-decisions.md` | 決策軌跡。含 5 種 Status 與升級規則 |
 | `open-questions.md` | 待釐清問題，標 urgency 與「卡住什麼」 |
 | `feedback-tracker.md` | Stakeholder 回饋，分類為 valid / 誤解 / 個人偏好 |

@@ -11,7 +11,7 @@ When the user asks to initialize a project (e.g., typing `/init <project-name>`)
 
 2. **Format the Project Name**: Convert the given project name into a lowercase, kebab-case string (e.g., `work-new-feature`).
 
-3. **Check if the project already exists**: Before creating anything, check whether `<project-name>/` is already there. If it is, do NOT blindly overwrite it. Instead, diff it against `templates/design-project/` and offer to fill in only what's missing (e.g. a file added to the template since this project was scaffolded), or ask the user what they want updated. Overwriting an existing project's `design-decisions.md` or `meeting-notes.md` would destroy real project history — treat that as destructive and confirm first.
+3. **Check if the project already exists**: Before creating anything, check whether `<project-name>/` is already there. If it is, do NOT blindly overwrite it. Instead, diff it against `templates/design-project/` and offer to fill in only what's missing (e.g. a file added to the template since this project was scaffolded), or ask the user what they want updated. Overwriting an existing project's `design-decisions.md`, `meeting-notes.md`, or any file under `meetings/` (other than `_meeting-template.md` itself) would destroy real project history — treat that as destructive and confirm first.
 
 4. **Create the Folder**: If it doesn't already exist, create a new project directory named `<project-name>/`. If you're unsure where new project folders should live in this workspace, ask the user once — don't guess at a folder-naming convention.
 

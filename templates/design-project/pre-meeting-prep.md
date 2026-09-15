@@ -4,7 +4,7 @@
 
 **依據：** Tom Greever《Articulating Design Decisions》沒有給「會議類型清單」，給的是跨會議通用的技巧（Setting the Context、IDEAL Framework、Bank Account of Trust）。這份文件把那些技巧套進設計師實際會遇到的幾種會議類型，並指向 Hub 裡已經在維護的檔案——不重複建立新的資料結構。
 
-**怎麼用：** 開會前，找到對應的會議類型，照「會前文件」欄位準備內容。大部分欄位是把 Hub 既有檔案裡的東西挑出來重組，不是從零生成。
+**怎麼用：** 開會前，找到對應的會議類型，照「會前文件」欄位準備內容，寫進這場會議自己的檔案（`meetings/YYYY-MM-DD-meeting-name.md`，見 `meetings/_meeting-template.md` 的 Pre-Meeting Prep 區塊）——不要留在這份指南裡累積。這份文件本身是不隨專案演進的參考手冊，六種會議類型的做法都在這裡查，但每一場會議實際準備出來的內容屬於那場會議自己的檔案。大部分欄位是把 Hub 既有檔案裡的東西挑出來重組，不是從零生成。
 
 ---
 

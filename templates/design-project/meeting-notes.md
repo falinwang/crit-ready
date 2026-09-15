@@ -1,18 +1,11 @@
-# Meeting Notes
+# Meeting Notes Index
 
-One entry per meeting, produced by running `meeting-notes-template.md` over the transcript — from Granola, Gemini notes, Otter, Fireflies, Zoom, or a manual recap. This file is the second-highest source of truth (see `FOLDER-INSTRUCTIONS.md` Layer 3) — a ticket that contradicts a confirmed note here loses.
+One row per meeting. The actual notes — pre-meeting prep and post-meeting notes together — live in `meetings/`, one file per meeting (see `meetings/_meeting-template.md` for the file structure). This index exists so you can scan every meeting without opening each file.
 
-Append newest at the top. Never edit a past note to match a later decision; record the change in `design-decisions.md` instead.
+This index is the second-highest source of truth (see `FOLDER-INSTRUCTIONS.md` Layer 3) — a ticket that contradicts a confirmed note in a linked meeting file loses.
 
----
+Append newest at the top. Never edit a past meeting file to match a later decision; record the change in `design-decisions.md` instead.
 
-## YYYY-MM-DD — [Meeting name]
-
-**Attendees:** Name (role), Name (role)
-**Transcript:** [link or file]
-**Source type:** ☐ Raw transcript ☐ Pre-digested notes (see `meeting-notes-template.md` Step 0, Mode B) ☐ Manual recap
-**Attribution cleanup:** ☐ done / ☐ pending / ☐ n/a (Mode B — cannot re-derive without raw transcript)
-
-[Paste the template output here, then route each section per the File Map.]
-
-**Routed:** ☐ Project Brief ☐ Decisions ☐ Open Questions ☐ Feedback ☐ Working Notes ☐ Deliverables ☐ Changelog
+| Date | Meeting name | Type | File |
+| :--- | :--- | :--- | :--- |
+| YYYY-MM-DD | [Meeting name] | Kickoff / Crit / Executive Review / Handoff / Recurring Sync / Retro | [meetings/YYYY-MM-DD-meeting-name.md](meetings/YYYY-MM-DD-meeting-name.md) |
