@@ -113,6 +113,18 @@ Optional section. Notice patterns in how stakeholders interacted that may inform
 - 卡住什麼：若不解決，哪項工作無法推進
 -> 路由至 ❓ Open Questions。
 
+### 📦 Deliverable Status Changes
+這場會議裡，有哪些交付物被展示、交接、或被講到狀態有變。每條格式：
+交付物：名稱
+類型：Flow / Spec / Prototype / 其他
+新狀態：Draft / In review / Handed off / Stale / Superseded（用 `deliverables.md` 的 Status 值，不要自創）
+交給誰：姓名 (role)——「給 team」不算交接，要指名
+依據：誰在會議裡說了什麼，讓你判斷狀態變了
+
+只記會議裡明確講到的。**不要從「決策通過了」推論「交付物就交出去了」**——通過和交付是兩件事。
+若某個決策在本次被標為 🔄 reversal 或 Superseded，檢查它對應的交付物是不是該降為 `Stale`，有疑慮就寫進 ❓ Open Questions，不要自己斷定。
+若無，寫「(無)」。 -> 路由至 📦 Deliverables Tracker。
+
 ### ✅ Action Items
 每條格式 (list，不用表格)：
 - [ ] [行動內容] | 負責人：姓名 (role) | 期限：日期 或 TBD
