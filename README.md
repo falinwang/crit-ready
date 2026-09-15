@@ -30,6 +30,17 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 - **分層輸出**：自動切分出「Slack 快速同步版」與「Notion 知識留存版」
 - **洞察提煉**：捕捉跨部門協同 Action Items 與潛藏的設計模式 (Second Brain Prompt)
 
+### 3. `/crit-ready sync [決策內容]` (Low-friction Decision Sync)
+在 Slack 或 Figma 上的零碎討論，無痛轉化為正式決策：
+- 自動比對並取代 `design-decisions.md` 中舊有的衝突決策。
+- 關閉 `open-questions.md` 中對應的待辦問題。
+- 產生一句確認語句，讓你直接貼回 Slack 完成 Lock-in。
+
+### 4. `/crit-ready promote [決策內容]` (Pattern Graduation)
+將專案內經過實戰驗證的決策，升級為團隊的防禦機制：
+- 將包含結果 (Outcome) 的成功/失敗決策，提煉至全域的 `pattern-library.md`。
+- 未來團隊成員開新專案時，AI 將會自動引用這個 Pattern 避免重複踩坑。
+
 ---
 
 ## 📂 核心知識架構 (Log → Link → Lock)
@@ -47,6 +58,8 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 1. 將本專案 clone 至你的本地端 Workspace。
 2. 開啟你的 AI Agent (如 Antigravity)。
 3. 輸入 `/crit-ready init 你的專案名稱` 開始新專案。
-4. 開完會後，貼上逐字稿並輸入 `/crit-ready minutes` 體驗無縫知識沉澱。
+4. 每次開完會：貼上逐字稿並輸入 `/crit-ready minutes` 體驗無縫知識沉澱。
+5. 每天日常溝通：在 Slack 決定的事，立刻回 AI 敲 `/crit-ready sync` 記錄下來。
+6. 專案結束後：有好的踩坑經驗，用 `/crit-ready promote` 升級成團隊設計模式。
 
 > *致謝：決策表述方式深受 Tom Greever《Articulating Design Decisions》啟發。本專案將「當場講清楚」的理念，延伸為「事後查得到」的自動化系統。*
