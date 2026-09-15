@@ -2,13 +2,15 @@
 
 `meeting-notes-template.md` 處理會後——把逐字稿整理進 Hub。這份檔案處理會前——會議開始前，你該準備哪份文件，才能讓那場會議值得開。
 
+**注意：** 下面六種會議類型的 emoji 只是標題裝飾，不是 routing name。File Map（`FOLDER-INSTRUCTIONS.md`）裡那套 emoji + 名稱才是路由用的，兩套刻意不重疊——新增會議類型時，別挑已經被 File Map 用掉的 emoji。
+
 **依據：** Tom Greever《Articulating Design Decisions》沒有給「會議類型清單」，給的是跨會議通用的技巧（Setting the Context、IDEAL Framework、Bank Account of Trust）。這份文件把那些技巧套進設計師實際會遇到的幾種會議類型，並指向 Hub 裡已經在維護的檔案——不重複建立新的資料結構。
 
 **怎麼用：** 開會前，找到對應的會議類型，照「會前文件」欄位準備內容，寫進這場會議自己的檔案（`meetings/YYYY-MM-DD-meeting-name.md`，見 `meetings/_meeting-template.md` 的 Pre-Meeting Prep 區塊）——不要留在這份指南裡累積。這份文件本身是不隨專案演進的參考手冊，六種會議類型的做法都在這裡查，但每一場會議實際準備出來的內容屬於那場會議自己的檔案。大部分欄位是把 Hub 既有檔案裡的東西挑出來重組，不是從零生成。
 
 ---
 
-## 🚀 Kickoff Meeting
+## 🌱 Kickoff Meeting
 
 **目的：** 對齊專案要解決的問題、範疇、成功指標，是整個專案唯一一次「定義問題」的會議。
 **時機：** 專案啟動時，通常只有一次（重大改組例外）。
@@ -22,7 +24,7 @@
 
 ---
 
-## ✏️ Design Review / Crit
+## 🔍 Design Review / Crit
 
 **目的：** 拿設計方案換取具體、可行動的回饋，不是換取「喜不喜歡」。
 **時機：** 每個設計階段的自然斷點——wireframe 定案前、visual 定案前、交付前。
@@ -52,7 +54,7 @@
 
 ---
 
-## 📦 Design-to-Dev Handoff
+## 🚚 Design-to-Dev Handoff
 
 **目的：** 確保工程team拿到的是最新、狀態明確的交付物，而不是已經被推翻的舊版本。
 **時機：** 一個 flow 或 spec 定案、準備開發前。
@@ -66,7 +68,7 @@
 
 ---
 
-## 🔁 Recurring Design Sync（週會／async check-in）
+## ⏱️ Recurring Design Sync（週會／async check-in）
 
 **目的：** 讓設計進度保持透明，避免累積一週後才發現方向偏了。
 **時機：** 固定頻率的內部同步，非決策場合。

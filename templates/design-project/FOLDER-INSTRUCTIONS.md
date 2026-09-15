@@ -25,9 +25,13 @@ The meeting notes template (`meeting-notes-template.md`) routes its output by se
 | ✅ Action Items | this meeting's file in `meetings/` (same entry, not a separate tracker) | Per-meeting commitments with owner and deadline — meeting-scoped, like Stakeholder Register |
 Note: `👥 Stakeholder Register` (the template section) still routes to this meeting's own file, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `meeting-notes-template.md`.
 
-Two template sections deliberately have no destination:
+Four template sections deliberately have no destination — do not stop and ask about these:
 - **💡 TL;DR** — a reading aid for the meeting note itself, not project knowledge.
 - **🧠 Second Brain Prompt** — belongs to the user's personal knowledge base, not this project. Surface it, never file it.
+- **🗂️ Hub Routing** — a checklist of which destinations this meeting touched, not content of its own. It restates routing already performed; tick it against what you actually filed.
+- **🧹 0.5 Attribution Cleanup** — a manual to-do for the project owner after the meeting, not agent output. Leave it in the meeting file for them to work through.
+
+The first two carry their own `-> 不進 Hub` disclaimer in the template; the last two are process scaffolding and carry no arrow at all. Every *other* section must resolve to a row in the table above.
 
 ## Layer 2: Trigger Rules & The `#sync` Protocol
 When the user sends a message starting with `#sync`, they are executing a low-friction decision sync.
@@ -50,7 +54,7 @@ When the user sends a message starting with `#promote`, they are graduating a lo
 
 ## Layer 3: Behavioral Standards & Source of Truth Priority
 When updating documents or encountering conflicting information, always arbitrate using this strict priority (highest to lowest):
-1. **Gemini Transcripts / AI Meeting Audio**: The definitive source for *who* said *what*.
+1. **Raw Transcripts / AI Meeting Audio**: The definitive source for *who* said *what*, whichever tool captured it (Granola, Gemini notes, Otter, Fireflies, Zoom, Krisp, a manual verbatim recap — the tier is about the recording being primary speech, not about the vendor).
 2. **Confirmed Meeting Notes (a meeting's file under `meetings/`, indexed in `meeting-notes.md`)**: The definitive source for agreed-upon constraints.
 3. **Product Spec Tickets (Jira/Linear)**: Treat as lagging. If a ticket conflicts with a confirmed meeting decision, the meeting wins. (Action: Flag the ticket discrepancy for the PM).
 4. **Figma Comments / Slack**: Good for asynchronous context, but must be formalized via `#sync`.
