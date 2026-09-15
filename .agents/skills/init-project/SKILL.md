@@ -1,11 +1,11 @@
 ---
 name: init-project
-description: "Use this skill to scaffold a new design project folder and initialize the workspace. Trigger this when the user says /crit-ready or asks to create a new project."
+description: "Use this skill to scaffold a new design project folder and initialize the workspace. Trigger this when the user says /crit-ready init or asks to create a new project."
 ---
 
 # Init Design Project Skill
 
-When the user asks to initialize a project (e.g., typing `/crit-ready <project-name>`):
+When the user asks to initialize a project (e.g., typing `/crit-ready init <project-name>`):
 
 1. **Locate the Templates directory**: Find the `templates/` directory containing the `design-project` scaffold. If you can't find it near the current working directory, ask the user where it lives.
 

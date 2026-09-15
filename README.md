@@ -18,13 +18,13 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 
 將本專案匯入後，你可以直接透過 AI 觸發以下自動化工作流：
 
-### 1. `/init work-[專案名稱]` (Project Scaffolding)
+### 1. `/crit-ready init [專案名稱]` (Project Scaffolding)
 建立新專案時的自動化腳本。當你輸入此指令，Agent 會：
 - 從 `templates/` 複製完整的知識庫資料夾結構。
 - **主動防呆**：掃描跨專案模式庫 (`pattern-library.md`)，若有相關前例會提前提示你。
 - **強制 Kickoff 訪談**：要求你回答 3 個關鍵問題（成功長怎樣？怎麼衡量？誰負責衡量？），並自動寫入專案設定檔中對齊目標。
 
-### 2. `/magic-minutes` (Design Knowledge Coordinator)
+### 2. `/crit-ready minutes` (Design Knowledge Coordinator)
 丟入混亂的會議逐字稿，AI 自動以「設計知識協調者」的角度萃取：
 - **決策動機**：強制輸出 `[決策內容]...因為[rationale]` 格式
 - **分層輸出**：自動切分出「Slack 快速同步版」與「Notion 知識留存版」
@@ -46,7 +46,7 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 
 1. 將本專案 clone 至你的本地端 Workspace。
 2. 開啟你的 AI Agent (如 Antigravity)。
-3. 輸入 `/init work-你的專案名稱` 開始新專案。
-4. 開完會後，貼上逐字稿並輸入 `/magic-minutes` 體驗無縫知識沉澱。
+3. 輸入 `/crit-ready init 你的專案名稱` 開始新專案。
+4. 開完會後，貼上逐字稿並輸入 `/crit-ready minutes` 體驗無縫知識沉澱。
 
 > *致謝：決策表述方式深受 Tom Greever《Articulating Design Decisions》啟發。本專案將「當場講清楚」的理念，延伸為「事後查得到」的自動化系統。*

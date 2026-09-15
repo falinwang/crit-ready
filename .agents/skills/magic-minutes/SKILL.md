@@ -1,7 +1,7 @@
 ---
 name: magic-minutes
 description: >-
-  Use this skill to process and summarize meeting notes. Trigger this when the user says /magic-minutes or asks to process meeting notes.
+  Use this skill to process and summarize meeting notes. Trigger this when the user says /crit-ready minutes or asks to process meeting notes.
 ---
 
 # Magic Minutes: Design Knowledge Coordinator 🪄
