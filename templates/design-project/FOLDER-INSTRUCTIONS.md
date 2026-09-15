@@ -52,6 +52,8 @@ When updating documents or encountering conflicting information, always arbitrat
 3. **Product Spec Tickets (Jira/Linear)**: Treat as lagging. If a ticket conflicts with a confirmed meeting decision, the meeting wins. (Action: Flag the ticket discrepancy for the PM).
 4. **Figma Comments / Slack**: Good for asynchronous context, but must be formalized via `#sync`.
 
+A `meeting-notes.md` entry marked `**Source type:** Pre-digested notes` (see `meeting-notes-template.md` Step 0, Mode B) was produced from someone else's summary, not a raw transcript. Treat it as tier 2 only when nothing else is available — if it conflicts with an entry marked `Raw transcript`, the raw transcript wins, same as ticket-vs-meeting conflicts above.
+
 ## Layer 4: Project Kickoff & Reference
 (This section must be filled out by the user during initialization)
 - **What does success look like?**: [To be filled]

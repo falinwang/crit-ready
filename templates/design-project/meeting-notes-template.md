@@ -4,6 +4,21 @@ Run this prompt over any meeting transcript, regardless of how it was captured �
 
 **Enterprise note**: if this is a client, exec, or otherwise confidential meeting, confirm your org's approved tool before recording — don't reach for a personal/free-tier AI notetaker for it. Check that its contract has opt-out from AI model training and that it meets your org's compliance bar (SOC 2 / ISO 27001, SSO, data residency), not just that it produces good notes.
 
+## Step 0: Which input do you have?
+
+This template runs differently depending on what you're feeding it. Pick a mode before running the Sections below.
+
+**Mode A — Raw transcript** (verbatim speech-to-text, with or without speaker labels: Granola, Gemini notes, Otter, Fireflies, Zoom AI Companion transcript export, etc.)
+Run the full pipeline below as-is. This is the default case everything else in this file assumes.
+
+**Mode B — Someone else's meeting notes** (a summary someone/something already produced — a colleague's Fireflies/Otter summary, another tool's AI-generated recap, a forwarded email digest — and you don't have the raw transcript to check against)
+You're processing a second-hand source, not primary speech. Adjust:
+- **Do not reconstruct anything the source doesn't contain.** If the summary doesn't say who said what, don't guess from role plausibility the way Mode A's Speaker Attribution Hint does — write `Attendee (role: TBC)` and stop there. A second-hand summary has already dropped detail once; re-inventing it compounds the loss.
+- **Do not attempt Attribution Cleanup (0.5) beyond what the source already resolved.** The upstream tool or person already made that pass; a second guess without the transcript is fabrication, not correction.
+- **Tag the entry as second-hand.** Fill `**Source type:** Pre-digested notes` in `meeting-notes.md` (see its template). Per `FOLDER-INSTRUCTIONS.md` Layer 3, a pre-digested note carries less weight than a raw transcript when it conflicts with one — flag the conflict instead of silently trusting the newer or more detailed-looking source.
+- **Missing sections stay missing.** If the source has no Design Decisions section, write `(無 / None)` — don't infer decisions from what "must have" been discussed.
+- Everything else (routing, decision/feedback typing, rationale flagging) still applies — you're reorganizing a second-hand account into the File Map, not re-deriving it from scratch.
+
 ## Meeting Context
 
 **Role**: You are an expert design scribe. Capture notes using the framework from "Articulating Design Decisions" by Tom Greever. Prioritize WHY over WHAT. Capture signal, not transcript.

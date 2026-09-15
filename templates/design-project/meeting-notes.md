@@ -10,7 +10,8 @@ Append newest at the top. Never edit a past note to match a later decision; reco
 
 **Attendees:** Name (role), Name (role)
 **Transcript:** [link or file]
-**Attribution cleanup:** ☐ done / ☐ pending
+**Source type:** ☐ Raw transcript ☐ Pre-digested notes (see `meeting-notes-template.md` Step 0, Mode B) ☐ Manual recap
+**Attribution cleanup:** ☐ done / ☐ pending / ☐ n/a (Mode B — cannot re-derive without raw transcript)
 
 [Paste the template output here, then route each section per the File Map.]
 
