@@ -18,8 +18,11 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (如 Antigravity) 打造
 
 將本專案匯入後，你可以直接透過 AI 觸發以下自動化工作流：
 
-### 1. `/init [專案名稱]` (Project Scaffolding)
-自動建立完整的專案知識庫結構（包含決策日誌、問題追蹤、Stakeholder 列表），並啟動 Kickoff 訪談確保目標對齊。
+### 1. `/init work-[專案名稱]` (Project Scaffolding)
+建立新專案時的自動化腳本。當你輸入此指令，Agent 會：
+- 從 `templates/` 複製完整的知識庫資料夾結構。
+- **主動防呆**：掃描跨專案模式庫 (`pattern-library.md`)，若有相關前例會提前提示你。
+- **強制 Kickoff 訪談**：要求你回答 3 個關鍵問題（成功長怎樣？怎麼衡量？誰負責衡量？），並自動寫入專案設定檔中對齊目標。
 
 ### 2. `/magic-minutes` (Design Knowledge Coordinator)
 丟入混亂的會議逐字稿，AI 自動以「設計知識協調者」的角度萃取：
