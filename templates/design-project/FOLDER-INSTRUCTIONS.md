@@ -15,13 +15,14 @@ The meeting notes template (`meeting-notes-template.md`) routes its output by se
 | :--- | :--- | :--- |
 | 🚀 Project Brief | `project-brief.md` | Problem, scope, constraints, definition of done |
 | 🗒️ Meeting Notes | this meeting's file in `meetings/` (create it from `meetings/_meeting-template.md` if it doesn't exist yet, and add a row to `meeting-notes.md`) | One file per meeting: pre-meeting prep and post-meeting notes together |
-| ✏️ Design Decisions Log | `design-decisions.md` | Confirmed decisions with rationale and status |
+| ✏️ Design Decisions Log | `design-decisions.md` | Confirmed decisions with rationale and status. If the source tags a Decider (拍板), record that name in the Source / Owner column alongside the source |
 | ❓ Open Questions | `open-questions.md` | Unanswered questions with urgency and what they block |
 | 💬 Feedback Tracker | `feedback-tracker.md` | Stakeholder feedback, typed valid / misunderstanding / preference |
 | 📝 Working Notes | `working-notes.md` | Informal log, known gaps, exploratory threads, trade-offs, design system gaps |
 | 📦 Deliverables Tracker | `deliverables.md` | What was handed over, to whom, still current or stale |
 | 📅 Changelog | `changelog.md` | Audit trail of every change to the files above |
 | ✅ Action Items | this meeting's file in `meetings/` (same entry, not a separate tracker) | Per-meeting commitments with owner and deadline — meeting-scoped, like Stakeholder Register |
+| 🔗 Reference Links | this meeting's file in `meetings/` (same entry, not a separate tracker) | Links to Figma/Jira/PRs/docs discussed in the meeting (added by `/crit-ready minutes` / `.agents/skills/magic-minutes`) — meeting-scoped, like Action Items and Stakeholder Register |
 Note: `👥 Stakeholder Register` (the template section) still routes to this meeting's own file, as before. It now reads its name → team/function lookup from `stakeholder-mapping.md` instead of a hardcoded list in the prompt — keep that roster file current rather than editing `meeting-notes-template.md`.
 
 Four template sections deliberately have no destination — do not stop and ask about these:

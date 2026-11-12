@@ -20,4 +20,4 @@ Copy this file into `meetings/` as `YYYY-MM-DD-meeting-name.md` for each new mee
 
 [After the meeting: paste `meeting-notes-template.md`'s output here, then route each section per the File Map in `FOLDER-INSTRUCTIONS.md`.]
 
-**Routed:** ☐ Project Brief ☐ Decisions ☐ Open Questions ☐ Feedback ☐ Working Notes ☐ Deliverables ☐ Changelog
+**Routed:** ☐ Project Brief ☐ Decisions ☐ Open Questions ☐ Feedback ☐ Working Notes ☐ Deliverables ☐ Changelog ☐ Reference Links (n/a unless produced by `/crit-ready minutes`)
