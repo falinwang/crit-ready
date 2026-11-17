@@ -1,51 +1,32 @@
 ---
 name: pre-meeting-prep
-description: >-
-  Use this skill to prepare a pre-meeting note before a design meeting. Trigger this when the user says /crit-ready prep or asks to prepare for a meeting.
+description: "Use this skill to prepare for a design meeting from what the project hub already holds. Trigger this when the user says /crit-ready prep or asks to prepare for a meeting."
 ---
 
-# Pre-Meeting Prep: Design Strategist 🛡️
+# Pre-Meeting Prep
 
-You are the **Design Strategist**. Your role is to help the designer prepare for an upcoming meeting by structuring their thoughts and gathering context from the project hub. You strictly follow Tom Greever's philosophy from *Articulating Design Decisions*.
+`/crit-ready prep` builds the prep brief for one upcoming meeting and files it in that meeting's file, so the same file later receives the notes. The approach comes from Tom Greever's *Articulating Design Decisions*; the tactics themselves are in `.agents/skills/greever/cheatsheet.md` and `patterns.md`, so point to them instead of restating them.
 
-When the user invokes this skill (e.g., by typing `/crit-ready prep`), guide them through generating a highly strategic Pre-Meeting Prep note based on the following three-part framework:
+## Steps
 
-## 1. 開場定調 (Set the Context)
-When generating the prep note, always structure the opening strategy using these 5 steps to eliminate "Disoriented Openings":
-1. **重述專案目標 (Goal Anchoring):** Open with the KPI or problem being solved. Never start with the design itself.
-2. **摘要上次結論:** One sentence summarizing what was agreed on last time (avoid the "Why did we do this?" loop).
-3. **定位當前階段:** Clarify if this is proof-of-concept, ready for dev, etc., to set their review perspective.
-4. **明確需要/不需要的回饋:** Explicitly state what feedback is needed today and what is NOT (to block Bike-Shedding).
-5. **再次重申目標:** Primacy and Recency effect.
+1. **Find the project and the rules.** Read the project's `FOLDER-INSTRUCTIONS.md`. If it contains its own File Map, the project predates the shared rules: follow its File Map and its own files, and do not add files to it. Otherwise read `templates/shared/RULES.md`.
 
-**防禦性準備 (Defensive Tactics):**
-- **Rule of Direct Comparison:** Remind the user to bring an alternative design to avoid cornering the stakeholder.
-- **Design Advocates (避免成為 Lonely Defender):** 
-  Guide the user to pre-wire the room using these steps:
-  1. **Identify Allies:** Find swing votes or allies 1-2 days before.
-  2. **1-on-1 Alignment:** Sync on the rationale (IDEAL) privately before the meeting.
-  3. **Explicit Requests:** Ask for specific support (e.g., "Can you chime in on technical debt when PM asks?").
-  4. **Pregame Huddle:** Sync 5-10 mins before the meeting to confirm roles.
-  5. **Rule of Named Inquiries:** During the meeting, call on them naturally ("XX, how do you see this?").
-  *Risk Warning:* Remind the user to base this on genuine trust, not manipulation.
+2. **Get the meeting details.** Take topic, meeting type and attendees from what the user already said. Ask only for what is missing.
 
-## 2. 預測反應 (Anticipating Reactions)
-Analyze the attendees (e.g., PMs care about metrics/timeline; Engineers care about tech debt/effort) and generate a strategy table predicting their pushback. Use these tactics:
-- **IDEAL Framework (Identify + Appeal to Business):** When PMs push back on scope, tie it to business goals.
-- **Rule of Trade-Offs:** If new requirements are dropped, ask what to trade off.
-- **Triviality Spiral:** Warn the user to stop debates on minor visuals if the core flow isn't approved.
-- **The Preference Ban (Convert "Likes" to "Works"):** When stakeholders use subjective language ("I don't like it" / "It feels weird"), guide the user to explicitly plan to translate this into functional language:
-  - **Tactic:** Never debate taste. Reply with curiosity: *"Understood. Can you explain why it works better? Are you worried users will miss it, or is it a brand consistency issue?"*
-  - **Goal:** Shift the discussion from aesthetics to utility and user goals.
-  - *Risk Warning:* Remind the user to keep an inquisitive tone, not a pedantic or lecturing one, to avoid sounding aggressive.
-- **Passive Non-Agreement:** Remind the user to actively call on quiet stakeholders to prevent them from overturning decisions later.
-- **Lead with a YES:** For sudden executive swoop-ins, prepare the user to accept the feedback gracefully in the meeting and follow up 1:1 later.
+3. **Read the matching section** of `templates/shared/pre-meeting-prep.md` for this meeting type. It says what the brief for that type contains.
 
-## 3. 會後收尾 (Follow Up)
-- **The 60-Minute Follow-Up Rule:** Remind the user to plan for sending written decisions and action items within 1 hour after the meeting.
+4. **Read the hub:** `project-brief.md`; the Kickoff answers in `FOLDER-INSTRUCTIONS.md`; decisions made since the last meeting; open questions; unaddressed `✅ Valid` concerns in `feedback-tracker.md`; open items in `actions.md` (in an old project, unticked items in the last meeting's file); the roster in the product's `stakeholder-mapping.md`; and the standing decisions in the product's `PRODUCT.md`.
 
-## Execution Steps
-1. Ask the user for the meeting topic, type, and key attendees.
-2. Search the hub (`project-brief.md`, `design-decisions.md`, etc.) to fill in the "Goal" and "Last time's conclusion".
-3. Generate the prep document in `meetings/YYYY-MM-DD-{name}.md` utilizing the framework above.
-4. Present the note and ask if they want to adjust any predictions or add specific swing votes.
+5. **Create the meeting file** from `meetings/_meeting-template.md` as `YYYY-MM-DD-meeting-name.md`, add a row to `meeting-notes.md`, and fill its Pre-Meeting Prep section with the brief for this meeting type. Leave a field blank where the hub has nothing. Do not guess to fill space. `/crit-ready minutes` will reuse this file after the meeting.
+
+6. **Append a changelog line** to the project's `changelog.md`.
+
+7. **Show the brief** and ask whether the user wants to adjust anything, such as swing votes or the feedback they want and do not want.
+
+## What the brief contains
+
+- **Opening context** in the order Greever describes: the project goal, a one-sentence summary of the last agreement, the current stage, the feedback wanted and not wanted today, and the goal again. Set the goal from `project-brief.md`, and the last agreement from `design-decisions.md` and the previous meeting file.
+- **Predicted reactions only for meetings that seek a decision** (Crit, Executive Review). Ground each prediction in that attendee's recorded feedback or informal signals and point to the row. Where the hub has no history for someone, say so. Do not guess from a job title.
+- **Tactics that fit this meeting only.** Pick from the cheatsheet and patterns files the few that apply (for example a direct comparison for a Crit, or pre-wiring swing votes for an Executive Review) and name the row or fact that makes each one relevant.
+- **Recurring Sync:** a status digest of what changed, what is blocked and which actions are open. It is not a persuasion plan, so skip predictions and tactics.
+- **Follow-up:** remind the user to send written decisions and action items within an hour of the meeting, which is what `/crit-ready minutes` produces.
