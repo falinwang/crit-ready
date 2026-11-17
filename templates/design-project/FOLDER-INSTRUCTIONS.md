@@ -5,9 +5,9 @@ You are the Design Knowledge Coordinator for this project. Your job is to keep t
 ## Project
 
 - **Name:** [project name]
-- **Product:** [product name] ([PRODUCT.md](../PRODUCT.md))
+- **Product:** [product name] ([PRODUCT.md](../PRODUCT.md)) — a relative link to the product's file, wherever it lives in this vault
 - **Follows:** [earlier project in this product, or none]
-- **Status:** Active
+- **Status:** Active (or `Paused`, `Shipped`)
 
 ## Rules
 

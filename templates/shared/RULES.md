@@ -8,33 +8,43 @@ The agent's job is to keep the vault's markdown files as the source of truth for
 
 The vault has three scopes. A fact belongs to the narrowest scope that covers it.
 
-```
-vault/
-  templates/              shared/ (these rules), product/, design-project/, vault/ (schemas)
-  pattern-library.md      vault scope: precedents reusable across products
-  TODAY.md                generated daily to-do across all projects
-  <product>/              a folder containing PRODUCT.md
-    PRODUCT.md            product scope: standing decisions, domain knowledge, carried-forward items
-    stakeholder-mapping.md   product scope: the roster shared by every project of the product
-    <project>/            a folder containing FOLDER-INSTRUCTIONS.md (one phase or initiative)
-      FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, open-questions.md,
-      feedback-tracker.md, working-notes.md, deliverables.md, actions.md, changelog.md,
-      meeting-notes.md (index), meetings/
-```
-
 | Scope | Files | Holds |
 | :--- | :--- | :--- |
 | Vault | `pattern-library.md`, `TODAY.md` | Cross-product precedents; the generated daily view |
 | Product | `PRODUCT.md`, `stakeholder-mapping.md` | What stays true across phases: standing decisions, domain knowledge, roster, deferred items nobody has picked up |
-| Project | everything inside `<project>/` | One phase or initiative: its decisions, questions, feedback, actions and meetings |
+| Project | everything inside the project folder | One phase or initiative: its decisions, questions, feedback, actions and meetings |
 
-The vault root is the folder that contains `templates/`.
+## Layout
+
+The scopes are defined by files and links, not by where folders sit, so a vault keeps whatever organisation it already has.
+
+- **Vault root:** the folder that contains `templates/`. The vault-scope files sit there.
+- **Project:** any folder under the vault root that contains a Crit-Ready `FOLDER-INSTRUCTIONS.md`.
+- **Product:** the `PRODUCT.md` linked from the Product line of a project's `FOLDER-INSTRUCTIONS.md`. The folder holding that file is the product folder, and the product's `stakeholder-mapping.md` sits beside it. Find a product by following that link. Do not search for files named `PRODUCT.md`, because other tools use the same file name for other things.
+
+Where the vault states its own conventions (in its `AGENTS.md`, `CLAUDE.md` or `README.md`), follow them for where projects and products live. Where it states none, the default is to nest projects inside their product:
+
+```
+vault/
+  templates/
+  pattern-library.md
+  TODAY.md
+  <product>/
+    PRODUCT.md
+    stakeholder-mapping.md
+    <project>/
+      FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, ...
+```
+
+A vault that keeps active work and long-lived material apart (PARA, for example) can hold projects in one place and products in another. Both layouts work the same way, because the project links to its product.
+
+When a project folder is moved (archived, for example), update the Product link in its `FOLDER-INSTRUCTIONS.md` and its row in the Projects table of `PRODUCT.md`, so the links still resolve.
 
 ## Old projects
 
 A skill first reads the project's `FOLDER-INSTRUCTIONS.md`.
 
-- If that file contains its own File Map, the project predates these shared rules. Follow its own File Map, its own copies of the template files, and its own table columns (dates instead of IDs, action items inside meeting files, a pattern library possibly at `templates/pattern-library.md`). Never migrate such a project or add files to it unless the user asks.
+- If that file contains its own File Map, the project predates these shared rules. Follow its own File Map, its own copies of the template files, and its own table columns (dates instead of IDs, action items inside meeting files, a pattern library possibly at `templates/pattern-library.md`). Do not convert such a project or add files to it as a side effect of another command. The user converts one by running `/crit-ready migrate`.
 - Otherwise, follow this file.
 
 ## Locating the project
