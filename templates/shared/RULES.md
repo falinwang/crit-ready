@@ -88,7 +88,7 @@ The meeting notes template produces sections. Each section name below goes to ex
 | 🗒️ Meeting Notes | This meeting's file in `meetings/` | One file per meeting: the prep and the notes together |
 | 👥 Stakeholder Register | The header of this meeting's file | Who attended. Names and roles are looked up in the product folder's `stakeholder-mapping.md` |
 | ✏️ Design Decisions Log | `design-decisions.md` | Decisions with ID, rationale, source and status |
-| ❓ Open Questions | `open-questions.md` | Unanswered questions, how urgent, what they block |
+| ❓ Open Questions | `open-questions.md` | Unanswered questions, how urgent, what they block. Section 10 says when an old one is parked |
 | 💬 Feedback Tracker | `feedback-tracker.md` | Stakeholder feedback, typed valid / misunderstanding / preference |
 | 📝 Working Notes | `working-notes.md` | Informal log, known gaps, exploratory threads, trade-offs, design system gaps |
 | 📦 Deliverables Tracker | `deliverables.md` | What was handed over, to whom, and whether it is still current |
@@ -156,9 +156,57 @@ If the vault has no `pattern-library.md` yet, there is nothing to check: skip ch
 
 Run this check when a command tells you to, or when the user asks. `/crit-ready minutes` and `/crit-ready sync` only do check 2.
 
-## 10. Rules that always apply
+## 10. Open questions that stay open
 
-- Never delete a row from `design-decisions.md`, `PRODUCT.md` or `pattern-library.md`. Change its Status instead.
+Many open questions are not the user's to answer, and some never get answered. Do not keep bringing them to the user. Use this procedure. `/crit-ready minutes` and `/crit-ready today` run it. It applies to current projects only.
+
+**A question that belongs to someone else.** If the Owner of a question is not the user, the user cannot answer it. Never ask the user to answer it. Show it at most as "waiting on [owner]".
+
+The review below is different. It does not ask anyone to answer the question. It asks the user whether the question is still worth tracking. Run it for every question, whoever owns it.
+
+**The review.** Do this for each row in the main table of `open-questions.md` (not the Parked table, not the Closed table):
+
+1. Read the row's Last Confirmed date.
+2. Open `meeting-notes.md`. Count the meetings whose date is later than that date. Call the number N.
+3. Choose one case:
+
+| Case | What to do |
+| :--- | :--- |
+| N is 0, 1 or 2 | Nothing |
+| N is 3 or more, and Status is `Open` | Change Status to `Open (review asked YYYY-MM-DD)` with today's date. Tell the user once, as described below |
+| Status is `Open (review asked YYYY-MM-DD)`, and no meeting is dated after that date | Nothing. Do not mention the question again |
+| Status is `Open (review asked YYYY-MM-DD)`, and at least one meeting is dated after that date | The user did not answer. Park the question, as described below. Do not ask again |
+
+**Telling the user once.** List the questions you just marked, in one block. For each, give the question, its Owner and how many meetings it has stayed open. Then write this sentence: "These questions have stayed open through 3 or more meetings. For each one, tell me: keep tracking it, park it, or chase the owner. If you say nothing, I will park them after the next meeting." Do not repeat this for the same question in a later run.
+
+A status of `Open (review asked YYYY-MM-DD)` still counts as open everywhere else: list the question wherever an `Open` question would be listed.
+
+**When the user answers.**
+
+| The user says | What to do |
+| :--- | :--- |
+| keep | Status back to `Open`. Last Confirmed becomes today. The count starts again |
+| park | Park it now |
+| chase | Status back to `Open`. Last Confirmed becomes today. Add a line to `actions.md` for the user to follow up with the Owner |
+
+**Parking a question.**
+
+1. Move the row from the main table to the table under `## Parked`. If the file has no Parked section, add one with the same columns as the main table.
+2. Set Status to `Parked (YYYY-MM-DD)` with today's date.
+3. Never delete the row.
+4. In your reply, say it in one line. Example: "Parked 2 questions that stayed open through 3 meetings." Do not ask anything.
+
+**After a question is parked.**
+
+- Do not list it in `TODAY.md`, in a prep, or in any reply. `TODAY.md` may show one line with the number of parked questions.
+- If a later meeting, or a `/crit-ready sync`, brings the same question up again: move the row back to the main table, set Status to `Open`, and set Last Confirmed to that date.
+- If a decision answers it: close it the normal way, straight from the Parked table.
+
+**Last Confirmed changes only in these cases:** the user says keep or chase; a meeting or a sync adds new information to the question (add a dated note to the row); or a parked question comes back. A meeting that only mentions the question again, with nothing new, does not change it.
+
+## 11. Rules that always apply
+
+- Never delete a row from `design-decisions.md`, `PRODUCT.md` or `pattern-library.md`. Change its Status instead. The one exception is the example row described next: it is not a real row.
 - Never invent content to fill an empty field. Leave it empty or write `TBD`.
 - Never rewrite a past meeting file to match a later decision. Record the change in `design-decisions.md`.
 - A new project's files contain example rows, such as a row full of `YYYY-MM-DD`, `[Name]` or the word `Example`. They show the format. They are not data. The first time you add a real row to a table or list, delete its example row. Never count an example row, never link to it, and never treat it as a decision.

@@ -99,7 +99,7 @@ Knowledge settles in three stages: log, link, lock. Every design decision leaves
 ### 2. 🔗 Link
 **Goal**: turn scattered notes into specific decisions, each tied to its rationale.
 *   **`design-decisions.md`**: the centre of the decision trail. Every decision has an ID (`D-001`…), a source and a reason, which ends the "why did we do it this way?" loop.
-*   **`open-questions.md`**: tracks what is blocking progress, how urgent it is and what it blocks, with a named owner.
+*   **`open-questions.md`**: tracks what is blocking progress, how urgent it is and what it blocks, with a named owner. A question still open after three meetings is raised with you once, then parked by itself, so old questions that are not yours to answer stop coming back.
 *   **`actions.md`**: the project's only action list. Tick an item in Obsidian to complete it.
 *   **`/crit-ready sync`**: turns a Slack or Figma conversation into a decision and links it back to the right files.
 

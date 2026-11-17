@@ -41,6 +41,7 @@ This repository is public. Keep templates, skills and examples free of any real 
 - **`/crit-ready promote`** has two targets: `... to product` (Standing Decision in `PRODUCT.md`) and `... Outcome: [...]. Tags: [...]` (vault-root `pattern-library.md`, refuses without an Outcome or explicit `TBD`). Links back to the origin row rather than duplicating rationale. Human-triggered only.
 - **Never delete a row** in `design-decisions.md`, `pattern-library.md` or `PRODUCT.md`. Status changes (`Superseded`, `Obsolete`) preserve the trail.
 - **Skills never edit `PRODUCT.md` on their own** to resolve a conflict with a standing decision; they flag it to the user.
+- **Open questions do not nag.** `RULES.md` section 10: a question still open after 3 meetings is raised with the user once (`Open (review asked ...)`), then parked automatically after the next meeting if they say nothing. Parked rows are kept, never listed, and come back if a meeting raises them again. A question owned by someone else is never put to the user as theirs to answer.
 - **`actions.md` is the only live checklist.** Meeting files keep action items as plain bullets. `TODAY.md` is a generated view, and ticks made there are written back to `actions.md` on the next `/crit-ready today`.
 - Keep `meeting-notes-template.md` tool-agnostic (no list of vendor names) and keep its Mode A / Mode B behavior intact.
 - **Write skills and `RULES.md` so a small model can follow them** (Haiku-class and similar). The same file must work for every model:

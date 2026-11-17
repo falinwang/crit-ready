@@ -81,10 +81,10 @@ Example row:
 
 ## Step 5. Close open questions it answers
 
-Open `open-questions.md`.
+Open `open-questions.md`. Look in the main table and in the Parked table.
 
 - If the decision fully answers a question: move that row to the `Closed` section. Strike through the question text with `~~`, write the resolution with the decision ID, and write today's date. If the file has no Closed section, add one.
-- If the decision answers only part of a question: add a dated note to that row and leave it open.
+- If the decision answers only part of a question: add a dated note to that row, set Last Confirmed to today, and leave it open. If the row was in the Parked table, move it back to the main table with Status `Open`.
 - Keep the language and the row format the file already uses.
 
 Example closed row:

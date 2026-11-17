@@ -17,7 +17,7 @@ Do the steps in order.
    - Found: the project is **current**. Read the file `templates/shared/RULES.md` now. That path starts at the vault root.
    - Not found: the project is **old**. Read the box below.
 
-> **Old project.** Use the File Map inside the project's own `FOLDER-INSTRUCTIONS.md`. Use the project's own `meeting-notes-template.md`. Its tables have no ID column: do not add IDs, and mark a replaced decision `Superseded (→ YYYY-MM-DD)`. Keep action items in the meeting file as `- [ ]` lines. Do not create `actions.md`. The roster is the project's own `stakeholder-mapping.md`. Skip step 7.
+> **Old project.** Use the File Map inside the project's own `FOLDER-INSTRUCTIONS.md`. Use the project's own `meeting-notes-template.md`. Its tables have no ID column: do not add IDs, and mark a replaced decision `Superseded (→ YYYY-MM-DD)`. Keep action items in the meeting file as `- [ ]` lines. Do not create `actions.md`. The roster is the project's own `stakeholder-mapping.md`. Skip steps 7 and 8.
 
 ## Step 2. Decide the input type
 
@@ -72,15 +72,15 @@ Go through this table row by row. For each section that has content, write it to
 | Design Decisions & Articulation | `design-decisions.md` | See step 6 |
 | Outcomes: ✅ 通過 | `design-decisions.md` | Only if it is not already written as a decision. See step 6 |
 | Outcomes: ⏸ 延後, ⚖️ 取捨 | `working-notes.md`, table "Deferred & Trade-offs" | One row each |
-| Open Questions | `open-questions.md` | One row each. Status `Open`. Example below |
+| Open Questions | `open-questions.md` | First search the main table and the Parked table for the same question. Not found: add one row, Status `Open`. Found in the main table: do not add it again; if the meeting said something new about it, add a dated note to the row and set Last Confirmed to the meeting date. Found in the Parked table: move the row back to the main table, Status `Open`, Last Confirmed is the meeting date. Example below |
 | Feedback Log | `feedback-tracker.md` | One row each. Status `Open`, or `Closed` if it was settled in the meeting |
 | Informal Signals Captured | `working-notes.md`, table "Informal Log" | One row each. Copy the words as spoken. In the Formalise? column write `Yes` for 是, `No` for 否, `Watching` for 持續觀察 |
 | Known Gaps Acknowledged | `working-notes.md`, list "Known Gaps" | One bullet each, ending with the date. Add who raised it only if the notes name the person |
 | Still Exploratory | `working-notes.md`, list "Still Exploratory" | One bullet each |
 | Deliverable Status Changes | `deliverables.md` | If the deliverable has a row, update it. If not, add a row |
-| Problem & Goal | `project-brief.md` | Change the brief only if the notes say in words that the goal or the scope changed. If they do not say that, do not edit the brief: in step 9, tell the user what the meeting said about the goal |
+| Problem & Goal | `project-brief.md` | Change the brief only if the notes say in words that the goal or the scope changed. If they do not say that, do not edit the brief: in step 10, tell the user what the meeting said about the goal |
 | Action Items | `actions.md`, under `## Open` | One checkbox line each. Example below |
-| Stakeholder Register | The Attendees line of the meeting file | Also: a new person whose team or function is known gets a row in the product folder's `stakeholder-mapping.md`. Fill what is known and leave the rest empty. A person with neither known is not added: name them in step 9 |
+| Stakeholder Register | The Attendees line of the meeting file | Also: a new person whose team or function is known gets a row in the product folder's `stakeholder-mapping.md`. Fill what is known and leave the rest empty. A person with neither known is not added: name them in step 10 |
 | TL;DR, Reference Links, Hub Routing, Second Brain Prompt, Attribution Cleanup | Stay in the meeting file | Do nothing more |
 
 Example row for `open-questions.md`:
@@ -109,7 +109,7 @@ Do this for each decision, one at a time.
    | No row is about this topic | Add a new row at the bottom of the table |
    | A row already says the same thing | Do not add a row. Update that row if there is something new |
    | The meeting said clearly that this replaces an older decision | Add the new row. Then in the old row: add `Replaced by D-NNN:` and the new decision's reason to the end of Rationale, and set Status to `Superseded (→ D-NNN)` using the new row's ID |
-   | It seems to contradict an older row, but the meeting did not say it replaces it | Add the new row with Status `Pending`. Do not change the old row. Tell the user in step 9 |
+   | It seems to contradict an older row, but the meeting did not say it replaces it | Add the new row with Status `Pending`. Do not change the old row. Tell the user in step 10 |
 
 3. The new row's ID is the highest ID in the table plus 1.
 4. Choose the Status:
@@ -126,17 +126,25 @@ Example row:
 
 Never delete a row.
 
-## Step 7. Check the product's standing decisions
+## Step 7. Review old open questions
+
+Open questions pile up. Many are not the user's to answer. Do not keep bringing them up.
+
+1. Read section 10 of `templates/shared/RULES.md`.
+2. Do the review it describes on this project's `open-questions.md`. Count this meeting too.
+3. Remember two lists for step 10: the questions you marked `Open (review asked ...)` today, and the questions you parked.
+
+## Step 8. Check the product's standing decisions
 
 1. Open the project's `FOLDER-INSTRUCTIONS.md`. Follow the link on the `- **Product:**` line to `PRODUCT.md`.
 2. Read its Standing Decisions table.
-3. If a decision from this meeting disagrees with a row there, remember it for step 9. Do not edit `PRODUCT.md`.
+3. If a decision from this meeting disagrees with a row there, remember it for step 10. Do not edit `PRODUCT.md`.
 
-## Step 8. Write the changelog line
+## Step 9. Write the changelog line
 
 Add one line at the bottom of the project's `changelog.md`. Copy the format of the lines already there. It says: the date, `minutes`, what you added, which files you changed. Count the rows you really wrote before you write the numbers.
 
-## Step 9. Reply to the user
+## Step 10. Reply to the user
 
 Reply with these three parts, in this order.
 
@@ -151,6 +159,9 @@ Reply with these three parts, in this order.
 - Decisions you filed as `Pending`, and what is missing for each.
 - Items in the Second Brain Prompt section.
 - People you did not add to the roster because their team and function are unknown.
+- Questions you marked for review in step 7, with the sentence from `RULES.md` section 10. Say this once. Questions you parked get one line in Part 2, and no question to the user.
+
+Do not put an open question in Part 3 only because it is open. A question owned by someone else is not something the user has to do.
 - What the meeting said about the goal, if you did not change `project-brief.md`.
 - Conflicts with a standing decision in `PRODUCT.md`.
 
@@ -164,5 +175,6 @@ If the meeting file already has notes, you are running a second time. Update the
 - [ ] `meeting-notes.md` has a row for this meeting.
 - [ ] Every decision is in `design-decisions.md` with an ID.
 - [ ] Every action item is in `actions.md` with a checkbox and a link.
+- [ ] Old open questions were reviewed, and nothing was asked twice.
 - [ ] `changelog.md` has a new line.
 - [ ] Nothing was invented, and no row was deleted.

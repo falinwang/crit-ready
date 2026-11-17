@@ -28,6 +28,8 @@ For each current project, open `actions.md`.
 - Do the same for the items you found ticked in `TODAY.md` in step 2.
 - Do not tick anything yourself. Only the user decides that something is done.
 
+Then, for each current project, do the open-question review in section 10 of `templates/shared/RULES.md`. Remember which questions you marked for review today and how many you parked.
+
 ## Step 4. Find the projects to scan
 
 A project is a folder that has `FOLDER-INSTRUCTIONS.md` directly inside it.
@@ -49,7 +51,7 @@ For each project, collect these five kinds of item.
 | Kind | Where to look | Which rows |
 | :--- | :--- | :--- |
 | My actions | `actions.md`, under `## Open` | `負責人` is me |
-| My urgent questions | `open-questions.md` | Urgency is `HIGH`, Status is `Open`, Owner is me |
+| My urgent questions | `open-questions.md`, main table only | Urgency is `HIGH`, Status is `Open`, Owner is me. Never list a row from the Parked table |
 | Decisions waiting for confirmation | `design-decisions.md` | Status is `Pending`. Say what is missing (it is in Rationale) |
 | Feedback not dealt with | `feedback-tracker.md` | Type is `✅ Valid`, Status is `Open` |
 | Meetings not finished | Files in `meetings/` | The file has prep but no notes, or says attribution cleanup is pending |
@@ -59,16 +61,18 @@ Then collect two more groups, across all projects.
 **等別人 (waiting on others):**
 
 - Open actions owned by someone else that one of my actions depends on.
-- Open questions with Urgency `HIGH` that someone else owns.
+- Open questions with Urgency `HIGH` and Status `Open` that someone else owns. Count `Open (review asked ...)` as `Open`. Write them as "waiting on [owner]". They are not questions for the user to answer.
 
 **該回頭看 (worth a second look):**
 
+- Questions you marked `Open (review asked ...)` today, whoever owns them, with the sentence from `RULES.md` section 10. A question marked on an earlier day is not listed again here.
+- One line with the number of questions in the Parked table (all of them, not only today's), if there are any. Example: `已擱置 3 題，見 open-questions.md`.
 - Open actions with no owner (`負責人：TBD`).
 - Open actions that look finished but are not ticked. Say why you think so. Do not tick them.
 - Rows in the Informal Log of `working-notes.md` that say `Watching` and are older than two weeks.
 - Rows in `pattern-library.md` whose Outcome is still `TBD`.
 
-List each item once.
+List each item once. If an item fits two groups, a question marked for review today goes under 該回頭看 (with its owner), and anything else goes in the first group it fits.
 
 ## Step 6. Write `TODAY.md`
 
@@ -86,6 +90,10 @@ Use this layout. Order "my actions" like this: overdue first, then the nearest d
 ### 我的行動
 
 - [ ] 更新付款頁的錯誤文案 ｜ 期限：2026-03-22 ｜ [actions.md](acme-portal/phase-2-reporting/actions.md)
+
+### 我的緊急問題
+
+- **Q** 圖表配色要用品牌色還是中性色？ ｜ HIGH ｜ 擋住：視覺規格 ｜ [open-questions.md](acme-portal/phase-2-reporting/open-questions.md)
 
 ### 等待確認的 Pending 決策
 
@@ -117,7 +125,7 @@ Rules for this file:
 - Leave out a `###` heading that has no items.
 - Every line links to its source file.
 - Paste the hand-written items from step 2 under `## 手動新增`, unchanged.
-- Apart from step 3, do not edit any project file in this command.
+- Apart from step 3 and one changelog line per project you changed, do not edit any project file in this command.
 
 ## Step 7. Reply to the user
 
@@ -128,5 +136,6 @@ In chat, list only the three to five most urgent items, overdue first. Then give
 - [ ] `TODAY.md` starts with the date and the `**我是：**` line.
 - [ ] Nothing under `templates/` or the archive was scanned as a project.
 - [ ] You ticked nothing yourself.
+- [ ] No parked question is listed, and no review question is asked a second time.
 - [ ] The hand-written section is unchanged.
 - [ ] Each item appears once and has a link.
