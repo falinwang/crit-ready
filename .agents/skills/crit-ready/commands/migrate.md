@@ -31,7 +31,7 @@ Read every file in the project folder. Then write a plan for the user. The plan 
 
 1. The product this project will belong to, and where the product folder will be (see step 5).
 2. How many decision rows will get IDs.
-3. Every `Superseded (→ date)` where two or more rows have that date, so you cannot tell which row replaced it.
+3. Every `Superseded (→ date)` where two or more rows have that date. For each, write which row you think replaced it and why (for example: same tags, same topic). The user confirms or corrects this when they approve the plan.
 4. How many action items you found in the meeting files: how many open, how many done.
 5. Which people will move to the product roster, and any who are already there with a different team or function.
 6. Whether the project's `meeting-notes-template.md` and `pre-meeting-prep.md` are the same as the standard ones. If they differ, show how.
@@ -54,7 +54,7 @@ If the vault is a git repository and the project has no uncommitted changes, the
 ## Step 5. Find or create the product
 
 1. Ask the user which product this project belongs to, unless it is obvious.
-2. Decide where the product folder goes: follow the vault's own conventions (its `AGENTS.md`, `CLAUDE.md` or `README.md`). The project folder itself stays where it is, unless the user asks to move it.
+2. Decide where the product folder goes: follow the vault's own conventions (its `AGENTS.md`, `CLAUDE.md` or `README.md`). If there are none, put the product folder in the vault root. The project folder itself stays where it is, unless the user asks to move it. In that case the product folder does not contain the project, and that is fine: the Product link connects them.
 3. If the product already has a `PRODUCT.md` with a "Projects" table and a "Standing Decisions" table, use it.
 4. If not, create the product folder and copy the two files from `templates/product/` into it. Fill in the product name. Fill in the description only from what the project's files say.
 5. Add this project as a row in the Projects table of `PRODUCT.md`.
@@ -87,7 +87,7 @@ Before and after:
 
 1. Copy `templates/design-project/actions.md` into the project.
 2. Open each meeting file. Find the section whose heading contains `Action Items`.
-3. Each `- [ ]` line there goes under `## Open`. Each `- [x]` line goes under `## Done`.
+3. Each `- [ ]` line there goes under `## Open`. Each `- [x]` line goes under `## Done`, still starting with `- [x]`, and ending with ` | 完成：日期未記錄` unless the file says when it was done. In `actions.md` every line keeps its checkbox; only the meeting file loses it (step 6.4).
 4. Add ` | 來源：[meeting name](meetings/file-name.md)` to the end of each line.
 5. Checkboxes in other sections (for example Attribution Cleanup) are not action items. Leave them.
 
@@ -102,21 +102,21 @@ Change one thing only: in the Action Items section, turn `- [ ] ` and `- [x] ` i
 3. If a person is already in the product roster with a different team or function, use the user's answer from the plan.
 4. Links in the copied rows pointed at files in the project. Rewrite them so they work from the product folder.
 5. A note about who has final approval for this project goes under the Roles table in the project's `project-brief.md`.
-6. Move the project's `stakeholder-mapping.md` into the backup folder.
+6. Delete the project's `stakeholder-mapping.md`. A copy is already in the backup.
 
 **6.6 The project's own copies of shared files**
 
 For `meeting-notes-template.md` and `pre-meeting-prep.md` in the project folder:
 
-- Same as the standard version: move the file into the backup folder.
-- Changed by the user: do what the user chose in the plan. Either keep the changes as text under "Project-specific instructions" in `FOLDER-INSTRUCTIONS.md`, or drop them. Then move the file into the backup folder.
+- Same as the standard version: delete it from the project. A copy is already in the backup.
+- Changed by the user: do what the user chose in the plan. Either keep the changes as text under "Project-specific instructions" in `FOLDER-INSTRUCTIONS.md`, or drop them. Then delete the file from the project.
 
 **6.7 `FOLDER-INSTRUCTIONS.md`**
 
 1. Save the three Kickoff answers from the old file, word for word.
-2. Save anything the user added to the old file (item 7 of the plan), word for word.
+2. Save anything the user added to the old file (item 7 of the plan), word for word. The numbered layers (`Layer 1` to `Layer 5`), the standard File Map rows and the standard notes under them are template text, not user additions: they are replaced by `RULES.md`. The user's additions are things like extra File Map rows, navigation links, or project-specific notes.
 3. Replace the file with `templates/design-project/FOLDER-INSTRUCTIONS.md`.
-4. Fill the four lines under `## Project`. The Product link must lead to the product's `PRODUCT.md`.
+4. Fill the four lines under `## Project`. Name: the project's name from its `project-brief.md`, or else its folder name. Follows: `none` unless the user says otherwise. Status: `Active`, unless the user says the project is paused or finished. The Product link must lead to the product's `PRODUCT.md`.
 5. Put the three Kickoff answers in the `## Kickoff` section.
 6. Put what the user added under `## Project-specific instructions`. Extra File Map rows go in a small table there. Fix links that now point at moved files.
 

@@ -68,15 +68,15 @@ Then add a row to the Projects table in `PRODUCT.md`:
 Do this step only if the product has an earlier project.
 
 1. From the earlier project and from `PRODUCT.md`, list:
-   - `open-questions.md`: rows still `Open`.
+   - `open-questions.md`: rows in the main table whose Status starts with `Open`.
    - `working-notes.md`: rows in "Deferred & Trade-offs" and "Design System Gaps".
    - `actions.md`: lines under `## Open`.
    - `feedback-tracker.md`: rows with Type `✅ Valid` and Status `Open`.
    - `PRODUCT.md`: rows in "Carried Forward" with nothing in "Picked up by".
 2. Show the list to the user. Ask: "Which of these should come into the new project?" Wait.
 3. For each item the user picks:
-   - Add it to the matching file in the new project, with a link to where it came from.
-   - In the place it came from, add a note such as `carried to phase-2-reporting`. Do not delete it there.
+   - Add it to the matching file in the new project. Keep its dates and owner. Add ` (carried from phase-1-onboarding)` to the end of its text, with a link to the file it came from. Its Status in the new project is `Open`.
+   - In the place it came from, add ` (carried to phase-2-reporting)` to the end of its text. Do not delete it there and do not change its status.
 4. Then ask: "The earlier project has these decisions still `Active`. Do you want any of them to become standing decisions for the product?" For each one the user picks, follow step 3A of `commands/promote.md`.
 
 ## Step 9. Check for precedent

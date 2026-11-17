@@ -31,6 +31,7 @@ Do the steps in order.
 Open the project's `design-decisions.md`. Find the row the user means, by its ID or by its words.
 
 - One row matches: use it.
+- If that row's Status is `Pending`, `Superseded` or `Obsolete`: tell the user the status and ask "Promote it anyway?" Stop and wait. An unconfirmed or replaced decision should not outlive its project by accident.
 - No row matches, or several match: show the candidates, ask "Which one?" and stop.
 
 Then go to step 3A or step 3B.
@@ -42,8 +43,8 @@ Then go to step 3A or step 3B.
 2. Read the Standing Decisions table.
    - If a row already says the same thing: tell the user and stop.
    - If a row disagrees with this decision: show both to the user and ask which one stands. If the new one replaces the old one, set the old row's Status to `Superseded (→ PD-NNN)` after you add the new row.
-3. Add a row at the bottom of the table.
-   - **ID**: the highest `PD-` number in the table plus 1.
+3. Add a row at the bottom of the table. If the table holds only the example row, replace it (see `RULES.md` section 11).
+   - **ID**: the highest `PD-` number among real rows plus 1. Ignore the example row. With no real rows, use `PD-001`.
    - **Decision**: the decision, in one sentence.
    - **Origin**: a link to the project's `design-decisions.md`, followed by the decision ID.
    - **Since**: today.
@@ -74,7 +75,7 @@ Go to step 4.
    - **Decision Made**: the decision, in one sentence.
    - **Outcome**: what the user gave.
    - **Tags**: the tags the user gave. Tags name the situation, not the fix.
-   - **Reusable When**: the condition under which this lesson applies.
+   - **Reusable When**: the condition under which this lesson applies. If the user did not say, write `TBD` and tell the user in step 5 that this cell needs them.
 
    Example:
 

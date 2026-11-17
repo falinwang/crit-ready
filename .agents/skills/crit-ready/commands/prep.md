@@ -29,7 +29,7 @@ You need four things: the topic, the date, the meeting type, and who will attend
 
 ## Step 3. Read the guide for this meeting type
 
-Open `templates/shared/pre-meeting-prep.md`. Find the section for the meeting type. It lists what the prep for that type contains. Read only that section.
+Open `templates/shared/pre-meeting-prep.md`. Each meeting type has a `##` heading (for example the heading that contains `Design Review / Crit`). Find the heading for this meeting type and read from it down to the next `##` heading. That part lists what the prep for this type contains.
 
 ## Step 4. Read the project
 
@@ -38,11 +38,11 @@ Read these, in this order. Take notes on what matters for this meeting.
 1. `project-brief.md`: the problem and the goal.
 2. `FOLDER-INSTRUCTIONS.md`, Kickoff section: the three answers.
 3. `meeting-notes.md`: find the last meeting. Open its file.
-4. `design-decisions.md`: rows dated after the last meeting, and all `Pending` rows.
-5. `open-questions.md`: rows with Status `Open`.
+4. `design-decisions.md`: rows dated on or after the date of the last meeting, and all `Pending` rows.
+5. `open-questions.md`: rows in the main table. Do not use rows from the Parked table.
 6. `feedback-tracker.md`: rows with Type `✅ Valid` and Status `Open`. Also every row whose "From" is a person attending this meeting.
 7. `actions.md`: lines under `## Open`.
-8. The product folder's `stakeholder-mapping.md`: the role of each attendee.
+8. The product folder's `stakeholder-mapping.md`: the role of each attendee. If an attendee is not in it, take their role from the project's files. Do not edit the roster in this command. In step 8, name the attendees who are missing from it.
 9. The product's `PRODUCT.md`: the Standing Decisions table.
 
 To find the product folder: open `FOLDER-INSTRUCTIONS.md`, find the line that starts with `- **Product:**`, follow its link.
@@ -73,7 +73,7 @@ Which parts to write depends on the meeting type:
 
 **A. Opening.** Five lines, in this order:
 
-1. The project goal (from `project-brief.md`).
+1. The project goal. Take it from the Kickoff answer "What does success look like?" in `FOLDER-INSTRUCTIONS.md`. If that answer is empty or `TBD`, use the Problem section of `project-brief.md` and say the success measure is not set yet.
 2. What was agreed last time, in one sentence (from `design-decisions.md` and the last meeting file).
 3. What stage the work is at.
 4. What feedback the user wants today, and what feedback they do not want.
@@ -105,7 +105,7 @@ Add one line at the bottom of the project's `changelog.md`. Copy the format of t
 
 ## Step 8. Show the user
 
-Show the prep. Then ask one question: "Do you want to change anything, for example who the swing votes are, or what feedback you want?"
+Show the prep. Name any attendee missing from the roster. Then ask one question: "Do you want to change anything, for example who the swing votes are, or what feedback you want?"
 
 ## Check before you finish
 
