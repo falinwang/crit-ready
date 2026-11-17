@@ -1,68 +1,170 @@
 # Migrate
 
-`/crit-ready migrate [project]` converts one older project to the current structure: shared rules instead of a private copy, decision IDs, a single `actions.md`, and a product it belongs to. It changes a project's real history files, so it runs only when the user asks, one project at a time, and nothing is changed before the user has seen the plan.
+`/crit-ready migrate [project]` converts one old-format project to the current format.
 
-An older project is one whose `FOLDER-INSTRUCTIONS.md` contains its own File Map. If the project already points to `templates/shared/RULES.md`, say it is already current and stop.
+This command changes a project's real history files. So:
 
-## 1. Check the vault first
+- Run it only when the user asks for it.
+- Convert one project at a time.
+- Change nothing until the user has seen the plan and said yes.
+- Keep every existing row and its words. Add columns and IDs. Do not rewrite content.
 
-The current structure needs the current templates. Look for `templates/shared/RULES.md` and `templates/product/` at the vault root (the folder that contains `templates/`). If they are missing, the vault still has the older templates: tell the user to update the vault's `templates/` and skills from the Crit-Ready repository first, and stop. Do not write the shared files from memory.
+Do the steps in order.
 
-Then read `templates/shared/RULES.md`.
+## Step 1. Check the vault
 
-## 2. Read the project and write the plan
+1. Find the vault root: the folder that has a `templates/` folder directly inside it.
+2. Check that these exist: `templates/shared/RULES.md` and the folder `templates/product/`.
+   - Both exist: read `templates/shared/RULES.md` and go to step 2.
+   - One is missing: the vault still has the old templates. Say "Update the vault's `templates/` folder and the crit-ready skill from the Crit-Ready repository first." Then stop. Do not write those files from memory.
 
-Read every file in the project folder. Then show the user a plan that lists, per file, what will change and what you could not decide. Include:
+## Step 2. Check that the project is old
 
-- Which product this project belongs to, and where that product's folder will be (see step 4).
-- How many decision rows get IDs, and any `Superseded (→ date)` that cannot be resolved to one row.
-- How many action items were found in meeting files, open and done.
-- Which people move to the product roster, and any who conflict with a row already there.
-- Whether the project's own `meeting-notes-template.md` or `pre-meeting-prep.md` differs from the shared version, and how.
-- Any file in the folder that is not part of Crit-Ready. These are left alone.
+Open the project's `FOLDER-INSTRUCTIONS.md`. Search it for the text `templates/shared/RULES.md`.
 
-Wait for the user to approve the plan. Their answers to the open points go into the plan before anything is written.
+- Found: the project is already current. Say so and stop.
+- Not found: the project is old. Go to step 3.
 
-## 3. Back up
+## Step 3. Read the project and write the plan
 
-Before the first change, make a full copy of the project folder as `<project>.pre-migration-YYYY-MM-DD` beside it, or wherever the user prefers. If the vault is a git repository with no uncommitted changes in the project, a commit is enough of a restore point and the copy can be skipped; say which one you relied on. Tell the user where the backup is and that they can delete it once they are satisfied.
+Read every file in the project folder. Then write a plan for the user. The plan lists:
 
-## 4. Resolve the product
+1. The product this project will belong to, and where the product folder will be (see step 5).
+2. How many decision rows will get IDs.
+3. Every `Superseded (→ date)` where two or more rows have that date, so you cannot tell which row replaced it.
+4. How many action items you found in the meeting files: how many open, how many done.
+5. Which people will move to the product roster, and any who are already there with a different team or function.
+6. Whether the project's `meeting-notes-template.md` and `pre-meeting-prep.md` are the same as the standard ones. If they differ, show how.
+7. Anything in `FOLDER-INSTRUCTIONS.md` that the user added, such as extra rows in the File Map.
+8. An agent instruction file in the project (`AGENTS.md`, `CLAUDE.md`) that describes the old format.
+9. Any other to-do list in the project (for example `NEXT.md`). Ask: "Leave it as it is, or move its open items into `actions.md`?"
+10. Files that are not part of Crit-Ready. These will not be touched.
 
-Ask the user which product this project belongs to if it is not obvious. Follow the layout rules in `RULES.md`: the vault's own conventions decide where the product folder sits, and the project folder itself does not move unless the user asks for that.
+Show the plan. Ask the user to answer the open points and to approve. Wait. Do not go to step 4 before the user says yes.
 
-- If the product already has a Crit-Ready `PRODUCT.md`, use it.
-- Otherwise create the product folder from `templates/product/` and fill in the name and description from the project's `project-brief.md`.
+## Step 4. Make a backup
 
-Add the project to the Projects table in `PRODUCT.md`.
+1. Copy the whole project folder to a folder **outside the vault root**, named `<project>-pre-migration-YYYY-MM-DD`. Use another place only if the user names one.
+2. Do not put the backup inside the vault. A copy inside the vault still has a `FOLDER-INSTRUCTIONS.md`, so `/crit-ready today` would treat it as a second project.
+3. Compare the copy with the original to make sure it is complete.
+4. Tell the user where the backup is.
 
-## 5. Convert the files
+If the vault is a git repository and the project has no uncommitted changes, the last commit is the backup and you can skip the copy. Say which one you relied on.
 
-Work through the files in this order. Keep every existing row and its wording. Add columns and IDs; do not rewrite content.
+## Step 5. Find or create the product
 
-1. **`FOLDER-INSTRUCTIONS.md`.** Replace it with the current template. Carry over the three Kickoff answers exactly as written. Compare the old file with the stock text of its time: anything the user added or changed for this project goes under Project-specific instructions, word for word. When unsure whether a passage is stock or custom, keep it there.
-2. **`design-decisions.md`.** Add the `ID` column and number the rows `D-001` onward in their existing order. Rewrite each `Superseded (→ date)` to point at the ID of the row that replaced it. If two rows share that date and the replacement is not clear from the Rationale, ask instead of choosing. Update the header notes to the current template's.
-3. **`open-questions.md`.** Add the `Urgency` and `Blocks` columns. Fill them only where the project's meeting notes or the row itself state them; otherwise leave them blank for the user. Move resolved rows into a `Closed` section, keeping their struck-through text and resolution. Where a resolution names a decision by date, add its new ID.
-4. **`actions.md`.** Create it from the template. Collect every action item from the Action Items sections of the meeting files: unticked ones go under Open, ticked ones under Done, each with a link to its meeting file. Leave the checkboxes in each meeting's Attribution Cleanup section where they are, since those are not action items.
-5. **Meeting files.** Past meeting files are records. Change only two things: turn the Action Items checkboxes into plain bullets (the live checkbox is now in `actions.md`), and leave everything else as it was written.
-6. **`stakeholder-mapping.md`.** Merge its rows into the product's roster. Treat the same person under two spellings as one row. If a person already in the roster has a different team or function, show both and ask. Notes about who has final approval for this project move to the Roles table of `project-brief.md`. Then remove the project's copy, which now lives in the backup.
-7. **`meeting-notes-template.md` and `pre-meeting-prep.md`.** These are now shared. If the project's copy carries nothing the shared version lacks, remove it. If the user customised it, show the differences and ask whether to keep them as Project-specific instructions in `FOLDER-INSTRUCTIONS.md` before removing the copy.
-8. **Cross-references.** Where other files in the project point at a decision by date (`feedback-tracker.md`, `deliverables.md`, `working-notes.md`), add the ID beside the date when the match is unambiguous.
-9. **`changelog.md`.** Append one dated line saying the project was migrated and where the backup is.
+1. Ask the user which product this project belongs to, unless it is obvious.
+2. Decide where the product folder goes: follow the vault's own conventions (its `AGENTS.md`, `CLAUDE.md` or `README.md`). The project folder itself stays where it is, unless the user asks to move it.
+3. If the product already has a `PRODUCT.md` with a "Projects" table and a "Standing Decisions" table, use it.
+4. If not, create the product folder and copy the two files from `templates/product/` into it. Fill in the product name. Fill in the description only from what the project's files say.
+5. Add this project as a row in the Projects table of `PRODUCT.md`.
 
-Leave alone: `project-brief.md` apart from the Roles note above, `feedback-tracker.md`, `working-notes.md`, `deliverables.md`, `meeting-notes.md`, and any file that is not part of Crit-Ready.
+## Step 6. Convert the files
 
-## 6. The pattern library
+Do these in order, one file at a time.
 
-Migration does not move the pattern library. If the vault keeps a live one at `templates/pattern-library.md`, it stays there and the other commands keep using it. Rows already promoted from this project still link to its `design-decisions.md`; add the decision ID to those rows if the match is unambiguous.
+**6.1 `design-decisions.md`**
 
-## 7. Report
+1. Add a first column named `ID` to the decisions table.
+2. Number the rows from top to bottom: `D-001`, `D-002`, `D-003`, and so on.
+3. Change each `Superseded (→ date)` to `Superseded (→ D-NNN)`, using the ID of the row that replaced it. If you cannot tell which row that is, use the user's answer from the plan.
+4. In the notes below the table, change `Superseded (→ YYYY-MM-DD)` to `Superseded (→ D-NNN)`.
+
+Before and after:
+
+```
+| 2026-03-04 | 匯出一次最多 500 筆 | ... |
+| D-001 | 2026-03-04 | 匯出一次最多 500 筆 | ... |
+```
+
+**6.2 `open-questions.md`**
+
+1. Add two columns after Question: `Urgency` and `Blocks`.
+2. Fill them only when the row itself or the meeting notes state them. If a row's question text ends with words like "Medium urgency. Affects the handoff.", move those words into the two columns. Otherwise leave the two cells empty.
+3. Add a `## Closed` section. Move resolved rows into it. Keep their struck-through text and their resolution.
+
+**6.3 `actions.md`** (new file)
+
+1. Copy `templates/design-project/actions.md` into the project.
+2. Open each meeting file. Find the section whose heading contains `Action Items`.
+3. Each `- [ ]` line there goes under `## Open`. Each `- [x]` line goes under `## Done`.
+4. Add ` | 來源：[meeting name](meetings/file-name.md)` to the end of each line.
+5. Checkboxes in other sections (for example Attribution Cleanup) are not action items. Leave them.
+
+**6.4 Meeting files**
+
+Change one thing only: in the Action Items section, turn `- [ ] ` and `- [x] ` into `- `. Leave every other line exactly as it is. Then replace `meetings/_meeting-template.md` with the current one from `templates/design-project/meetings/`.
+
+**6.5 The roster**
+
+1. Copy each person row from the project's `stakeholder-mapping.md` into the product folder's `stakeholder-mapping.md`.
+2. The same person under two spellings is one row.
+3. If a person is already in the product roster with a different team or function, use the user's answer from the plan.
+4. Links in the copied rows pointed at files in the project. Rewrite them so they work from the product folder.
+5. A note about who has final approval for this project goes under the Roles table in the project's `project-brief.md`.
+6. Move the project's `stakeholder-mapping.md` into the backup folder.
+
+**6.6 The project's own copies of shared files**
+
+For `meeting-notes-template.md` and `pre-meeting-prep.md` in the project folder:
+
+- Same as the standard version: move the file into the backup folder.
+- Changed by the user: do what the user chose in the plan. Either keep the changes as text under "Project-specific instructions" in `FOLDER-INSTRUCTIONS.md`, or drop them. Then move the file into the backup folder.
+
+**6.7 `FOLDER-INSTRUCTIONS.md`**
+
+1. Save the three Kickoff answers from the old file, word for word.
+2. Save anything the user added to the old file (item 7 of the plan), word for word.
+3. Replace the file with `templates/design-project/FOLDER-INSTRUCTIONS.md`.
+4. Fill the four lines under `## Project`. The Product link must lead to the product's `PRODUCT.md`.
+5. Put the three Kickoff answers in the `## Kickoff` section.
+6. Put what the user added under `## Project-specific instructions`. Extra File Map rows go in a small table there. Fix links that now point at moved files.
+
+**6.8 Small fixes**
+
+- In `meeting-notes.md`, the text above the table may mention a numbered layer of the old `FOLDER-INSTRUCTIONS.md`. Change that mention to point to `templates/shared/RULES.md`. Do not change the rows.
+- Where `feedback-tracker.md`, `deliverables.md` or `working-notes.md` refers to a decision by its date, add the ID next to the date, but only if exactly one decision has that date.
+
+**6.9 Things the user decided in the plan**
+
+- Agent instruction file (`AGENTS.md`, `CLAUDE.md`): if the user approved, change only the sentences that are now wrong (layer numbers, where action items live, where the roster is, old skill names). Leave the rest.
+- Other to-do list: if the user chose to move it, add its open items to `actions.md`, skipping any that repeat an action item you already collected. Leave one line in the old file that points to `actions.md`. Keep its frontmatter.
+
+**6.10 `changelog.md`**
+
+Add one line at the bottom, in the format the file already uses. It says: the date, that the project was migrated, what changed, and where the backup is.
+
+## Step 7. Check your work
+
+1. Compare the project with the backup. The only files that differ must be the ones in step 6.
+2. In each meeting file, the only changed lines must be the action item lines.
+3. Check every link in the project and in the product folder. Fix any that do not resolve.
+
+## Step 8. The pattern library
+
+Do not move the pattern library. If it is at `templates/pattern-library.md`, it stays there.
+
+## Step 9. Reply to the user
 
 Tell the user:
 
-- What was changed, file by file, with counts (decisions numbered, actions collected, people merged).
-- What was left for them: blank Urgency or Blocks fields, ambiguous supersede links, roster conflicts.
-- Where the backup is.
-- That the project now follows the shared rules, so the other commands treat it as a current project from the next run.
+1. What changed, file by file, with numbers (decisions numbered, actions collected, people moved).
+2. What is left for them: empty Urgency or Blocks cells, actions with no owner, actions that look finished but are not ticked.
+3. Where the backup is.
+4. That the other commands now treat this project as current.
 
-Nothing in this command deletes history. If a step would lose information that is not in the backup, stop and ask.
+## Stop and ask the user when
+
+- A `Superseded (→ date)` could point at more than one row.
+- A person is in two rosters with different roles.
+- You cannot tell whether a passage in the old `FOLDER-INSTRUCTIONS.md` is standard text or something the user wrote. In that case keep it.
+- A step would lose information that is not in the backup.
+
+## Check before you finish
+
+- [ ] The user approved the plan before any change.
+- [ ] The backup is outside the vault and complete.
+- [ ] No row and no meeting text was deleted or reworded.
+- [ ] `FOLDER-INSTRUCTIONS.md` contains the text `templates/shared/RULES.md`.
+- [ ] Every link resolves.
+- [ ] `changelog.md` has a new line.

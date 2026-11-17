@@ -1,27 +1,115 @@
-# Pre-Meeting Prep
+# Prep
 
-`/crit-ready prep` builds the prep brief for one upcoming meeting and files it in that meeting's file, so the same file later receives the notes. The approach comes from Tom Greever's *Articulating Design Decisions*; the tactics themselves are in `.agents/skills/greever/cheatsheet.md` and `patterns.md`, so point to them instead of restating them.
+`/crit-ready prep` prepares the user for one meeting that has not happened yet. It writes the prep into that meeting's own file. After the meeting, `/crit-ready minutes` adds the notes to the same file.
 
-## Steps
+The ideas come from Tom Greever's book *Articulating Design Decisions*. The tactics are listed in `.agents/skills/greever/cheatsheet.md` and `.agents/skills/greever/patterns.md`. Point to those files. Do not copy them out.
 
-1. **Find the project and the rules.** Read the project's `FOLDER-INSTRUCTIONS.md`. If it contains its own File Map, the project predates the shared rules: follow its File Map and its own files, and do not add files to it. Otherwise read `templates/shared/RULES.md`.
+Do the steps in order.
 
-2. **Get the meeting details.** Take topic, meeting type and attendees from what the user already said. Ask only for what is missing.
+## Step 1. Find the project and the rules
 
-3. **Read the matching section** of `templates/shared/pre-meeting-prep.md` for this meeting type. It says what the brief for that type contains.
+1. Find the vault root: the folder that has a `templates/` folder directly inside it.
+2. Find the project. A project is a folder with a `FOLDER-INSTRUCTIONS.md` in it.
+   - If you are working inside a project folder, use it.
+   - Else, if the user named a project, use it.
+   - Else, list the projects. If there is one, use it. If there are several, ask "Which project?" and wait.
+3. Open the project's `FOLDER-INSTRUCTIONS.md`. Search it for the text `templates/shared/RULES.md`.
+   - Found: the project is **current**. Read the file `templates/shared/RULES.md` now. That path starts at the vault root.
+   - Not found: the project is **old**. Read the box below.
 
-4. **Read the hub:** `project-brief.md`; the Kickoff answers in `FOLDER-INSTRUCTIONS.md`; decisions made since the last meeting; open questions; unaddressed `✅ Valid` concerns in `feedback-tracker.md`; open items in `actions.md` (in an old project, unticked items in the last meeting's file); the roster in the product's `stakeholder-mapping.md`; and the standing decisions in the product's `PRODUCT.md`.
+> **Old project.** Use the project's own `pre-meeting-prep.md` in step 3. The roster is the project's own `stakeholder-mapping.md`. There is no `PRODUCT.md` and no `actions.md`: for open actions, read the unticked `- [ ]` lines in the last meeting file. The Kickoff answers are under "Layer 4" in `FOLDER-INSTRUCTIONS.md`.
 
-5. **Create the meeting file** from `meetings/_meeting-template.md` as `YYYY-MM-DD-meeting-name.md`, add a row to `meeting-notes.md`, and fill its Pre-Meeting Prep section with the brief for this meeting type. Leave a field blank where the hub has nothing. Do not guess to fill space. `/crit-ready minutes` will reuse this file after the meeting.
+## Step 2. Get the meeting details
 
-6. **Append a changelog line** to the project's `changelog.md`.
+You need four things: the topic, the date, the meeting type, and who will attend.
 
-7. **Show the brief** and ask whether the user wants to adjust anything, such as swing votes or the feedback they want and do not want.
+- Take them from what the user already said.
+- Ask only for the ones that are missing. Ask once, in one message.
+- The meeting type is one of: Kickoff, Crit, Executive Review, Handoff, Recurring Sync, Retro. If none fits, pick the closest and say so.
 
-## What the brief contains
+## Step 3. Read the guide for this meeting type
 
-- **Opening context** in the order Greever describes: the project goal, a one-sentence summary of the last agreement, the current stage, the feedback wanted and not wanted today, and the goal again. Set the goal from `project-brief.md`, and the last agreement from `design-decisions.md` and the previous meeting file.
-- **Predicted reactions only for meetings that seek a decision** (Crit, Executive Review). Ground each prediction in that attendee's recorded feedback or informal signals and point to the row. Where the hub has no history for someone, say so. Do not guess from a job title.
-- **Tactics that fit this meeting only.** Pick from the cheatsheet and patterns files the few that apply (for example a direct comparison for a Crit, or pre-wiring swing votes for an Executive Review) and name the row or fact that makes each one relevant.
-- **Recurring Sync:** a status digest of what changed, what is blocked and which actions are open. It is not a persuasion plan, so skip predictions and tactics.
-- **Follow-up:** remind the user to send written decisions and action items within an hour of the meeting, which is what `/crit-ready minutes` produces.
+Open `templates/shared/pre-meeting-prep.md`. Find the section for the meeting type. It lists what the prep for that type contains. Read only that section.
+
+## Step 4. Read the project
+
+Read these, in this order. Take notes on what matters for this meeting.
+
+1. `project-brief.md`: the problem and the goal.
+2. `FOLDER-INSTRUCTIONS.md`, Kickoff section: the three answers.
+3. `meeting-notes.md`: find the last meeting. Open its file.
+4. `design-decisions.md`: rows dated after the last meeting, and all `Pending` rows.
+5. `open-questions.md`: rows with Status `Open`.
+6. `feedback-tracker.md`: rows with Type `✅ Valid` and Status `Open`. Also every row whose "From" is a person attending this meeting.
+7. `actions.md`: lines under `## Open`.
+8. The product folder's `stakeholder-mapping.md`: the role of each attendee.
+9. The product's `PRODUCT.md`: the Standing Decisions table.
+
+To find the product folder: open `FOLDER-INSTRUCTIONS.md`, find the line that starts with `- **Product:**`, follow its link.
+
+## Step 5. Make the meeting file
+
+1. Copy `meetings/_meeting-template.md` to `meetings/YYYY-MM-DD-short-name.md`. Example: `meetings/2026-03-11-checkout-crit.md`. If a file for this meeting already exists, use it and do not make a second one.
+2. Fill in the header: Type and Attendees.
+3. Add a row to the table in `meeting-notes.md`, directly under the header rows:
+
+   ```
+   | 2026-03-11 | Checkout crit | Crit | [meetings/2026-03-11-checkout-crit.md](meetings/2026-03-11-checkout-crit.md) |
+   ```
+
+## Step 6. Write the prep
+
+Write under `## Pre-Meeting Prep` in the meeting file. Write in Traditional Chinese (Taiwan).
+
+Which parts to write depends on the meeting type:
+
+| Part | Kickoff | Crit | Executive Review | Handoff | Recurring Sync | Retro |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| A. Opening | yes | yes | yes | yes | no | yes |
+| B. What the guide lists for this type | yes | yes | yes | yes | yes | yes |
+| C. Predicted reactions | no | yes | yes | no | no | no |
+| D. Tactics | no | yes | yes | no | no | no |
+| E. Follow-up reminder | yes | yes | yes | yes | yes | yes |
+
+**A. Opening.** Five lines, in this order:
+
+1. The project goal (from `project-brief.md`).
+2. What was agreed last time, in one sentence (from `design-decisions.md` and the last meeting file).
+3. What stage the work is at.
+4. What feedback the user wants today, and what feedback they do not want.
+5. The goal again.
+
+**B. What the guide lists.** Fill each item the guide names for this type, using what you read in step 4. For a Recurring Sync this is a status digest: what changed, what is blocked, which actions are open. It is not a plan to persuade anyone.
+
+**C. Predicted reactions.** One line per attendee who is likely to push back.
+
+- Base each prediction on something that person said before: a row in `feedback-tracker.md` or the Informal Log in `working-notes.md`. Name the row.
+- If the project has no record of what a person said before, write "no record for this person yet". Do not guess from their job title.
+
+Example:
+
+```
+- Ken (Eng)：可能再提匯出上限的效能問題（見 feedback-tracker 2026-03-04 那一列）。準備：帶上 D-015 的理由。
+- Ana (PM)：這個專案還沒有她的回饋紀錄。
+```
+
+**D. Tactics.** Pick at most three from the Greever cheatsheet that fit this meeting. For each, say which fact makes it fit. Example: "Rule of Direct Comparison：Ken 上次提出自己的版本，這次並排展示兩個方案。"
+
+**E. Follow-up reminder.** One line: send the written decisions and action items within an hour after the meeting. `/crit-ready minutes` produces them.
+
+If the project has nothing for a field, leave the field empty. Do not fill it with a guess.
+
+## Step 7. Write the changelog line
+
+Add one line at the bottom of the project's `changelog.md`. Copy the format of the lines already there. It says: the date, `prep`, which meeting, which files changed.
+
+## Step 8. Show the user
+
+Show the prep. Then ask one question: "Do you want to change anything, for example who the swing votes are, or what feedback you want?"
+
+## Check before you finish
+
+- [ ] The meeting file exists and has text under `## Pre-Meeting Prep`.
+- [ ] `meeting-notes.md` has a row for this meeting.
+- [ ] Every predicted reaction names a row, or says there is no record.
+- [ ] `changelog.md` has a new line.

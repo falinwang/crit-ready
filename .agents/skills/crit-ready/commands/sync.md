@@ -1,30 +1,130 @@
-# Sync Design Decision
+# Sync
 
-Typical invocation: `/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]`. The decision text may also be missing, in which case use the source from the current conversation (see "No decision text given").
+`/crit-ready sync` records a decision that was made outside a meeting: in Slack, in a Figma comment, in a chat thread.
 
-## Before editing
+The usual form is:
 
-1. **Find the project and the rules.** Read the project's `FOLDER-INSTRUCTIONS.md`. If it contains its own File Map, the project predates the shared rules: follow its File Map, its own files and its own table columns (dates instead of IDs), and do not add files to it. Otherwise read `templates/shared/RULES.md`, which also says how to locate the project.
-2. Read the header, Status Values and Rules sections of `design-decisions.md`. Use the table's actual columns. Do not assume them.
-3. Figma comments and Slack are tier 4 sources. `/crit-ready sync` is what formalizes them, so cite the platform, the person and the date in Source / Owner. If the source names a decider, record that name too.
+```
+/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]
+```
 
-## No decision text given
+Example:
 
-Look for a source earlier in this conversation (Figma comments, Slack thread, pasted text) and extract only decisions that were actually concluded: a resolved thread, an explicit confirmation from the owner, or an agreement between named people.
+```
+/crit-ready sync Export is capped at 500 rows by Ken in Slack #design. Larger exports time out. Replaces the 1000-row cap.
+```
 
-- Do not log open questions, suggestions or reviewer asks as decisions. List them to the user as unlogged instead.
-- If nothing in the conversation qualifies, ask the user what to sync. Do not invent one.
+Do the steps in order.
 
-## Steps
+## Step 1. Find the project and the rules
 
-1. **Search and supersede.** Search `design-decisions.md` for overlapping rows (grep on key terms). If the new decision explicitly replaces or obviously conflicts with an old one, append the reason for the change to the old row's Rationale, then set its Status to `Superseded (→ D-NNN)` pointing to the new row's ID. In an old project without an ID column, point to the new row's date instead. If a matching row already exists, update it rather than adding a duplicate. Never delete a row.
-2. **Record.** Append the new row after the last table row, with the next ID (if the table has an ID column), today's date, the source, the rationale and tags (tags describe the shape of the problem; reuse existing tags where they fit). Choose Status by the hub's own rules:
-   - `Active`: confirmed by a verifiable source and owned by someone (the owner, Product, or the people the thread agreed on).
-   - `Pending`: one person's proposal, a casual remark, or no explicit sign-off from the owner. Say in Rationale what confirmation is missing.
-   - `Blocked`: agreed in principle but held by an external condition, named in Rationale.
-3. **Clear.** Check `open-questions.md`. If this sync resolves an open question, move the row to the Closed section with the question struck through, the resolution (cite the decision ID) and today's date. If it only partly answers one, add a dated update to that row and leave it open. Keep that file's own language and row format.
-4. **Follow-up tasks.** If the source implies a task (for example "Eng to confirm the limit"), add it to `actions.md` with a link to the decision row. In an old project, mention it to the user instead of adding a file.
-5. **Standing decisions.** If the new decision contradicts a standing decision in the product's `PRODUCT.md`, flag it to the user. Do not edit `PRODUCT.md`.
-6. **Changelog.** Append one dated line to the project's `changelog.md`.
-7. **Report.** Tell the user what was added, superseded and closed, and list anything seen in the source but deliberately not logged (open questions, unresolved asks) with why.
-8. **Lock-in phrase.** Output one sentence the user can paste into Slack or Figma to lock in agreement with the stakeholder (for example "Got it, I've recorded that..."). If any logged row is `Pending`, the phrase should ask the stakeholder to confirm it.
+1. Find the vault root: the folder that has a `templates/` folder directly inside it.
+2. Find the project. A project is a folder with a `FOLDER-INSTRUCTIONS.md` in it.
+   - If you are working inside a project folder, use it.
+   - Else, if the user named a project, use it.
+   - Else, list the projects. If there is one, use it. If there are several, ask "Which project?" and wait.
+3. Open the project's `FOLDER-INSTRUCTIONS.md`. Search it for the text `templates/shared/RULES.md`.
+   - Found: the project is **current**. Read the file `templates/shared/RULES.md` now. That path starts at the vault root.
+   - Not found: the project is **old**. Read the box below.
+
+> **Old project.** Its tables have no ID column: do not add IDs. Mark a replaced decision `Superseded (→ YYYY-MM-DD)` with the date of the new row. Do not create `actions.md`: tell the user about follow-up tasks instead. Skip step 7.
+
+4. Open `design-decisions.md`. Read its header row, its Status Values table and its Rules. Use the columns the table really has.
+
+## Step 2. Find the decision
+
+**If the user typed the decision:** use it. Go to step 3.
+
+**If the user typed `/crit-ready sync` with nothing after it:** look earlier in this conversation for a Slack thread, Figma comments or pasted text.
+
+- Take only what was really decided. A decision is one of these: a thread marked resolved, a clear "yes, do that" from the person who owns the work, or an agreement between named people.
+- A question is not a decision. A suggestion is not a decision. A request from a reviewer is not a decision. Do not record these. List them for the user in step 9 as "not recorded".
+- If you find no decision, ask the user "What should I record?" and stop. Do not invent one.
+
+## Step 3. Look for an older row about the same thing
+
+Search `design-decisions.md` for rows about the same topic. Search for the main words of the decision.
+
+Choose one case:
+
+| Case | What to do |
+| :--- | :--- |
+| No row is about this topic | Go to step 4 |
+| A row already says the same thing | Update that row (for example, add the new source). Do not add a new row. Skip step 4 |
+| The new decision replaces or contradicts an older row | Do step 4 first. Then come back and change the old row: add `Replaced by D-NNN:` and the new decision's reason to the end of its Rationale, and set its Status to `Superseded (→ D-NNN)` using the new row's ID |
+
+Never delete a row.
+
+## Step 4. Add the new row
+
+Add one row at the bottom of the decisions table.
+
+- **ID**: the highest ID in the table plus 1.
+- **Date**: today.
+- **Decision**: what was decided.
+- **Rationale**: the reason given. If no reason was given, write that the reason is missing.
+- **Source / Owner**: the platform, the person, and the date. Slack and Figma comments are the weakest kind of source, so always say exactly where it came from. If the source names who made the final call, add that name.
+- **Tags**: words for the kind of problem, not for the fix. Reuse tags already in the table when they fit.
+- **Status**: choose one.
+
+  | Status | Use it when |
+  | :--- | :--- |
+  | `Active` | A source you can point to confirms it, and someone owns it. A Slack message or Figma comment is enough when the person who owns that area states the decision plainly |
+  | `Pending` | One person proposed it, or it was a casual remark, or the owner has not said yes. Write in Rationale what confirmation is missing |
+  | `Blocked` | It is agreed, but waiting on something outside the team. Name that thing in Rationale |
+
+Example row:
+
+```
+| D-016 | 2026-03-05 | 匯出一次最多 500 筆 | 超過 500 筆會逾時 | Slack #design, Ken (Eng), 2026-03-05 | Active | bulk-action-limits |
+```
+
+## Step 5. Close open questions it answers
+
+Open `open-questions.md`.
+
+- If the decision fully answers a question: move that row to the `Closed` section. Strike through the question text with `~~`, write the resolution with the decision ID, and write today's date. If the file has no Closed section, add one.
+- If the decision answers only part of a question: add a dated note to that row and leave it open.
+- Keep the language and the row format the file already uses.
+
+Example closed row:
+
+```
+| 2026-03-04 | 2026-03-05 | ~~匯出上限要設在幾筆？~~ | 500 筆，見 D-016 |
+```
+
+## Step 6. Record follow-up tasks
+
+If the source says someone has to do something (for example "Eng will confirm the limit"), add a line under `## Open` in `actions.md`:
+
+```
+- [ ] 確認匯出上限對效能的影響 | 負責人：Ken (Eng) | 期限：TBD | 來源：D-016
+```
+
+## Step 7. Check the product's standing decisions
+
+1. Open the project's `FOLDER-INSTRUCTIONS.md`. Follow the link on the `- **Product:**` line to `PRODUCT.md`.
+2. If the new decision disagrees with a row in its Standing Decisions table, remember it for step 9. Do not edit `PRODUCT.md`.
+
+## Step 8. Write the changelog line
+
+Add one line at the bottom of the project's `changelog.md`. Copy the format of the lines already there. It says: the date, `sync`, what changed, which files changed.
+
+## Step 9. Reply to the user
+
+Reply with these parts.
+
+1. **Added**: the new row's ID and text.
+2. **Superseded**: any old row you marked, and why.
+3. **Closed**: any open question you closed.
+4. **Not recorded**: anything you saw in the source and chose not to record, with the reason (it was a question, a suggestion, or not confirmed).
+5. **Conflicts**: any disagreement with a standing decision in `PRODUCT.md`.
+6. **Lock-in sentence**: one sentence the user can paste back into Slack or Figma so the other person sees it is recorded. Example: `Got it, I've recorded that exports are capped at 500 rows (D-016).` Write the sentence in the language the other person used in the source. If the row is `Pending`, the sentence must ask the other person to confirm. Example: `I've noted the 500-row cap as pending. Can you confirm it's final?`
+
+## Check before you finish
+
+- [ ] The decision is in `design-decisions.md` with an ID and an exact source.
+- [ ] No row was deleted.
+- [ ] A replaced row has its reason added and its Status changed.
+- [ ] `changelog.md` has a new line.
+- [ ] The reply ends with one lock-in sentence.

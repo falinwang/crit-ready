@@ -34,7 +34,7 @@ This repository is public. Keep templates, skills and examples free of any real 
 
 ## Key mechanics to preserve when editing
 
-- **Old-project compatibility.** Every command first reads the project's `FOLDER-INSTRUCTIONS.md`; if it contains its own File Map, the project predates the shared rules and the skill follows that project's own File Map, files and table columns (dates instead of IDs, action items in meeting files, pattern library possibly at `templates/pattern-library.md`). Commands never convert it as a side effect; the user runs `/crit-ready migrate`, which plans, backs up and converts one project at a time. Keep this rule in `RULES.md` and in each command's first step.
+- **Old-project compatibility.** Every command first reads the project's `FOLDER-INSTRUCTIONS.md`; if it does not point to `templates/shared/RULES.md`, the project predates the shared rules and the skill follows that project's own File Map, files and table columns (dates instead of IDs, action items in meeting files, pattern library possibly at `templates/pattern-library.md`). Commands never convert it as a side effect; the user runs `/crit-ready migrate`, which plans, backs up and converts one project at a time. Keep this rule in `RULES.md` and in each command's first step.
 - **File Map changes.** If you add a new routing name to `meeting-notes-template.md`'s Sections, you must also add its destination to the File Map in `templates/shared/RULES.md`. An unmapped section name is meant to make the agent stop and ask, not improvise.
 - **`/crit-ready minutes`** finishes when the hub is updated: notes written to the meeting file, sections routed, action items into `actions.md`, changelog line appended. Running it twice on one meeting updates rows rather than duplicating them.
 - **`/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]`** supersedes conflicting rows (`Superseded (→ D-NNN)`), closes matching open questions, flags conflicts with `PRODUCT.md` standing decisions, and produces a one-sentence Slack-pasteable confirmation.
@@ -43,7 +43,14 @@ This repository is public. Keep templates, skills and examples free of any real 
 - **Skills never edit `PRODUCT.md` on their own** to resolve a conflict with a standing decision; they flag it to the user.
 - **`actions.md` is the only live checklist.** Meeting files keep action items as plain bullets. `TODAY.md` is a generated view, and ticks made there are written back to `actions.md` on the next `/crit-ready today`.
 - Keep `meeting-notes-template.md` tool-agnostic (no list of vendor names) and keep its Mode A / Mode B behavior intact.
-- Skill text is plain English: say what to do and why, no personas, no emoji, no tool names from other harnesses.
+- **Write skills and `RULES.md` so a small model can follow them** (Haiku-class and similar). The same file must work for every model:
+  - Numbered steps, in the order they are done. One action per step.
+  - Every choice is written as cases: "if X, do A; if Y, do B", or a table of cases. Never "use judgment".
+  - Every row or line a command writes has a filled-in example in the file's own format. Examples use made-up names only.
+  - Tests are literal: "search the file for the text ...", not "decide whether the project is old".
+  - Each command says when to stop and ask the user, and ends with a "Check before you finish" list.
+  - Each command repeats the steps it needs (find the vault root, find the project, old-or-current check). Do not make a command depend on having read another command file.
+  - Short sentences, common words, no personas, no emoji decoration, no tool names from any one harness.
 
 ## Language conventions
 
