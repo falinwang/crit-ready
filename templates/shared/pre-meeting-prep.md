@@ -1,12 +1,12 @@
 # Pre-Meeting Prep
 
-`meeting-notes-template.md` 處理會後——把逐字稿整理進 Hub。這份檔案處理會前——會議開始前，你該準備哪份文件，才能讓那場會議值得開。
+同資料夾的 `meeting-notes-template.md` 處理會後——把逐字稿整理進 Hub。這份檔案處理會前——會議開始前，你該準備哪份文件，才能讓那場會議值得開。
 
-**注意：** 下面六種會議類型的 emoji 只是標題裝飾，不是 routing name。File Map（`FOLDER-INSTRUCTIONS.md`）裡那套 emoji + 名稱才是路由用的，兩套刻意不重疊——新增會議類型時，別挑已經被 File Map 用掉的 emoji。
+**注意：** 下面六種會議類型的 emoji 只是標題裝飾，不是 routing name。File Map（`templates/shared/RULES.md`）裡那套 emoji + 名稱才是路由用的，兩套刻意不重疊——新增會議類型時，別挑已經被 File Map 用掉的 emoji。
 
 **依據：** Tom Greever《Articulating Design Decisions》沒有給「會議類型清單」，給的是跨會議通用的技巧（Setting the Context、IDEAL Framework、Bank Account of Trust）。這份文件把那些技巧套進設計師實際會遇到的幾種會議類型，並指向 Hub 裡已經在維護的檔案——不重複建立新的資料結構。
 
-**怎麼用：** 開會前，找到對應的會議類型，照「會前文件」欄位準備內容，寫進這場會議自己的檔案（`meetings/YYYY-MM-DD-meeting-name.md`，見 `meetings/_meeting-template.md` 的 Pre-Meeting Prep 區塊）——不要留在這份指南裡累積。這份文件本身是不隨專案演進的參考手冊，六種會議類型的做法都在這裡查，但每一場會議實際準備出來的內容屬於那場會議自己的檔案。大部分欄位是把 Hub 既有檔案裡的東西挑出來重組，不是從零生成。
+**怎麼用：** 開會前，找到對應的會議類型，照「會前文件」欄位準備內容，寫進專案裡這場會議自己的檔案（`<product>/<project>/meetings/YYYY-MM-DD-meeting-name.md`，見 `meetings/_meeting-template.md` 的 Pre-Meeting Prep 區塊）——不要留在這份指南裡累積。這份文件本身是不隨專案演進的參考手冊，六種會議類型的做法都在這裡查，但每一場會議實際準備出來的內容屬於那場會議自己的檔案。大部分欄位是把 Hub 既有檔案裡的東西挑出來重組，不是從零生成。
 
 ---
 
@@ -16,7 +16,7 @@
 **時機：** 專案啟動時，通常只有一次（重大改組例外）。
 
 **會前文件：Project Brief Draft**
-- 從 `FOLDER-INSTRUCTIONS.md` Layer 4 的三個 Kickoff 問題（成功長怎樣／怎麼衡量／誰負責衡量）草擬答案
+- 從 `FOLDER-INSTRUCTIONS.md` 的 Kickoff 區塊讀三個問題（成功長怎樣／怎麼衡量／誰負責衡量）；還沒回答（或標為 `TBD`）的問題，就是這場會議要解決的事，列在議程最前面
 - 對照 `project-brief.md` 的 Problem / Who It Affects / Roles / Constraints / In-Out of Scope / Timeline 欄位，能填多少先填多少
 - 沒有答案的欄位留白，不要用會議前的猜測補上——那是會議本身要解決的事
 
@@ -76,6 +76,7 @@
 **會前文件：Status Digest**
 - 從 `working-notes.md` 的 Informal Log／Still Exploratory 抓本週有進展或卡住的項目
 - 列出目前擋住工作的 Open Questions（不重複列已經 resolved 的）
+- 從 `actions.md` 的 Open 區塊抓還沒完成的行動項目，特別是上次會議留下的
 - 不需要完整簡報——這是同步場合，不是說服場合
 
 **依據：** Cheatsheet trade-off「每日 30 分鐘 check-in vs 每週 design review」——選哪個頻率取決於專案風險，但無論哪種，會前準備的東西應該是「有變化的部分」，不是從頭重講一次。
@@ -88,10 +89,10 @@
 **時機：** 交付上線後、有足夠數據可以看結果時。
 
 **會前文件：Outcome Review Brief**
-- 對照 `FOLDER-INSTRUCTIONS.md` Layer 4 的成功指標，逐項填「達成 / 未達成 / 還無法判斷」
+- 對照 `FOLDER-INSTRUCTIONS.md` 的 Kickoff 區塊裡的成功指標，逐項填「達成 / 未達成 / 還無法判斷」
 - 從 `changelog.md` 重建這個專案實際走過的時間線
 - 從 `deliverables.md` 確認最終交付了什麼版本
-- 標出哪些決策事後看是對的、哪些該 `/crit-ready promote` 到 `pattern-library.md`（見 `FOLDER-INSTRUCTIONS.md` Layer 2.5）
+- 標出哪些決策事後看是對的、哪些該用 `/crit-ready promote` 升級到 `pattern-library.md`（跨產品）或 `PRODUCT.md`（同產品跨專案）
 
 **依據：** 呼應書中 Bank Account of Trust 的概念（Ch10）——retro 是把這次專案的信任餘額（做對的事）跟虧損（做錯的事）都記下來，供下一個專案借鏡。
 

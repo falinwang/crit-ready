@@ -23,7 +23,7 @@ The living description of what this project is. Keep the body as the **active** 
 
 > Add a row per discipline actually involved. Where two roles overlap on the same decision, name it explicitly — an unstated dependency here is how "I thought you were handling that" happens later.
 >
-> This is accountability, not attendance — who owns the call for each discipline, decided once at kickoff. It is not the meeting roster: for the full list of everyone who has shown up with an identifiable role, see `stakeholder-mapping.md`. If a name here changes (role handoff, backfill), update both files — this table and that roster will drift apart otherwise.
+> This is accountability, not attendance — who owns the call for each discipline, decided once at kickoff. It is not the meeting roster: for the full list of everyone who has shown up with an identifiable role, see the product-level `../stakeholder-mapping.md`, which every project of the product shares. If a name here changes (role handoff, backfill), update both files. This table and that roster will drift apart otherwise.
 
 ## Constraints
 
@@ -46,7 +46,7 @@ The living description of what this project is. Keep the body as the **active** 
 
 [What has to be true for this project to be finished.]
 
-> Success metrics live in `FOLDER-INSTRUCTIONS.md` Layer 4, answered at kickoff. Do not duplicate them here.
+> Success metrics live in the Kickoff section of `FOLDER-INSTRUCTIONS.md`, answered at kickoff. Do not duplicate them here.
 
 ---
 
