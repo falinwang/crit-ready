@@ -1,124 +1,126 @@
 # Crit-Ready
 
-**讓設計師在 Design Review 裡，永遠說得出「為什麼」。**
+**English** | [繁體中文](README.zh-TW.md)
 
-Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (Claude Code 與 Codex) 打造的專案知識模板與決策軌跡系統。它不是給人讀的傳統文件，而是**給 AI 檢索的第二大腦**。
+**So a designer can always say "why" in a design review.**
 
----
-
-## 💡 解決的核心痛點
-
-1. **決策失憶**：Slack 或會議口頭決定後，找不到脈絡，導致重複討論。
-2. **來源打架**：Jira、Figma 留言、會議紀錄衝突時，不再需要到處問人。
-3. **跨專案知識斷層**：把單次專案的經驗，轉化為團隊可複用的設計模式。
+Crit-Ready is a set of project knowledge templates and a decision trail for B2B UX designers working with an AI agent (Claude Code or Codex). It is not documentation written for people to read. It is **a second brain for the agent to look things up in**.
 
 ---
 
-## 🚀 內建 AI 指令 (Skills)
+## 💡 The problems it solves
 
-所有指令都在同一個 `crit-ready` skill 底下（`.agents/skills/crit-ready/`），所以 `/crit-ready` 是真正的斜線指令，後面接子指令：
+1. **Decision amnesia**: something gets decided in Slack or out loud in a meeting, the context is lost, and the same discussion happens again.
+2. **Sources that disagree**: when Jira, Figma comments and meeting notes conflict, you no longer have to ask around to find out which one is right.
+3. **Knowledge that stays in one project**: what you learn on one project becomes a design pattern the team can reuse.
 
-### 1. `/crit-ready init [產品]/[專案]` (Project Scaffolding)
-建立新專案時的自動化腳本。同一個產品的多個階段（phase 1、2、3）屬於同一個產品，共用產品層級的知識。當你輸入此指令，Agent 會：
-- 找到或建立產品（`PRODUCT.md` 與 `stakeholder-mapping.md`），再從 `templates/design-project/` 複製專案資料夾結構。資料夾放哪裡依你 vault 自己的慣例，沒有慣例才預設把專案放在產品資料夾底下。
-- **延續上一階段**：若產品已有前一個專案，列出可以帶過來的項目（未解問題、延後項目、未完成行動、未回應的有效回饋），由你挑選；也可以把前一階段仍有效的決策升級為產品的長期決策。
-- **主動防呆**：掃描跨專案模式庫 (`pattern-library.md`)，有相關前例就提前提示你，沒有就明說「no matching precedent found」。
-- **Kickoff 三問**：成功長怎樣？怎麼衡量？誰負責衡量？Agent 只根據你已提供的資料起草答案，還沒有答案可以先寫 `TBD (to settle at the Kickoff meeting)`。
+---
+
+## 🚀 Commands
+
+Every command belongs to one skill, `crit-ready` (`.agents/skills/crit-ready/`), so `/crit-ready` is a real slash command followed by a subcommand:
+
+### 1. `/crit-ready init [product]/[project]` (Project Scaffolding)
+Sets up a new project. Several phases of one product (phase 1, 2, 3) belong to the same product and share what the product knows. The agent will:
+- Find or create the product (`PRODUCT.md` and `stakeholder-mapping.md`), then copy the project folder structure from `templates/design-project/`. Where the folders go follows your vault's own conventions; only when there are none does the project go inside the product folder.
+- **Carry over from the previous phase**: if the product already has an earlier project, it lists what could come across (open questions, deferred items, unfinished actions, valid feedback not yet dealt with) and you pick. Decisions from the earlier phase that still hold can become standing decisions of the product.
+- **Check for precedent**: it scans the cross-project pattern library (`pattern-library.md`) and tells you about a related precedent before you start. If there is none, it says "no matching precedent found".
+- **Three Kickoff questions**: What does success look like? How do we measure it? Who is responsible for measuring it? The agent drafts answers only from what you have already given it. An answer you do not have yet can be `TBD (to settle at the Kickoff meeting)`.
 
 ### 2. `/crit-ready minutes` (Design Knowledge Coordinator)
-丟入會議逐字稿（或別人整理好的摘要），AI 不只是產出摘要，而是把內容歸檔進 Hub：
-- 筆記寫進該場會議自己的檔案（若已用 `/crit-ready prep` 建立就沿用），並依 File Map 分流到決策、待解問題、回饋、行動項目等檔案。
-- **決策動機**：每條決策都帶 `因為 [rationale]` 與拍板者；沒有 rationale 的決策標為 `Pending` 並開一條待解問題。
-- **行動項目**進入專案的 `actions.md`，成為唯一可勾選的清單。
-- 回覆一段可直接貼到 Slack 的摘要，並列出需要你處理的事（歸屬確認、疑似推翻、Pending 決策、與產品長期決策的衝突）。
+Give it a meeting transcript, or notes someone else already wrote. It does more than summarise: it files the content into the Hub.
+- The notes go into that meeting's own file (the one `/crit-ready prep` created, if there is one), and each section is routed by the File Map to decisions, open questions, feedback, actions and so on.
+- **Why, not just what**: every decision carries its rationale and who made the call. A decision with no rationale is filed as `Pending`, with an open question asking for it.
+- **Action items** go into the project's `actions.md`, the only list with live checkboxes.
+- It replies with a summary you can paste straight into Slack, and a list of what needs you (unclear attribution, suspected reversals, Pending decisions, conflicts with a product standing decision).
 
-### 3. `/crit-ready sync [決策內容]` (Low-friction Decision Sync)
-在 Slack 或 Figma 上的零碎討論，無痛轉化為正式決策：
-- 自動比對並取代 `design-decisions.md` 中舊有的衝突決策（以決策 ID 標示，如 `Superseded (→ D-015)`）。
-- 關閉 `open-questions.md` 中對應的待辦問題，後續任務寫進 `actions.md`。
-- 產生一句確認語句，讓你直接貼回 Slack 完成 Lock-in。
+### 3. `/crit-ready sync [decision]` (Low-friction Decision Sync)
+Turns a scattered discussion in Slack or Figma into a recorded decision:
+- Finds the older, conflicting decision in `design-decisions.md` and supersedes it, by decision ID (for example `Superseded (→ D-015)`).
+- Closes the matching question in `open-questions.md` and writes follow-up tasks into `actions.md`.
+- Produces one confirmation sentence you can paste back into Slack to lock it in.
 
 ### 4. `/crit-ready promote` (Pattern Graduation)
-將專案內經過實戰驗證的決策升級，有兩個去處：
-- `/crit-ready promote [決策] to product`：升級為產品的長期決策，寫入 `PRODUCT.md`，之後同產品的每個專案都會被提醒。
-- `/crit-ready promote [決策]. Outcome: [...]. Tags: [...]`：把包含結果 (Outcome) 的決策提煉至全域的 `pattern-library.md`，供其他產品參考。
+Takes a decision that has been tested in practice and keeps it beyond its project. There are two destinations:
+- `/crit-ready promote [decision] to product`: makes it a standing decision of the product, written to `PRODUCT.md`. Every later project of that product is reminded of it.
+- `/crit-ready promote [decision]. Outcome: [...]. Tags: [...]`: distils a decision and its outcome into the vault-wide `pattern-library.md`, for other products to learn from.
 
-兩者都只在你下指令時才執行，Agent 不會自動升級。
+Both run only when you ask. The agent never promotes on its own.
 
-### 5. `/crit-ready prep [會議名稱/主題]` (Pre-Meeting Prep)
-開會前，根據 Tom Greever《Articulating Design Decisions》哲學，從 Hub 現有資料為你準備會前文件，並建立這場會議的檔案：
-- **開場定調 5 步驟**：自動從專案簡介、決策與上次會議抓取目標與上次結論，避免會議失焦。
-- **兵推與預測反應**：只在需要拍板的會議（Crit、Executive Review）進行，每個預測都連回該與會者過去的回饋紀錄；沒有紀錄就直說，不憑職稱猜。
-- **挑選適用的 Greever 技巧**（如 Rule of Direct Comparison、Design Advocates），而非全部套用。例行同步只給狀態摘要。
+### 5. `/crit-ready prep [meeting name or topic]` (Pre-Meeting Prep)
+Before a meeting, it prepares you from what the Hub already holds, following Tom Greever's *Articulating Design Decisions*, and creates the meeting's file:
+- **A five-step opening**: it pulls the goal and the last agreement from the project brief, the decisions and the previous meeting, so the meeting starts in the right place.
+- **Predicted reactions**: only for meetings that seek a decision (Crit, Executive Review). Each prediction points back to what that attendee said before. Where there is no record, it says so and does not guess from a job title.
+- **Only the Greever tactics that fit** (Rule of Direct Comparison, Design Advocates, and so on), not the whole list. A recurring sync gets a status digest and nothing more.
 
 ### 6. `/crit-ready today` (Daily To-Do)
-掃描所有專案，產生放在 vault 根目錄的 `TODAY.md`：
-- 依產品與專案分組，列出我的行動項目、我負責的 HIGH 待解問題、等待確認的 Pending 決策、未回應的有效回饋，以及只有會前準備沒有會後筆記的會議。
-- `等別人` 與 `該回頭看` 兩個區塊提醒卡住的事與該複查的舊紀錄。
-- `TODAY.md` 只是產生出來的檢視，真正的資料仍在各來源檔案；在 `TODAY.md` 勾選的項目，下次執行時會回寫到 `actions.md`。
+Scans every project and writes `TODAY.md` at the vault root:
+- Grouped by product and project: my actions, the HIGH open questions I own, Pending decisions waiting for confirmation, valid feedback not yet dealt with, and meetings that have prep but no notes.
+- Two more sections, `等別人` (waiting on others) and `該回頭看` (worth a second look), surface what is stuck and what should be revisited.
+- `TODAY.md` is a generated view. The real data stays in the source files. An item you tick in `TODAY.md` is written back to `actions.md` on the next run.
 
-### 7. `/crit-ready migrate [專案]` (Migrate an Older Project)
-把舊版結構的專案轉成目前的結構，一次一個專案，只在你下指令時執行：
-- 先讀完整個專案，列出每個檔案會怎麼改、哪些地方它無法自行判斷，等你同意後才動手。
-- 動手前完整備份專案資料夾。
-- 決策補上 ID、會議檔裡的待辦集中到 `actions.md`、名冊併入產品層；既有的列與文字一律保留，不改寫內容。
+### 7. `/crit-ready migrate [project]` (Migrate an Older Project)
+Converts a project in the older structure to the current one. One project at a time, and only when you ask:
+- It reads the whole project first, lists how each file will change and what it cannot decide by itself, and waits for your approval.
+- It backs up the whole project folder before changing anything.
+- Decisions get IDs, the to-dos inside meeting files are collected into `actions.md`, and the roster moves up to the product. Existing rows and wording are kept as they are.
 
 ---
 
-## 📂 核心知識架構 (Log → Link → Lock)
+## 📂 How the knowledge is organised (Log → Link → Lock)
 
-整個 vault 分成三個層級：**vault**（跨產品）、**product**（同一產品的所有階段）、**project**（單一階段或專案）。
+A vault has three scopes: **vault** (across products), **product** (every phase of one product) and **project** (one phase or initiative).
 
-三個層級是用檔案和連結定義的，不是用資料夾位置：專案是任何含有 `FOLDER-INSTRUCTIONS.md` 的資料夾，它的產品是該檔案連結到的那份 `PRODUCT.md`。所以你的 vault 可以維持原本的組織方式（例如 PARA：專案和長期資料分開放）。沒有既定慣例時，預設配置如下：
+The scopes are defined by files and links, not by where folders sit. A project is any folder that contains a `FOLDER-INSTRUCTIONS.md`, and its product is the `PRODUCT.md` that file links to. So your vault can keep the organisation it already has (PARA, for example, where projects and long-lived material live apart). With no convention of your own, the default layout is:
 
 ```
 vault/
-  templates/            shared/（規則，只存一份）、product/、design-project/、vault/（schema）
-  pattern-library.md    跨產品的模式庫
-  TODAY.md              每日待辦（自動產生）
+  templates/            shared/ (rules, kept once), product/, design-project/, vault/ (schemas)
+  pattern-library.md    patterns reusable across products
+  TODAY.md              daily to-do (generated)
   <product>/
-    PRODUCT.md          長期決策、領域知識、延後項目
+    PRODUCT.md          standing decisions, domain knowledge, deferred items
     stakeholder-mapping.md
-    <project>/          一個階段或專案
+    <project>/          one phase or initiative
       FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, open-questions.md,
       feedback-tracker.md, working-notes.md, deliverables.md, actions.md, changelog.md,
       meeting-notes.md, meetings/
 ```
 
-靜態規則（File Map、來源優先順序、ID 規則）集中在 `templates/shared/RULES.md`，不再複製進每個專案。舊版結構的專案不會被自動更動，所有指令仍可在上面運作；想轉成新結構時用 `/crit-ready migrate`。
+The static rules (File Map, source priority, ID rules) live once in `templates/shared/RULES.md` and are not copied into each project. A project in the older structure is never changed automatically, and every command still works on it. To convert one, use `/crit-ready migrate`.
 
-知識沉澱遵循三階段原則：「記錄、連結、鎖定」。確保每一個設計決策都有跡可循，不再淪為無頭公案：
+Knowledge settles in three stages: log, link, lock. Every design decision leaves a trail, so none of them becomes a mystery later.
 
-### 1. 📝 Log (廣泛記錄)
-**目標**：捕捉所有非正式的脈絡、會議討論與原始靈感，不漏掉任何細節。
-*   **`meetings/`**: 專屬會議紀錄資料夾，一場會議一個檔案，會前準備與會後筆記放在一起。透過 `/crit-ready minutes` 將混亂的逐字稿結構化並歸檔，杜絕黑盒子的 AI 摘要。
-*   **`working-notes.md`**: 你的日常塗鴉牆，用來存放還沒成型的草稿與探索性想法 (Still Exploratory)。
+### 1. 📝 Log
+**Goal**: capture the informal context, the meeting discussions and the raw ideas, without losing detail.
+*   **`meetings/`**: one file per meeting, holding the prep and the notes together. `/crit-ready minutes` structures a messy transcript and files it, so nothing depends on a black-box AI summary.
+*   **`working-notes.md`**: your scratchpad for drafts and ideas that have not taken shape yet (Still Exploratory).
 
-### 2. 🔗 Link (建立連結)
-**目標**：將發散的紀錄收斂成具體的決策，並強制關聯背後的 Rationale (為什麼這樣做)。
-*   **`design-decisions.md`**: 決策軌跡中心，每項決策有 ID（`D-001`…）、出處與原因，解決「我們當初為什麼這樣做？」的無限迴圈。
-*   **`open-questions.md`**: 追蹤卡住進度的問題，標明急迫度與卡住什麼，並指派給特定的負責人。
-*   **`actions.md`**: 專案唯一的行動清單，在 Obsidian 勾選即完成。
-*   **`/crit-ready sync`**: 將 Slack 或 Figma 上的對話，一鍵轉化為決策並連結回對應的檔案。
+### 2. 🔗 Link
+**Goal**: turn scattered notes into specific decisions, each tied to its rationale.
+*   **`design-decisions.md`**: the centre of the decision trail. Every decision has an ID (`D-001`…), a source and a reason, which ends the "why did we do it this way?" loop.
+*   **`open-questions.md`**: tracks what is blocking progress, how urgent it is and what it blocks, with a named owner.
+*   **`actions.md`**: the project's only action list. Tick an item in Obsidian to complete it.
+*   **`/crit-ready sync`**: turns a Slack or Figma conversation into a decision and links it back to the right files.
 
-### 3. 🔒 Lock (鎖定與升級)
-**目標**：確保決策被團隊認知，並在驗證成功後升級為團隊的防禦資產。
-*   **`deliverables.md`**: 標示交付物的狀態 (Draft, Handed off, Stale)，避免工程師拿到過期的版本。
-*   **`PRODUCT.md`**: 同一產品跨階段持續有效的決策，用 `/crit-ready promote ... to product` 鎖定。
-*   **`pattern-library.md`**: 跨產品共用的設計模式庫。利用 `/crit-ready promote` 將實戰驗證過的好決策升級為全團隊的資產。
+### 3. 🔒 Lock
+**Goal**: make sure the team knows the decision, and promote it into a shared asset once it has proved itself.
+*   **`deliverables.md`**: the status of each deliverable (Draft, Handed off, Stale), so engineers do not build from an outdated version.
+*   **`PRODUCT.md`**: decisions that stay in force across the phases of one product, locked in with `/crit-ready promote ... to product`.
+*   **`pattern-library.md`**: the design pattern library shared across products. `/crit-ready promote` moves a proven decision into it for the whole team.
 
 ---
 
-## 🛠️ 如何開始
+## 🛠️ Getting started
 
-1. 將本專案 clone 至你的本地端 Workspace（vault 根目錄就是包含 `templates/` 的那個資料夾）。
-2. 開啟你的 AI Agent。
-3. 輸入 `/crit-ready init 產品名稱/專案名稱` 開始新專案。
-4. 開會前：`/crit-ready prep` 建立會議檔案與會前準備。
-5. 每次開完會：貼上逐字稿並輸入 `/crit-ready minutes`，內容會直接歸檔進 Hub。
-6. 每天日常溝通：在 Slack 決定的事，立刻回 AI 敲 `/crit-ready sync` 記錄下來。每天開工先敲 `/crit-ready today` 看今天要做什麼。
-7. 階段結束後：有好的踩坑經驗，用 `/crit-ready promote` 升級成產品長期決策或團隊設計模式。
+1. Clone this repository into your local workspace. The vault root is the folder that contains `templates/`.
+2. Open your AI agent.
+3. Type `/crit-ready init product-name/project-name` to start a new project.
+4. Before a meeting: `/crit-ready prep` creates the meeting file and the prep.
+5. After every meeting: paste the transcript and type `/crit-ready minutes`. The content is filed straight into the Hub.
+6. Day to day: when something is decided in Slack, record it right away with `/crit-ready sync`. Start each day with `/crit-ready today` to see what to do.
+7. When a phase ends: use `/crit-ready promote` to turn a hard-won lesson into a product standing decision or a team design pattern.
 
-> **保密會議提醒**：客戶、高層或其他機密會議，錄音前請先確認貴組織核准的工具，不要用個人或免費版 AI 筆記工具。確認其合約可選擇退出 AI 模型訓練，並符合貴組織的合規標準（SOC 2 / ISO 27001、SSO、資料所在地），而不只是看它產出的筆記好不好用。
+> **Confidential meetings**: for client, executive or otherwise confidential meetings, check which tools your organisation has approved before you record. Do not use a personal or free-tier AI notetaker. Confirm that its contract lets you opt out of AI model training and that it meets your organisation's compliance bar (SOC 2 / ISO 27001, SSO, data residency), not only that its notes are good.
 
-> *致謝：決策表述方式深受 Tom Greever《Articulating Design Decisions》啟發。本專案將「當場講清楚」的理念，延伸為「事後查得到」的自動化系統。*
+> *Acknowledgement: the way decisions are articulated here owes a great deal to Tom Greever's* Articulating Design Decisions*. This project takes the idea of "explain it clearly in the room" and extends it into a system where you can also "find it afterwards".*

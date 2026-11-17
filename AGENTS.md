@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents (Claude Code, Codex) when workin
 
 ## What this repo is
 
-Crit-Ready is not an application. It is a set of markdown templates and agent skills that turn an AI agent into a **Design Knowledge Coordinator** for a UX designer's vault (Obsidian or similar). It tracks a project from kickoff through every meeting to a daily to-do list, and extends from one project to several projects of one product (phase 1, 2, 3) and across products. There is no build, lint, or test tooling; all work here is editing prompt/template markdown files. See `README.md` for the full pitch and mechanism list.
+Crit-Ready is not an application. It is a set of markdown templates and agent skills that turn an AI agent into a **Design Knowledge Coordinator** for a UX designer's vault (Obsidian or similar). It tracks a project from kickoff through every meeting to a daily to-do list, and extends from one project to several projects of one product (phase 1, 2, 3) and across products. There is no build, lint, or test tooling; all work here is editing prompt/template markdown files. See `README.md` (English) or `README.zh-TW.md` (Traditional Chinese) for the full pitch and mechanism list.
 
 ## Repository structure
 
@@ -54,4 +54,4 @@ This repository is public. Keep templates, skills and examples free of any real 
 
 ## Language conventions
 
-Section headers in `meeting-notes-template.md` stay in English; the meeting note content itself is written in Traditional Chinese (Taiwan). `README.md`, `pre-meeting-prep.md`, `actions.md` item wording and `TODAY.md` are Traditional Chinese. `RULES.md`, `PRODUCT.md`, the other project templates and the skills are English. Match the existing language of whichever file you're editing.
+Section headers in `meeting-notes-template.md` stay in English; the meeting note content itself is written in Traditional Chinese (Taiwan). The README is bilingual: `README.md` is English and `README.zh-TW.md` is Traditional Chinese, each with a language switcher on its second line. They carry the same content in the same order, so a change to one goes into the other in the same commit. `pre-meeting-prep.md`, `actions.md` item wording and `TODAY.md` are Traditional Chinese. `RULES.md`, `PRODUCT.md`, the other project templates and the skills are English. Match the existing language of whichever file you're editing.
