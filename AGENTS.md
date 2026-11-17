@@ -31,6 +31,7 @@ This repository is public. Keep templates, skills and examples free of any real 
 - **`templates/vault/pattern-library.md`** — schema for the live vault-root `pattern-library.md`. Never copied into a product or project. Do not duplicate its schema elsewhere.
 - **`.agents/skills/crit-ready/`** — the one skill. `SKILL.md` is a router: its `name: crit-ready` is what makes `/crit-ready` a real command, and it sends each subcommand to its file in `commands/` (`init`, `prep`, `minutes`, `sync`, `promote`, `today`, `migrate`). Command files have no frontmatter. A new command needs a file in `commands/`, a row in the router's table and a mention in the router's description.
 - **`.agents/skills/greever/`** — a separate knowledge base the prep command points to.
+- **`.claude/skills`** — a symlink to `../.agents/skills`. Codex reads `.agents/skills/` and Claude Code reads `.claude/skills/`, so one copy of each skill serves both. Do not replace the link with a copy.
 
 ## Key mechanics to preserve when editing
 

@@ -16,6 +16,58 @@ Crit-Ready is a set of project knowledge templates and a decision trail for B2B 
 
 ---
 
+## ⚙️ Setup
+
+Crit-Ready has two parts that must sit in the same folder, your **vault** (an Obsidian vault or any folder of markdown notes):
+
+- `templates/`: the file templates and the shared rules. The folder that contains `templates/` is the vault root.
+- The `crit-ready` skill: the instructions your agent follows. It lives in `.agents/skills/crit-ready/`.
+
+### Option A: start a new vault
+
+Clone this repository and use it as your vault. Open the folder in Obsidian, and start your agent in it.
+
+```
+git clone https://github.com/falinwang/crit-ready.git my-vault
+cd my-vault
+```
+
+Everything is already in place. `.claude/skills` is a link to `.agents/skills`, so both Claude Code and Codex find the skill.
+
+### Option B: add it to a vault you already have
+
+Copy three things into your vault root:
+
+```
+cp -R crit-ready/templates          my-vault/
+mkdir -p my-vault/.agents/skills
+cp -R crit-ready/.agents/skills/crit-ready crit-ready/.agents/skills/greever  my-vault/.agents/skills/
+```
+
+Then, for Claude Code, link its skills folder to the same place:
+
+```
+mkdir -p my-vault/.claude
+ln -s ../.agents/skills my-vault/.claude/skills
+```
+
+Optional: if your vault already has its own folder layout (PARA, for example), say where projects and products live in your vault's `AGENTS.md`. The commands follow it.
+
+### Where each agent looks for skills
+
+| Agent | In the vault | For every folder on your computer | Run a command with |
+| :--- | :--- | :--- | :--- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` | `/crit-ready minutes` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` | `$crit-ready minutes` |
+
+You can install the skill in the personal folder instead of the vault. The vault still needs `templates/`, because that is how the skill finds the vault root and the rules.
+
+### Updating
+
+Pull or copy the new `templates/` and `.agents/skills/crit-ready/` over the old ones. This replaces only the templates and the instructions. Your projects, `pattern-library.md` and `TODAY.md` are separate files and are not touched. A project made with an older version keeps working; run `/crit-ready migrate` when you want to convert it.
+
+---
+
 ## 🚀 Commands
 
 Every command belongs to one skill, `crit-ready` (`.agents/skills/crit-ready/`), so `/crit-ready` is a real slash command followed by a subcommand:
@@ -111,15 +163,16 @@ Knowledge settles in three stages: log, link, lock. Every design decision leaves
 
 ---
 
-## 🛠️ Getting started
+## 🛠️ Daily use
 
-1. Clone this repository into your local workspace. The vault root is the folder that contains `templates/`.
-2. Open your AI agent.
-3. Type `/crit-ready init product-name/project-name` to start a new project.
-4. Before a meeting: `/crit-ready prep` creates the meeting file and the prep.
-5. After every meeting: paste the transcript and type `/crit-ready minutes`. The content is filed straight into the Hub.
-6. Day to day: when something is decided in Slack, record it right away with `/crit-ready sync`. Start each day with `/crit-ready today` to see what to do.
-7. When a phase ends: use `/crit-ready promote` to turn a hard-won lesson into a product standing decision or a team design pattern.
+1. Start a project: `/crit-ready init product-name/project-name`.
+2. Before a meeting: `/crit-ready prep`. It creates the meeting file and the prep.
+3. After a meeting: paste the transcript or notes and type `/crit-ready minutes`. Everything is filed into the project.
+4. When something is decided in Slack or Figma: `/crit-ready sync`.
+5. Each morning: `/crit-ready today` to see what to do.
+6. When a decision proves itself: `/crit-ready promote`.
+
+In Codex, type `$crit-ready` instead of `/crit-ready`.
 
 > **Confidential meetings**: for client, executive or otherwise confidential meetings, check which tools your organisation has approved before you record. Do not use a personal or free-tier AI notetaker. Confirm that its contract lets you opt out of AI model training and that it meets your organisation's compliance bar (SOC 2 / ISO 27001, SSO, data residency), not only that its notes are good.
 

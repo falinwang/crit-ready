@@ -16,6 +16,58 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (Claude Code 與 Codex) 
 
 ---
 
+## ⚙️ 安裝設定
+
+Crit-Ready 有兩個部分，兩者要放在同一個資料夾，也就是你的 **vault**（Obsidian vault，或任何放 markdown 筆記的資料夾）：
+
+- `templates/`：檔案模板與共用規則。含有 `templates/` 的那個資料夾就是 vault 根目錄。
+- `crit-ready` skill：agent 照著做的指令，放在 `.agents/skills/crit-ready/`。
+
+### 方法 A：開一個新的 vault
+
+直接 clone 這個 repo 當作你的 vault，用 Obsidian 開這個資料夾，並在裡面啟動 agent。
+
+```
+git clone https://github.com/falinwang/crit-ready.git my-vault
+cd my-vault
+```
+
+所有東西都已經就位。`.claude/skills` 是指向 `.agents/skills` 的連結，所以 Claude Code 和 Codex 都找得到 skill。
+
+### 方法 B：加進你已經在用的 vault
+
+把三樣東西複製到 vault 根目錄：
+
+```
+cp -R crit-ready/templates          my-vault/
+mkdir -p my-vault/.agents/skills
+cp -R crit-ready/.agents/skills/crit-ready crit-ready/.agents/skills/greever  my-vault/.agents/skills/
+```
+
+如果用 Claude Code，再把它的 skills 資料夾連到同一個地方：
+
+```
+mkdir -p my-vault/.claude
+ln -s ../.agents/skills my-vault/.claude/skills
+```
+
+選擇性：如果你的 vault 已經有自己的資料夾配置（例如 PARA），在 vault 的 `AGENTS.md` 寫明專案和產品放在哪裡，指令會照著做。
+
+### 各 agent 從哪裡讀 skill
+
+| Agent | 放在 vault 裡 | 電腦上所有資料夾都能用 | 執行指令 |
+| :--- | :--- | :--- | :--- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` | `/crit-ready minutes` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` | `$crit-ready minutes` |
+
+skill 也可以裝在個人資料夾而不放在 vault 裡，但 vault 仍然需要 `templates/`，因為 skill 是靠它找到 vault 根目錄和規則。
+
+### 更新
+
+把新的 `templates/` 和 `.agents/skills/crit-ready/` 拉下來或複製過去覆蓋舊的即可。這只會換掉模板和指令；你的專案、`pattern-library.md` 和 `TODAY.md` 是另外的檔案，不會被動到。舊版建立的專案照常可用，想轉成新結構時再執行 `/crit-ready migrate`。
+
+---
+
 ## 🚀 內建 AI 指令 (Skills)
 
 所有指令都在同一個 `crit-ready` skill 底下（`.agents/skills/crit-ready/`），所以 `/crit-ready` 是真正的斜線指令，後面接子指令：
@@ -111,15 +163,16 @@ vault/
 
 ---
 
-## 🛠️ 如何開始
+## 🛠️ 日常使用
 
-1. 將本專案 clone 至你的本地端 Workspace（vault 根目錄就是包含 `templates/` 的那個資料夾）。
-2. 開啟你的 AI Agent。
-3. 輸入 `/crit-ready init 產品名稱/專案名稱` 開始新專案。
-4. 開會前：`/crit-ready prep` 建立會議檔案與會前準備。
-5. 每次開完會：貼上逐字稿並輸入 `/crit-ready minutes`，內容會直接歸檔進 Hub。
-6. 每天日常溝通：在 Slack 決定的事，立刻回 AI 敲 `/crit-ready sync` 記錄下來。每天開工先敲 `/crit-ready today` 看今天要做什麼。
-7. 階段結束後：有好的踩坑經驗，用 `/crit-ready promote` 升級成產品長期決策或團隊設計模式。
+1. 開新專案：`/crit-ready init 產品名稱/專案名稱`。
+2. 開會前：`/crit-ready prep`，建立會議檔案與會前準備。
+3. 開完會：貼上逐字稿或筆記，輸入 `/crit-ready minutes`，內容會歸檔進專案。
+4. 在 Slack 或 Figma 做了決定：`/crit-ready sync`。
+5. 每天開工：`/crit-ready today`，看今天要做什麼。
+6. 決策經過驗證之後：`/crit-ready promote`。
+
+在 Codex 裡把 `/crit-ready` 換成 `$crit-ready`。
 
 > **保密會議提醒**：客戶、高層或其他機密會議，錄音前請先確認貴組織核准的工具，不要用個人或免費版 AI 筆記工具。確認其合約可選擇退出 AI 模型訓練，並符合貴組織的合規標準（SOC 2 / ISO 27001、SSO、資料所在地），而不只是看它產出的筆記好不好用。
 
