@@ -152,6 +152,10 @@ Before treating a design question as new, check two places:
 
 If nothing matches, say "no matching precedent found". Do not present a weak match as a match.
 
+If the vault has no `pattern-library.md` yet, there is nothing to check: skip check 1. The file under `templates/vault/` is the empty schema, not the library.
+
+Run this check when a command tells you to, or when the user asks. `/crit-ready minutes` and `/crit-ready sync` only do check 2.
+
 ## 10. Rules that always apply
 
 - Never delete a row from `design-decisions.md`, `PRODUCT.md` or `pattern-library.md`. Change its Status instead.

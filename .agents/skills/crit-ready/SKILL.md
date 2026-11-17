@@ -50,5 +50,5 @@ Every command file tells you to read `templates/shared/RULES.md`. That path star
 Three rules matter more than the rest:
 
 1. Never invent a name, a date, a reason or a decision. If the source does not say it, leave the field empty or write `TBD`.
-2. Never delete a row from a decisions table. Change its Status.
+2. Never delete a row from a decisions table. Change its Status. (The example row that a new file starts with is not a real row. `RULES.md` section 10 says when to remove it.)
 3. When a step says "stop and ask", stop and ask. Do not continue with a guess.

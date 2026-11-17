@@ -42,11 +42,14 @@ In Mode B, never add a speaker name, a decision or a detail that the summary doe
       | 2026-03-04 | Design crit | Crit | [meetings/2026-03-04-design-crit.md](meetings/2026-03-04-design-crit.md) |
       ```
 5. Fill in the header of the meeting file: Type, Attendees, Transcript, Source type (`Raw transcript` for Mode A, `Pre-digested notes` for Mode B).
+   - Type is one of: Kickoff, Crit, Executive Review, Handoff, Recurring Sync, Retro. If the input does not say, pick the closest one from the meeting's name and content and write `(inferred)` after it. Example: a meeting named "Design System Sync" is `Recurring Sync (inferred)`.
+   - Attendees are the people who were in the meeting. People who were only mentioned are not attendees.
 
 ## Step 4. Write the notes
 
 1. Open `templates/shared/meeting-notes-template.md`. Read all of it.
-2. Write every section it lists, in its order, using its formats. Put the result under `## Meeting Notes` in the meeting file.
+2. Write every section it lists, in its order, using its formats. Put the result under `## Meeting Notes` in the meeting file. Section headings inside the notes use `###`, as in the template.
+   - If the input is already written in the template's sections, keep its wording. Add only what the template asks for and the input lacks (for example the decider on each decision). Do not rephrase what is there.
 3. Section headers stay in English. The content is Traditional Chinese (Taiwan).
 4. If a section has nothing to say, leave it out. At the very end of the notes add one line that names the sections you left out:
 
@@ -71,13 +74,13 @@ Go through this table row by row. For each section that has content, write it to
 | Outcomes: ⏸ 延後, ⚖️ 取捨 | `working-notes.md`, table "Deferred & Trade-offs" | One row each |
 | Open Questions | `open-questions.md` | One row each. Status `Open`. Example below |
 | Feedback Log | `feedback-tracker.md` | One row each. Status `Open`, or `Closed` if it was settled in the meeting |
-| Informal Signals Captured | `working-notes.md`, table "Informal Log" | One row each. Copy the words as spoken |
-| Known Gaps Acknowledged | `working-notes.md`, list "Known Gaps" | One bullet each |
+| Informal Signals Captured | `working-notes.md`, table "Informal Log" | One row each. Copy the words as spoken. In the Formalise? column write `Yes` for 是, `No` for 否, `Watching` for 持續觀察 |
+| Known Gaps Acknowledged | `working-notes.md`, list "Known Gaps" | One bullet each, ending with the date. Add who raised it only if the notes name the person |
 | Still Exploratory | `working-notes.md`, list "Still Exploratory" | One bullet each |
 | Deliverable Status Changes | `deliverables.md` | If the deliverable has a row, update it. If not, add a row |
-| Problem & Goal | `project-brief.md` | Only if the meeting changed the goal or the scope. Tell the user what you changed |
+| Problem & Goal | `project-brief.md` | Change the brief only if the notes say in words that the goal or the scope changed. If they do not say that, do not edit the brief: in step 9, tell the user what the meeting said about the goal |
 | Action Items | `actions.md`, under `## Open` | One checkbox line each. Example below |
-| Stakeholder Register | The Attendees line of the meeting file | Also: a person who is new and whose role is known gets a row in the product folder's `stakeholder-mapping.md` |
+| Stakeholder Register | The Attendees line of the meeting file | Also: a new person whose team or function is known gets a row in the product folder's `stakeholder-mapping.md`. Fill what is known and leave the rest empty. A person with neither known is not added: name them in step 9 |
 | TL;DR, Reference Links, Hub Routing, Second Brain Prompt, Attribution Cleanup | Stay in the meeting file | Do nothing more |
 
 Example row for `open-questions.md`:
@@ -110,8 +113,8 @@ Do this for each decision, one at a time.
 
 3. The new row's ID is the highest ID in the table plus 1.
 4. Choose the Status:
-   - `Active`: the notes say who decided it and why.
-   - `Pending`: the reason is missing, or it was a casual remark, or nobody confirmed it. Say in Rationale what is missing.
+   - `Active`: the notes present it as decided and give the reason. If the notes do not name who decided, it is still `Active`: write `拍板：待確認` in Source / Owner.
+   - `Pending`: the reason is missing, or it was a casual remark, or the notes say it still waits for someone's answer or approval. Say in Rationale what is missing.
    - `Blocked`: agreed, but waiting on something outside the team. Name it in Rationale.
 5. If the Status is `Pending` because the reason is missing, also add a row to `open-questions.md` asking for the reason, with Urgency `MEDIUM`.
 
@@ -131,13 +134,13 @@ Never delete a row.
 
 ## Step 8. Write the changelog line
 
-Add one line at the bottom of the project's `changelog.md`. Copy the format of the lines already there. It says: the date, `minutes`, what you added, which files you changed.
+Add one line at the bottom of the project's `changelog.md`. Copy the format of the lines already there. It says: the date, `minutes`, what you added, which files you changed. Count the rows you really wrote before you write the numbers.
 
 ## Step 9. Reply to the user
 
 Reply with these three parts, in this order.
 
-**Part 1: a short summary the user can paste into Slack.** TL;DR, the action items, the open questions, and the path of the meeting file.
+**Part 1: a short summary the user can paste into Slack.** TL;DR, the action items, the open questions, and the path of the meeting file. Write it in the language of the notes.
 
 **Part 2: what you wrote and where.** One line per file. Example: `design-decisions.md: added D-015, D-016; D-009 marked Superseded`.
 
@@ -147,6 +150,8 @@ Reply with these three parts, in this order.
 - Decisions that seem to contradict an older one.
 - Decisions you filed as `Pending`, and what is missing for each.
 - Items in the Second Brain Prompt section.
+- People you did not add to the roster because their team and function are unknown.
+- What the meeting said about the goal, if you did not change `project-brief.md`.
 - Conflicts with a standing decision in `PRODUCT.md`.
 
 ## If this meeting was already filed
