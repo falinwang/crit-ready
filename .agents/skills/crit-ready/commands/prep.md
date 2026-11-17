@@ -1,8 +1,3 @@
----
-name: pre-meeting-prep
-description: "Use this skill to prepare for a design meeting from what the project hub already holds. Trigger this when the user says /crit-ready prep or asks to prepare for a meeting."
----
-
 # Pre-Meeting Prep
 
 `/crit-ready prep` builds the prep brief for one upcoming meeting and files it in that meeting's file, so the same file later receives the notes. The approach comes from Tom Greever's *Articulating Design Decisions*; the tactics themselves are in `.agents/skills/greever/cheatsheet.md` and `patterns.md`, so point to them instead of restating them.

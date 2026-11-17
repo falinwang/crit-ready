@@ -1,8 +1,3 @@
----
-name: promote-pattern
-description: "Use this skill to graduate a project decision to a product standing decision or to the vault-wide pattern library. Trigger this when the user says /crit-ready promote."
----
-
 # Promote
 
 Promotion is human-triggered only. Never promote a decision on your own initiative, and never because a decision "looks reusable". The user decides that.
@@ -18,7 +13,7 @@ Find the project and the rules. Read the project's `FOLDER-INSTRUCTIONS.md`. If 
 
 ## Promote to product
 
-1. Open the product's `PRODUCT.md` (the one in the parent folder of the project). If there is none, tell the user and stop. Do not create one here, `/crit-ready init` does that.
+1. Open the product's `PRODUCT.md`, the file linked from the Product line of the project's `FOLDER-INSTRUCTIONS.md`. If the project has no product (an old project, for example), tell the user and stop. Do not create one here; `/crit-ready init` and `/crit-ready migrate` do that.
 2. Add a row to Standing Decisions with the next `PD-NNN`, the decision, a link back to the origin row (`<project>/design-decisions.md` D-NNN), today's date and status `Active`. No Outcome is needed. Do not restate the rationale, link to it.
 3. If a standing decision already says the same thing or conflicts with this one, show it to the user before adding. A replacement marks the old row `Superseded (→ PD-NNN)`. Never delete a row.
 

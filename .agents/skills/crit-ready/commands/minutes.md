@@ -1,9 +1,4 @@
----
-name: magic-minutes
-description: "Use this skill to turn a meeting transcript or someone else's meeting notes into notes filed in the project hub. Trigger this when the user says /crit-ready minutes or asks to process meeting notes."
----
-
-# Magic Minutes
+# Minutes
 
 `/crit-ready minutes` takes a transcript (or someone else's summary) and files what it contains into the project hub. The job is finished when the hub is updated, not when a summary has been printed. Notes that stay in chat are lost the next time someone asks "why did we decide that?".
 

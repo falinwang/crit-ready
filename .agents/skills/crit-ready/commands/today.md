@@ -1,8 +1,3 @@
----
-name: daily-todo
-description: "Use this skill to build the daily to-do list across all projects. Trigger this when the user says /crit-ready today or asks for today's to-do list."
----
-
 # Daily To-Do
 
 `/crit-ready today` writes `TODAY.md` at the vault root, in Traditional Chinese. `TODAY.md` is a generated view. The source files stay the truth, so nothing is typed into `TODAY.md` to stay, except under `## 手動新增`.
@@ -15,7 +10,7 @@ description: "Use this skill to build the daily to-do list across all projects. 
    - The `## 手動新增` section is carried over unchanged.
    - Who "I" am comes from a `**我是：** 姓名` line at the top of `TODAY.md`. If it is missing, ask the user once and write the line.
 
-2. **Scan every project** under the vault root (the folder that contains `templates/`). A project is a folder containing `FOLDER-INSTRUCTIONS.md`. For a project whose `FOLDER-INSTRUCTIONS.md` has its own File Map (it predates the shared rules, see `templates/shared/RULES.md`), read unticked `- [ ]` items in its meeting files instead of `actions.md`.
+2. **Scan every project** under the vault root (the folder that contains `templates/`). A project is a folder containing `FOLDER-INSTRUCTIONS.md`. Skip projects whose Status is `Paused` or `Shipped`, and folders the vault treats as archived. For a project whose `FOLDER-INSTRUCTIONS.md` has its own File Map (it predates the shared rules, see `templates/shared/RULES.md`), read unticked `- [ ]` items in its meeting files instead of `actions.md`.
 
 3. **Build the list**, grouped by product and project, overdue and soonest first:
    - My open actions.

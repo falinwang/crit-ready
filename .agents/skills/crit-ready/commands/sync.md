@@ -1,8 +1,3 @@
----
-name: sync-decision
-description: "Use this skill to log an asynchronous design decision (from Slack, Figma comments, etc.). Trigger this when the user says /crit-ready sync, with or without decision text."
----
-
 # Sync Design Decision
 
 Typical invocation: `/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]`. The decision text may also be missing, in which case use the source from the current conversation (see "No decision text given").
