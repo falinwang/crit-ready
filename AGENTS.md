@@ -16,7 +16,7 @@ vault/                  default layout
   pattern-library.md    live, vault-wide (created from templates/vault/pattern-library.md)
   TODAY.md              generated daily to-do across all projects
   <product>/
-    PRODUCT.md, stakeholder-mapping.md
+    PRODUCT.md
     <project>/          one phase or initiative
 ```
 
@@ -26,7 +26,8 @@ This repository is public. Keep templates, skills and examples free of any real 
   - `RULES.md` — the three scopes, the old-project compatibility rule, how to locate the project, the **File Map** (routing table from meeting-notes section names to destination files; the only place those names resolve), sections with no destination, source-priority order, ID rules, changelog rule, precedent check.
   - `meeting-notes-template.md` — the prompt to run over a transcript or someone else's pre-digested notes. Mode A (raw transcript, full pipeline) vs Mode B (second-hand summary, don't reconstruct attribution or content the source lacks). Output sections route per the File Map.
   - `pre-meeting-prep.md` — static reference guide (Traditional Chinese) for six meeting types. The actual brief for a meeting is copied into that meeting's file.
-- **`templates/product/`** — copied by `/crit-ready init` into a new product folder: `PRODUCT.md` (standing decisions `PD-NNN`, domain knowledge, projects table, carried-forward items) and `stakeholder-mapping.md` (the product-level roster).
+- **`templates/product/`** — `PRODUCT.md`, copied by `/crit-ready init` into a new product folder: who has which role on the product, standing decisions `PD-NNN`, domain knowledge, projects table, carried-forward items.
+- **`templates/vault/people.md`** — schema for the live vault-root `people.md`, the company-wide list of who everyone is (names, other spellings, team, function). Created on first use, never copied into a product or project.
 - **`templates/design-project/`** — copied into a new project folder: `FOLDER-INSTRUCTIONS.md` (short: project, pointer to shared rules, Kickoff questions), `project-brief.md`, `design-decisions.md` (ID column `D-NNN`), `open-questions.md`, `feedback-tracker.md`, `working-notes.md`, `deliverables.md`, `actions.md` (the single live action list), `changelog.md`, `meeting-notes.md` (index only), `meetings/_meeting-template.md` (one file per meeting, prep and notes together).
 - **`templates/vault/pattern-library.md`** — schema for the live vault-root `pattern-library.md`. Never copied into a product or project. Do not duplicate its schema elsewhere.
 - **`.agents/skills/crit-ready/`** — the one skill. `SKILL.md` is a router: its `name: crit-ready` is what makes `/crit-ready` a real command, and it sends each subcommand to its file in `commands/` (`init`, `prep`, `minutes`, `sync`, `promote`, `today`, `migrate`). Command files have no frontmatter. A new command needs a file in `commands/`, a row in the router's table and a mention in the router's description.
@@ -40,6 +41,7 @@ This repository is public. Keep templates, skills and examples free of any real 
 - **`/crit-ready minutes`** finishes when the hub is updated: notes written to the meeting file, sections routed, action items into `actions.md`, changelog line appended. Running it twice on one meeting updates rows rather than duplicating them.
 - **`/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]`** supersedes conflicting rows (`Superseded (→ D-NNN)`), closes matching open questions, flags conflicts with `PRODUCT.md` standing decisions, and produces a one-sentence Slack-pasteable confirmation.
 - **`/crit-ready promote`** has two targets: `... to product` (Standing Decision in `PRODUCT.md`) and `... Outcome: [...]. Tags: [...]` (vault-root `pattern-library.md`, refuses without an Outcome or explicit `TBD`). Links back to the origin row rather than duplicating rationale. Human-triggered only.
+- **People live in three places, each with different facts, never duplicated**: who someone is in `people.md` (vault), their role on a product in that `PRODUCT.md`'s People table, what they own in a project in that `project-brief.md`'s Roles table. A new product does not get its own people list.
 - **Never delete a row** in `design-decisions.md`, `pattern-library.md` or `PRODUCT.md`. Status changes (`Superseded`, `Obsolete`) preserve the trail.
 - **Skills never edit `PRODUCT.md` on their own** to resolve a conflict with a standing decision; they flag it to the user.
 - **Open questions do not nag.** `RULES.md` section 10: a question still open after 3 meetings is raised with the user once (`Open (review asked ...)`), then parked automatically after the next meeting if they say nothing. Parked rows are kept, never listed, and come back if a meeting raises them again. A question owned by someone else is never put to the user as theirs to answer.

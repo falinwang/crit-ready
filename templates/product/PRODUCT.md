@@ -14,6 +14,16 @@ What stays true across the projects (phases) of this product. Project-level deta
 
 Status is `Active`, `Shipped` or `Paused`.
 
+## People
+
+Who matters on this product and in what capacity. Who a person is (team, function, other spellings of their name) is in `people.md` at the vault root. Do not repeat it here.
+
+| Person | Role on this product | Final say on |
+| :--- | :--- | :--- |
+| [Full name, as written in people.md] | [e.g. Design lead for this product] | [e.g. visual direction, or leave empty] |
+
+The "Final say on" column is what the meeting notes check against when they ask whether the person with final approval was in the meeting.
+
 ## Standing Decisions
 
 Decisions that stay in force across projects. Each links back to the project decision it came from instead of restating the rationale.

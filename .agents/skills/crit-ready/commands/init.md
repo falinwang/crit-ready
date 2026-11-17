@@ -32,7 +32,8 @@ Check in this order and stop at the first one that gives an answer.
 2. Open it and check that it has a "Projects" table and a "Standing Decisions" table.
    - It has both: this is the product file. Use it.
    - It exists but lacks those tables: it belongs to another tool. Do not change it. Ask the user where this product's file should go, and wait.
-   - It does not exist: create the product folder, copy the two files from `templates/product/` into it (`PRODUCT.md` and `stakeholder-mapping.md`), and fill in the product name. Fill in the description only from what the user said.
+   - It does not exist: create the product folder, copy `templates/product/PRODUCT.md` into it, and fill in the product name. Fill in the description only from what the user said.
+3. If `people.md` is not in the vault root, copy `templates/vault/people.md` there. People are company-wide: a new product does not get its own list.
 
 ## Step 5. Check that the project does not exist yet
 

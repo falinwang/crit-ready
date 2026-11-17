@@ -74,7 +74,7 @@ skill 也可以裝在個人資料夾而不放在 vault 裡，但 vault 仍然需
 
 ### 1. `/crit-ready init [產品]/[專案]` (Project Scaffolding)
 建立新專案時的自動化腳本。同一個產品的多個階段（phase 1、2、3）屬於同一個產品，共用產品層級的知識。當你輸入此指令，Agent 會：
-- 找到或建立產品（`PRODUCT.md` 與 `stakeholder-mapping.md`），再從 `templates/design-project/` 複製專案資料夾結構。資料夾放哪裡依你 vault 自己的慣例，沒有慣例才預設把專案放在產品資料夾底下。
+- 找到或建立產品（`PRODUCT.md`），再從 `templates/design-project/` 複製專案資料夾結構。資料夾放哪裡依你 vault 自己的慣例，沒有慣例才預設把專案放在產品資料夾底下。
 - **延續上一階段**：若產品已有前一個專案，列出可以帶過來的項目（未解問題、延後項目、未完成行動、未回應的有效回饋），由你挑選；也可以把前一階段仍有效的決策升級為產品的長期決策。
 - **主動防呆**：掃描跨專案模式庫 (`pattern-library.md`)，有相關前例就提前提示你，沒有就明說「no matching precedent found」。
 - **Kickoff 三問**：成功長怎樣？怎麼衡量？誰負責衡量？Agent 只根據你已提供的資料起草答案，還沒有答案可以先寫 `TBD (to settle at the Kickoff meeting)`。
@@ -115,7 +115,7 @@ skill 也可以裝在個人資料夾而不放在 vault 裡，但 vault 仍然需
 把舊版結構的專案轉成目前的結構，一次一個專案，只在你下指令時執行：
 - 先讀完整個專案，列出每個檔案會怎麼改、哪些地方它無法自行判斷，等你同意後才動手。
 - 動手前完整備份專案資料夾。
-- 決策補上 ID、會議檔裡的待辦集中到 `actions.md`、名冊併入產品層；既有的列與文字一律保留，不改寫內容。
+- 決策補上 ID、會議檔裡的待辦集中到 `actions.md`、名冊併入公司層的 `people.md`；既有的列與文字一律保留，不改寫內容。
 
 ---
 
@@ -128,11 +128,11 @@ skill 也可以裝在個人資料夾而不放在 vault 裡，但 vault 仍然需
 ```
 vault/
   templates/            shared/（規則，只存一份）、product/、design-project/、vault/（schema）
+  people.md             所有同事，全公司共用一份
   pattern-library.md    跨產品的模式庫
   TODAY.md              每日待辦（自動產生）
   <product>/
     PRODUCT.md          長期決策、領域知識、延後項目
-    stakeholder-mapping.md
     <project>/          一個階段或專案
       FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, open-questions.md,
       feedback-tracker.md, working-notes.md, deliverables.md, actions.md, changelog.md,

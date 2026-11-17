@@ -74,7 +74,7 @@ Every command belongs to one skill, `crit-ready` (`.agents/skills/crit-ready/`),
 
 ### 1. `/crit-ready init [product]/[project]` (Project Scaffolding)
 Sets up a new project. Several phases of one product (phase 1, 2, 3) belong to the same product and share what the product knows. The agent will:
-- Find or create the product (`PRODUCT.md` and `stakeholder-mapping.md`), then copy the project folder structure from `templates/design-project/`. Where the folders go follows your vault's own conventions; only when there are none does the project go inside the product folder.
+- Find or create the product (`PRODUCT.md`), then copy the project folder structure from `templates/design-project/`. Where the folders go follows your vault's own conventions; only when there are none does the project go inside the product folder.
 - **Carry over from the previous phase**: if the product already has an earlier project, it lists what could come across (open questions, deferred items, unfinished actions, valid feedback not yet dealt with) and you pick. Decisions from the earlier phase that still hold can become standing decisions of the product.
 - **Check for precedent**: it scans the cross-project pattern library (`pattern-library.md`) and tells you about a related precedent before you start. If there is none, it says "no matching precedent found".
 - **Three Kickoff questions**: What does success look like? How do we measure it? Who is responsible for measuring it? The agent drafts answers only from what you have already given it. An answer you do not have yet can be `TBD (to settle at the Kickoff meeting)`.
@@ -115,7 +115,7 @@ Scans every project and writes `TODAY.md` at the vault root:
 Converts a project in the older structure to the current one. One project at a time, and only when you ask:
 - It reads the whole project first, lists how each file will change and what it cannot decide by itself, and waits for your approval.
 - It backs up the whole project folder before changing anything.
-- Decisions get IDs, the to-dos inside meeting files are collected into `actions.md`, and the roster moves up to the product. Existing rows and wording are kept as they are.
+- Decisions get IDs, the to-dos inside meeting files are collected into `actions.md`, and the people in the project's roster are merged into the company-wide `people.md`. Existing rows and wording are kept as they are.
 
 ---
 
@@ -128,11 +128,11 @@ The scopes are defined by files and links, not by where folders sit. A project i
 ```
 vault/
   templates/            shared/ (rules, kept once), product/, design-project/, vault/ (schemas)
+  people.md             everyone you work with, once for all products
   pattern-library.md    patterns reusable across products
   TODAY.md              daily to-do (generated)
   <product>/
     PRODUCT.md          standing decisions, domain knowledge, deferred items
-    stakeholder-mapping.md
     <project>/          one phase or initiative
       FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, open-questions.md,
       feedback-tracker.md, working-notes.md, deliverables.md, actions.md, changelog.md,

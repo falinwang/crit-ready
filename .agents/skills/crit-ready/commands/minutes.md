@@ -80,7 +80,7 @@ Go through this table row by row. For each section that has content, write it to
 | Deliverable Status Changes | `deliverables.md` | If the deliverable has a row, update it. If not, add a row |
 | Problem & Goal | `project-brief.md` | Change the brief only if the notes say in words that the goal or the scope changed. If they do not say that, do not edit the brief: in step 10, tell the user what the meeting said about the goal |
 | Action Items | `actions.md`, under `## Open` | One checkbox line each. Example below |
-| Stakeholder Register | The Attendees line of the meeting file | Also: a new person whose team or function is known gets a row in the product folder's `stakeholder-mapping.md`. Fill what is known and leave the rest empty. A person with neither known is not added: name them in step 10 |
+| Stakeholder Register | The Attendees line of the meeting file | Also, follow the people rules in `RULES.md` section 5: a new person whose team or function is known gets a row in `people.md` at the vault root (search Name and "Also written as" first; a new spelling of a known person is added to that person's row). A person with neither known is not added: name them in step 10. If the notes say what someone does on this product or what they have final say on, add that to the People table of `PRODUCT.md` |
 | TL;DR, Reference Links, Hub Routing, Second Brain Prompt, Attribution Cleanup | Stay in the meeting file | Do nothing more |
 
 Example row for `open-questions.md`:
@@ -158,7 +158,7 @@ Reply with these three parts, in this order.
 - Decisions that seem to contradict an older one.
 - Decisions you filed as `Pending`, and what is missing for each.
 - Items in the Second Brain Prompt section.
-- People you did not add to the roster because their team and function are unknown.
+- People you did not add to `people.md` because their team and function are unknown.
 - Questions you marked for review in step 7, with the sentence from `RULES.md` section 10. Say this once. Questions you parked get one line in Part 2, and no question to the user.
 
 Do not put an open question in Part 3 only because it is open. A question owned by someone else is not something the user has to do.

@@ -33,7 +33,7 @@ Read every file in the project folder. Then write a plan for the user. The plan 
 2. How many decision rows will get IDs.
 3. Every `Superseded (→ date)` where two or more rows have that date. For each, write which row you think replaced it and why (for example: same tags, same topic). The user confirms or corrects this when they approve the plan.
 4. How many action items you found in the meeting files: how many open, how many done.
-5. Which people will move to the product roster, and any who are already there with a different team or function.
+5. Which people from the project's `stakeholder-mapping.md` will be added to `people.md`, which are already there (same person, possibly another spelling), and any who are there with a different team or function. Also which facts in their Notes belong to this project only (they stay in the project) or to this product (they go to the People table of `PRODUCT.md`).
 6. Whether the project's `meeting-notes-template.md` and `pre-meeting-prep.md` are the same as the standard ones. If they differ, show how.
 7. Anything in `FOLDER-INSTRUCTIONS.md` that the user added, such as extra rows in the File Map.
 8. An agent instruction file in the project (`AGENTS.md`, `CLAUDE.md`) that describes the old format.
@@ -97,11 +97,15 @@ Change one thing only: in the Action Items section, turn `- [ ] ` and `- [x] ` i
 
 **6.5 The roster**
 
-1. Copy each person row from the project's `stakeholder-mapping.md` into the product folder's `stakeholder-mapping.md`.
-2. The same person under two spellings is one row.
-3. If a person is already in the product roster with a different team or function, use the user's answer from the plan.
-4. Links in the copied rows pointed at files in the project. Rewrite them so they work from the product folder.
-5. A note about who has final approval for this project goes under the Roles table in the project's `project-brief.md`.
+The old project kept its own roster. People now live in three places (see `RULES.md` section 5). Split each row like this:
+
+1. If `people.md` is not in the vault root, copy `templates/vault/people.md` there.
+2. For each person in the project's `stakeholder-mapping.md`, search `people.md` (Name and "Also written as").
+   - Not there: add a row with Name, other spellings, Team and Function. Put in Notes only facts that stay true on every product (how they work, what they care about).
+   - Already there: do not add a second row. Add any new spelling to "Also written as". If Team or Function differs, use the user's answer from the plan.
+3. Facts about their role on this product, or what they have final say on for the whole product, go to the People table of the product's `PRODUCT.md`.
+4. Facts about what they owned in this project go to the Roles table of the project's `project-brief.md`, if they are not already there. This includes who had final approval for this project.
+5. Rewrite any link you move so it works from its new file.
 6. Delete the project's `stakeholder-mapping.md`. A copy is already in the backup.
 
 **6.6 The project's own copies of shared files**
@@ -156,7 +160,7 @@ Tell the user:
 ## Stop and ask the user when
 
 - A `Superseded (→ date)` could point at more than one row.
-- A person is in two rosters with different roles.
+- A person is already in `people.md` with a different team or function.
 - You cannot tell whether a passage in the old `FOLDER-INSTRUCTIONS.md` is standard text or something the user wrote. In that case keep it.
 - A step would lose information that is not in the backup.
 

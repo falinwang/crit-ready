@@ -11,7 +11,8 @@ Your job: keep the markdown files in the vault correct. Write down what people d
 | Vault root | The top folder of the user's notes | The folder that has a `templates/` folder directly inside it |
 | Project | One phase or initiative | Any folder that has a file named `FOLDER-INSTRUCTIONS.md` directly inside it, except folders under `templates/` |
 | Product | What several projects belong to | The file `PRODUCT.md` that the project links to (see section 3) |
-| Product folder | Where the product's files are | The folder that holds that `PRODUCT.md`. The roster `stakeholder-mapping.md` is in the same folder |
+| Product folder | Where the product's files are | The folder that holds that `PRODUCT.md` |
+| People file | Who everyone is | `people.md` at the vault root. One row per person, shared by every product and project |
 | Hub | The project's files taken together | `design-decisions.md`, `open-questions.md`, `actions.md` and the others listed in section 5 |
 
 ## 2. Is this project old or current?
@@ -29,7 +30,7 @@ Old-project rules:
 - Use the project's own copies of `meeting-notes-template.md` and `pre-meeting-prep.md`.
 - Use the columns the project's tables already have. They have no `ID` column, so do not add IDs. A replaced decision is marked `Superseded (→ YYYY-MM-DD)` with the date of the new row.
 - Action items stay in the meeting file as `- [ ]` lines. Do not create `actions.md`.
-- The roster is the project's own `stakeholder-mapping.md`. There is no product.
+- The roster is the project's own `stakeholder-mapping.md`. There is no product, and `people.md` is not used.
 - The pattern library may be at `templates/pattern-library.md`.
 - Do not convert the project and do not add new kinds of files to it. Only `/crit-ready migrate` converts a project, and only when the user runs it.
 
@@ -39,8 +40,8 @@ Three scopes. Put each fact in the smallest scope that fits it.
 
 | Scope | Files | What they hold |
 | :--- | :--- | :--- |
-| Vault | `pattern-library.md`, `TODAY.md` (both at the vault root) | Lessons reusable on other products; the generated daily to-do list |
-| Product | `PRODUCT.md`, `stakeholder-mapping.md` (both in the product folder) | What stays true across the product's projects: standing decisions, domain knowledge, the people roster, deferred items nobody has picked up |
+| Vault (company) | `people.md`, `pattern-library.md`, `TODAY.md` (all at the vault root) | Who everyone is; lessons reusable on other products; the generated daily to-do list |
+| Product | `PRODUCT.md` (in the product folder) | What stays true across the product's projects: who has which role on this product, standing decisions, domain knowledge, deferred items nobody has picked up |
 | Project | Everything in the project folder | One phase: its decisions, questions, feedback, actions and meetings |
 
 How to find a project's product:
@@ -59,11 +60,11 @@ Where folders go:
 ```
 vault/
   templates/
+  people.md
   pattern-library.md
   TODAY.md
   <product>/
     PRODUCT.md
-    stakeholder-mapping.md
     <project>/
       FOLDER-INSTRUCTIONS.md, project-brief.md, design-decisions.md, ...
 ```
@@ -86,7 +87,7 @@ The meeting notes template produces sections. Each section name below goes to ex
 | :--- | :--- | :--- |
 | 🚀 Project Brief | `project-brief.md` | Problem, scope, constraints, definition of done |
 | 🗒️ Meeting Notes | This meeting's file in `meetings/` | One file per meeting: the prep and the notes together |
-| 👥 Stakeholder Register | The header of this meeting's file | Who attended. Names and roles are looked up in the product folder's `stakeholder-mapping.md` |
+| 👥 Stakeholder Register | The header of this meeting's file | Who attended. Names, other spellings and roles are looked up in `people.md` at the vault root |
 | ✏️ Design Decisions Log | `design-decisions.md` | Decisions with ID, rationale, source and status |
 | ❓ Open Questions | `open-questions.md` | Unanswered questions, how urgent, what they block. Section 10 says when an old one is parked |
 | 💬 Feedback Tracker | `feedback-tracker.md` | Stakeholder feedback, typed valid / misunderstanding / preference |
@@ -107,7 +108,24 @@ Project-specific rows: a project can have routing rows of its own. They are in a
 
 **If a section name is not in this table, not in the four above, and not in the project's own rows: stop and ask the user where it goes. Do not invent a file.**
 
-A new person with a known role is added to the product folder's `stakeholder-mapping.md` the first time they appear. If the role is not clear, leave Function empty. Do not guess.
+People are kept in three places, each holding different facts. Never copy the same fact into two of them.
+
+| Place | Holds | Example |
+| :--- | :--- | :--- |
+| `people.md` at the vault root | Who the person is: name, other spellings, team, function, how they work | "Kelly Lyons, Consumer Product, Product Manager" |
+| Table "People" in the product's `PRODUCT.md` | Their role on this product, and what they have final say on | "Final say on visual direction for Acme" |
+| Table "Roles" in the project's `project-brief.md` | What they own in this project | "Owns the export spec" |
+
+- A new person with a known team or function (one of the two is enough) gets a row in `people.md` the first time they appear. Search Name and "Also written as" first. Then choose one case:
+
+| Case | What to do |
+| :--- | :--- |
+| The name matches a Name or an "Also written as" entry | It is that person. Do not add a row |
+| The name is a different spelling of a row's name, and the team matches (for example "Hervé (Security)" and "Hrvoje Jesenović, Security") | Probably the same person, but do not decide. Do not add a row and do not add the spelling. Ask the user: "Is Hervé the same person as Hrvoje Jesenović?" If they say yes, add the spelling to "Also written as" |
+| Nothing is close | Add a new row |
+| Neither team nor function is known | Do not add them. Tell the user |
+- If `people.md` does not exist yet, copy `templates/vault/people.md` to the vault root first.
+- Add a row to the product's People table only when the source says what the person does on this product or what they have final say on.
 
 ## 6. When two sources disagree
 

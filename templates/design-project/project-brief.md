@@ -23,7 +23,7 @@ The living description of what this project is. Keep the body as the **active** 
 
 > Add a row per discipline actually involved. Where two roles overlap on the same decision, name it explicitly — an unstated dependency here is how "I thought you were handling that" happens later.
 >
-> This is accountability, not attendance — who owns the call for each discipline, decided once at kickoff. It is not the meeting roster: for the full list of everyone who has shown up with an identifiable role, see the product-level `../stakeholder-mapping.md`, which every project of the product shares. If a name here changes (role handoff, backfill), update both files. This table and that roster will drift apart otherwise.
+> This is accountability, not attendance — who owns the call for each discipline, decided once at kickoff. It is not the people list: who each person is (team, function, other spellings of their name) is in `people.md` at the vault root, and their role on the product is in `PRODUCT.md`. Record here only what a person owns in this project. Do not repeat their team or function.
 
 ## Constraints
 

@@ -67,7 +67,7 @@ Notice patterns in how stakeholders interacted that may inform future syncs — 
 
 Leave blank if no notable dynamics.
 
-已知角色請參照產品資料夾的 `stakeholder-mapping.md`（名單更新時直接改那份檔案，不要改這裡——這份 prompt 不該是名單的來源）。
+已知人名、別名與角色請參照 vault 根目錄的 `people.md`；某人在這個產品上的角色與最終決定權，見產品的 `PRODUCT.md`「People」表（名單更新時直接改那兩份檔案，不要改這裡——這份 prompt 不該是名單的來源）。
 
 ### 🧠 Design Decisions & Articulation
 每條設計決策格式：「[決策內容]，因為 [rationale——連回使用者行為或商業目標]。（拍板：姓名或群體）」

@@ -42,7 +42,7 @@ Read these, in this order. Take notes on what matters for this meeting.
 5. `open-questions.md`: rows in the main table. Do not use rows from the Parked table.
 6. `feedback-tracker.md`: rows with Type `✅ Valid` and Status `Open`. Also every row whose "From" is a person attending this meeting.
 7. `actions.md`: lines under `## Open`.
-8. The product folder's `stakeholder-mapping.md`: the role of each attendee. If an attendee is not in it, take their role from the project's files. Do not edit the roster in this command. In step 8, name the attendees who are missing from it.
+8. `people.md` at the vault root: who each attendee is. The People table in the product's `PRODUCT.md`: their role on this product and what they have final say on. If an attendee is not in `people.md`, take their role from the project's files. Do not edit `people.md` in this command. In step 8, name the attendees who are missing from it.
 9. The product's `PRODUCT.md`: the Standing Decisions table.
 
 To find the product folder: open `FOLDER-INSTRUCTIONS.md`, find the line that starts with `- **Product:**`, follow its link.
@@ -105,7 +105,7 @@ Add one line at the bottom of the project's `changelog.md`. Copy the format of t
 
 ## Step 8. Show the user
 
-Show the prep. Name any attendee missing from the roster. Then ask one question: "Do you want to change anything, for example who the swing votes are, or what feedback you want?"
+Show the prep. Name any attendee missing from `people.md`. Then ask one question: "Do you want to change anything, for example who the swing votes are, or what feedback you want?"
 
 ## Check before you finish
 
