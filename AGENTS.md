@@ -8,30 +8,33 @@ Crit-Ready is not an application. It is a set of markdown templates and agent sk
 
 ## Repository structure
 
-The user's vault has three scopes. The vault root is the folder containing `templates/`.
+A user's vault has three scopes: vault, product and project. The vault root is the folder containing `templates/`. The scopes are defined by files and links, not folder positions: a project is any folder with a `FOLDER-INSTRUCTIONS.md`, and its product is the `PRODUCT.md` that file links to. Nesting projects inside their product is only the default; a vault with its own organisation (PARA, for example) keeps it.
 
 ```
-vault/
+vault/                  default layout
   templates/            shared/, product/, design-project/, vault/
   pattern-library.md    live, vault-wide (created from templates/vault/pattern-library.md)
   TODAY.md              generated daily to-do across all projects
-  <product>/            a folder containing PRODUCT.md
+  <product>/
     PRODUCT.md, stakeholder-mapping.md
-    <project>/          a folder containing FOLDER-INSTRUCTIONS.md (one phase or initiative)
+    <project>/          one phase or initiative
 ```
+
+This repository is public. Keep templates, skills and examples free of any real product, project, company or person name, and do not write rules that assume one particular vault layout.
 
 - **`templates/shared/`** — static rules, kept once and never copied into projects:
   - `RULES.md` — the three scopes, the old-project compatibility rule, how to locate the project, the **File Map** (routing table from meeting-notes section names to destination files; the only place those names resolve), sections with no destination, source-priority order, ID rules, changelog rule, precedent check.
   - `meeting-notes-template.md` — the prompt to run over a transcript or someone else's pre-digested notes. Mode A (raw transcript, full pipeline) vs Mode B (second-hand summary, don't reconstruct attribution or content the source lacks). Output sections route per the File Map.
   - `pre-meeting-prep.md` — static reference guide (Traditional Chinese) for six meeting types. The actual brief for a meeting is copied into that meeting's file.
 - **`templates/product/`** — copied by `/crit-ready init` into a new product folder: `PRODUCT.md` (standing decisions `PD-NNN`, domain knowledge, projects table, carried-forward items) and `stakeholder-mapping.md` (the product-level roster).
-- **`templates/design-project/`** — copied into `<product>/<project>/`: `FOLDER-INSTRUCTIONS.md` (short: project, pointer to shared rules, Kickoff questions), `project-brief.md`, `design-decisions.md` (ID column `D-NNN`), `open-questions.md`, `feedback-tracker.md`, `working-notes.md`, `deliverables.md`, `actions.md` (the single live action list), `changelog.md`, `meeting-notes.md` (index only), `meetings/_meeting-template.md` (one file per meeting, prep and notes together).
+- **`templates/design-project/`** — copied into a new project folder: `FOLDER-INSTRUCTIONS.md` (short: project, pointer to shared rules, Kickoff questions), `project-brief.md`, `design-decisions.md` (ID column `D-NNN`), `open-questions.md`, `feedback-tracker.md`, `working-notes.md`, `deliverables.md`, `actions.md` (the single live action list), `changelog.md`, `meeting-notes.md` (index only), `meetings/_meeting-template.md` (one file per meeting, prep and notes together).
 - **`templates/vault/pattern-library.md`** — schema for the live vault-root `pattern-library.md`. Never copied into a product or project. Do not duplicate its schema elsewhere.
-- **`.agents/skills/`** — one skill per command: `init-project` (`/crit-ready init <product>/<project>`), `magic-minutes` (`minutes`), `pre-meeting-prep` (`prep`), `sync-decision` (`sync`), `promote-pattern` (`promote`), `daily-todo` (`today`). `greever/` is a separate knowledge base the prep skill points to.
+- **`.agents/skills/crit-ready/`** — the one skill. `SKILL.md` is a router: its `name: crit-ready` is what makes `/crit-ready` a real command, and it sends each subcommand to its file in `commands/` (`init`, `prep`, `minutes`, `sync`, `promote`, `today`, `migrate`). Command files have no frontmatter. A new command needs a file in `commands/`, a row in the router's table and a mention in the router's description.
+- **`.agents/skills/greever/`** — a separate knowledge base the prep command points to.
 
 ## Key mechanics to preserve when editing
 
-- **Old-project compatibility.** Only new projects use this structure. Every skill first reads the project's `FOLDER-INSTRUCTIONS.md`; if it contains its own File Map, the project predates the shared rules and the skill follows that project's own File Map, files and table columns (dates instead of IDs, action items in meeting files, pattern library possibly at `templates/pattern-library.md`). Never migrate it or add files to it unless asked. Keep this rule in `RULES.md` and in each skill's first step.
+- **Old-project compatibility.** Every command first reads the project's `FOLDER-INSTRUCTIONS.md`; if it contains its own File Map, the project predates the shared rules and the skill follows that project's own File Map, files and table columns (dates instead of IDs, action items in meeting files, pattern library possibly at `templates/pattern-library.md`). Commands never convert it as a side effect; the user runs `/crit-ready migrate`, which plans, backs up and converts one project at a time. Keep this rule in `RULES.md` and in each command's first step.
 - **File Map changes.** If you add a new routing name to `meeting-notes-template.md`'s Sections, you must also add its destination to the File Map in `templates/shared/RULES.md`. An unmapped section name is meant to make the agent stop and ask, not improvise.
 - **`/crit-ready minutes`** finishes when the hub is updated: notes written to the meeting file, sections routed, action items into `actions.md`, changelog line appended. Running it twice on one meeting updates rows rather than duplicating them.
 - **`/crit-ready sync [Decision] by [Who/Source]. [Reason]. [Replaces]`** supersedes conflicting rows (`Superseded (→ D-NNN)`), closes matching open questions, flags conflicts with `PRODUCT.md` standing decisions, and produces a one-sentence Slack-pasteable confirmation.

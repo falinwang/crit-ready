@@ -16,11 +16,11 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (Claude Code 與 Codex) 
 
 ## 🚀 內建 AI 指令 (Skills)
 
-將本專案匯入後，你可以直接透過 AI 觸發以下自動化工作流：
+所有指令都在同一個 `crit-ready` skill 底下（`.agents/skills/crit-ready/`），所以 `/crit-ready` 是真正的斜線指令，後面接子指令：
 
 ### 1. `/crit-ready init [產品]/[專案]` (Project Scaffolding)
-建立新專案時的自動化腳本。同一個產品的多個階段（phase 1、2、3）放在同一個產品資料夾下，共用產品層級的知識。當你輸入此指令，Agent 會：
-- 找到或建立產品資料夾（含 `PRODUCT.md` 與 `stakeholder-mapping.md`），再從 `templates/design-project/` 複製專案資料夾結構。
+建立新專案時的自動化腳本。同一個產品的多個階段（phase 1、2、3）屬於同一個產品，共用產品層級的知識。當你輸入此指令，Agent 會：
+- 找到或建立產品（`PRODUCT.md` 與 `stakeholder-mapping.md`），再從 `templates/design-project/` 複製專案資料夾結構。資料夾放哪裡依你 vault 自己的慣例，沒有慣例才預設把專案放在產品資料夾底下。
 - **延續上一階段**：若產品已有前一個專案，列出可以帶過來的項目（未解問題、延後項目、未完成行動、未回應的有效回饋），由你挑選；也可以把前一階段仍有效的決策升級為產品的長期決策。
 - **主動防呆**：掃描跨專案模式庫 (`pattern-library.md`)，有相關前例就提前提示你，沒有就明說「no matching precedent found」。
 - **Kickoff 三問**：成功長怎樣？怎麼衡量？誰負責衡量？Agent 只根據你已提供的資料起草答案，還沒有答案可以先寫 `TBD (to settle at the Kickoff meeting)`。
@@ -57,11 +57,19 @@ Crit-Ready 是一套專為 B2B UX 設計師與 AI Agent (Claude Code 與 Codex) 
 - `等別人` 與 `該回頭看` 兩個區塊提醒卡住的事與該複查的舊紀錄。
 - `TODAY.md` 只是產生出來的檢視，真正的資料仍在各來源檔案；在 `TODAY.md` 勾選的項目，下次執行時會回寫到 `actions.md`。
 
+### 7. `/crit-ready migrate [專案]` (Migrate an Older Project)
+把舊版結構的專案轉成目前的結構，一次一個專案，只在你下指令時執行：
+- 先讀完整個專案，列出每個檔案會怎麼改、哪些地方它無法自行判斷，等你同意後才動手。
+- 動手前完整備份專案資料夾。
+- 決策補上 ID、會議檔裡的待辦集中到 `actions.md`、名冊併入產品層；既有的列與文字一律保留，不改寫內容。
+
 ---
 
 ## 📂 核心知識架構 (Log → Link → Lock)
 
 整個 vault 分成三個層級：**vault**（跨產品）、**product**（同一產品的所有階段）、**project**（單一階段或專案）。
+
+三個層級是用檔案和連結定義的，不是用資料夾位置：專案是任何含有 `FOLDER-INSTRUCTIONS.md` 的資料夾，它的產品是該檔案連結到的那份 `PRODUCT.md`。所以你的 vault 可以維持原本的組織方式（例如 PARA：專案和長期資料分開放）。沒有既定慣例時，預設配置如下：
 
 ```
 vault/
@@ -77,7 +85,7 @@ vault/
       meeting-notes.md, meetings/
 ```
 
-靜態規則（File Map、來源優先順序、ID 規則）集中在 `templates/shared/RULES.md`，不再複製進每個專案。只有新專案使用這套結構；既有專案維持原樣，所有指令仍可在舊專案上運作。
+靜態規則（File Map、來源優先順序、ID 規則）集中在 `templates/shared/RULES.md`，不再複製進每個專案。舊版結構的專案不會被自動更動，所有指令仍可在上面運作；想轉成新結構時用 `/crit-ready migrate`。
 
 知識沉澱遵循三階段原則：「記錄、連結、鎖定」。確保每一個設計決策都有跡可循，不再淪為無頭公案：
 
