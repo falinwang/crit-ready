@@ -25,6 +25,6 @@ Rows arrive only via `/crit-ready promote`. The agent never promotes automatical
 
 ## How this gets read
 
-`/crit-ready init` on a new project searches this file for tags that overlap with the new project's domain (inferred from its name and the Kickoff answers) and surfaces any matches before the Kickoff questions are asked, framed as "here is a precedent from a past project. Does it apply here, or is this different?" See `.agents/skills/init-project/SKILL.md`.
+`/crit-ready init` on a new project searches this file for tags that overlap with the new project's domain (inferred from its name and the Kickoff answers) and surfaces any matches before the Kickoff questions are asked, framed as "here is a precedent from a past project. Does it apply here, or is this different?" See step 9 of `.agents/skills/crit-ready/commands/init.md`.
 
 Any project can also search this file any time a decision feels like it might have a precedent. That lookup does not need a special command, just ask the agent to check.

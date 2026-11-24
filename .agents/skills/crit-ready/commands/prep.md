@@ -43,7 +43,8 @@ Read these, in this order. Take notes on what matters for this meeting.
 6. `feedback-tracker.md`: rows with Type `✅ Valid` and Status `Open`. Also every row whose "From" is a person attending this meeting.
 7. `actions.md`: lines under `## Open`.
 8. `people.md` at the vault root: who each attendee is. The People table in the product's `PRODUCT.md`: their role on this product and what they have final say on. If an attendee is not in `people.md`, take their role from the project's files. Do not edit `people.md` in this command. In step 8, name the attendees who are missing from it.
-9. The product's `PRODUCT.md`: the Standing Decisions table.
+9. The product's `PRODUCT.md`: the Standing Decisions table, and the Users section (who uses the product, in which roles).
+10. Any file named `*question-patterns*.md` in the product folder. It records what each stakeholder keeps asking. If none exists, skip this item. Do not make one in this command.
 
 To find the product folder: open `FOLDER-INSTRUCTIONS.md`, find the line that starts with `- **Product:**`, follow its link.
 
@@ -70,6 +71,7 @@ Which parts to write depends on the meeting type:
 | C. Predicted reactions | no | yes | yes | no | no | no |
 | D. Tactics | no | yes | yes | no | no | no |
 | E. Follow-up reminder | yes | yes | yes | yes | yes | yes |
+| F. Rules & edge-case check | no | yes | yes | yes | no | no |
 
 **A. Opening.** Five lines, in this order:
 
@@ -83,7 +85,7 @@ Which parts to write depends on the meeting type:
 
 **C. Predicted reactions.** One line per attendee who is likely to push back.
 
-- Base each prediction on something that person said before: a row in `feedback-tracker.md` or the Informal Log in `working-notes.md`. Name the row.
+- Base each prediction on something that person said before: a row in `feedback-tracker.md`, the Informal Log in `working-notes.md`, or the product's `*question-patterns*.md` (step 4, item 10). Name the row or the section.
 - If the project has no record of what a person said before, write "no record for this person yet". Do not guess from their job title.
 
 Example:
@@ -96,6 +98,14 @@ Example:
 **D. Tactics.** Pick at most three from the Greever cheatsheet that fit this meeting. For each, say which fact makes it fit. Example: "Rule of Direct Comparison：Ken 上次提出自己的版本，這次並排展示兩個方案。"
 
 **E. Follow-up reminder.** One line: send the written decisions and action items within an hour after the meeting. `/crit-ready minutes` produces them.
+
+**F. Rules & edge-case check.** Follow the section "規則與邊界檢查" in `templates/shared/pre-meeting-prep.md` (read it now). It has eight items. Write each item as a short list under a `### Rules & Edge-Case Check` heading, inside the Pre-Meeting Prep. Rules for this part:
+
+- Fill each cell from what the project's files say. A cell with no record says "待確認". Never fill it with a guess.
+- Item 1 (role × state): skip it if the flow has only one kind of user.
+- Item 5 (conflicting records): compare `design-decisions.md` rows and the last meeting file for the same topic. If two records disagree, list both with their dates and write "請 Product 決定". Do not choose one.
+- Item 8 (questions to send ahead): at most three. Say who should be asked.
+- If the product has a `*question-patterns*.md`, do the items that match that file's most frequent categories first.
 
 If the project has nothing for a field, leave the field empty. Do not fill it with a guess.
 
@@ -112,4 +122,5 @@ Show the prep. Name any attendee missing from `people.md`. Then ask one question
 - [ ] The meeting file exists and has text under `## Pre-Meeting Prep`.
 - [ ] `meeting-notes.md` has a row for this meeting.
 - [ ] Every predicted reaction names a row, or says there is no record.
+- [ ] For Crit, Executive Review and Handoff: the prep has a `### Rules & Edge-Case Check`, and no cell is filled by a guess.
 - [ ] `changelog.md` has a new line.
