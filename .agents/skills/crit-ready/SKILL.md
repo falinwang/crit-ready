@@ -1,9 +1,8 @@
 ---
 name: crit-ready
 description: "Design knowledge coordinator for a UX designer's project vault. Use this skill when the user types /crit-ready followed by init, prep, minutes, sync, promote, today or migrate, or asks to: start a new design project, prepare for a design meeting, process a meeting transcript or meeting notes, log a design decision made in Slack or Figma comments, promote a decision to the product or the pattern library, get today's to-do list across projects, or convert an older Crit-Ready project to the current structure."
+argument-hint: "[init | prep | minutes | sync | promote | today | migrate]"
 ---
-
-<!-- argument-hint: init | prep | minutes | sync | promote | today | migrate -->
 
 # Crit-Ready
 
